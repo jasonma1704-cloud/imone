@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3U8转MP4在线工具 - 视频转换器</title>
+    <meta name="description" content="M3U8转MP4在线工具，支持HLS流媒体m3u8链接一键转换为MP4视频文件，纯前端实现，无需安装、无需上传，安全快速，适合短视频m3u8转mp4下载。">
+    <meta name="keywords" content="m3u8转mp4, m3u8 to mp4, hls转mp4, 在线m3u8转mp4, 视频格式转换, 纯前端视频转换, m3u8下载, mp4下载, hls下载, m3u8合并, m3u8转换器">
+    <link rel="canonical" href="https://m3u8player.org/m3u8_to_mp4/">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="M3U8转MP4在线工具 - 视频转换器">
+    <meta property="og:description" content="M3U8转MP4在线工具，支持HLS流媒体m3u8链接一键转换为MP4视频文件，纯前端实现，无需安装、无需上传，安全快速，适合短视频m3u8转mp4下载。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://m3u8player.org/m3u8_to_mp4/">
+    <meta property="og:image" content="https://m3u8player.org/images/logo.png">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" href="/images/logo.ico" type="image/x-icon"/>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f7fafd;
+            font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 60px auto 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(14,144,210,0.08);
+            padding: 40px 40px 32px 40px;
+            min-height: 500px;
+        }
+        h1 {
+            color: #0e90d2;
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .desc {
+            color: #666;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .form-inline {
+            display: flex;
+            gap: 0;
+            margin-bottom: 18px;
+        }
+        .form-inline input[type="text"] {
+            flex: 1;
+            height: 42px;
+            border: 1px solid #0e90d2;
+            border-radius: 6px 0 0 6px;
+            padding-left: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+        .form-inline button {
+            height: 42px;
+            border: none;
+            background: #0e90d2;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 0 6px 6px 0;
+            padding: 0 24px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .form-inline button:hover {
+            background: #0973a8;
+        }
+        #status {
+            margin-top: 18px;
+            color: #0e90d2;
+            min-height: 24px;
+            text-align: center;
+            font-size: 15px;
+        }
+        .footer {
+            margin-top: 32px;
+            text-align: center;
+            color: #aaa;
+            font-size: 13px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 12px 2vw 12px 2vw;
+                min-height: 400px;
+            }
+            h1 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            .desc {
+                font-size: 13px;
+                margin-bottom: 48px;
+            }
+            .form-inline {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .form-inline input[type="text"] {
+                border-radius: 6px 6px 0 0;
+                font-size: 16px;
+                height: 48px;
+            }
+            .form-inline button {
+                border-radius: 0 0 6px 6px;
+                width: 100%;
+                font-size: 16px;
+                height: 48px;
+                padding: 0;
+            }
+            #status {
+                font-size: 13px;
+                min-height: 20px;
+            }
+            .footer {
+                margin-top: 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js"></script>
+
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>LA.init({id: "3G9QRCtAm0z4ABfe", ck: "3G9QRCtAm0z4ABfe"})</script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>M3U8 转 MP4</h1>
+        <div class="desc">输入 m3u8 视频链接，纯前端一键转换为 MP4 文件。<br>（仅支持 CORS 允许的 m3u8，适合短视频）</div>
+        <form class="form-inline" autocomplete="off">
+            <input type="text" name="url" placeholder="请输入 m3u8 链接" value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
+            <button type="submit">开始转换</button>
+        </form>
+        <div id="status"></div>
+        <div id="steps-panel" style="margin-top:28px;background:#f2f8fc;border-radius:8px;padding:20px 18px 16px 18px;box-shadow:0 1px 6px rgba(14,144,210,0.06);color:#333;font-size:15px;">
+            <strong style="color:#0e90d2;font-size:16px;">转换步骤说明</strong>
+            <ol style="margin:14px 0 0 18px;padding:0;font-size:15px;">
+                <li>输入 m3u8 视频链接，点击“开始转换”</li>
+                <li>工具自动下载 m3u8 文件并解析 ts 分片</li>
+                <li>依次下载所有 ts 分片（需支持 CORS）</li>
+                <li>在浏览器内拼接分片并转为 MP4 文件</li>
+                <li>转换完成后自动下载 MP4 文件到本地</li>
+            </ol>
+            <div style="color:#888;font-size:13px;margin-top:10px;">注：仅适合短视频，且 m3u8/ts 需允许跨域访问。</div>
+        </div>
+    </div>
+    <div class="footer">
+        © 2024 <a href="https://m3u8player.org/" target="_blank" rel="noopener noreferrer" style="color:#0e90d2;text-decoration:none;">m3u8player.org</a> | 仅供学习交流，禁止商用
+    </div>
+    <script>
+    const { createFFmpeg, fetchFile } = FFmpeg;
+    const ffmpeg = createFFmpeg({ log: true });
+    const statusDiv = document.getElementById('status');
+    document.querySelector('form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const url = this.url.value.trim();
+        if (!url) {
+            statusDiv.textContent = '请输入 m3u8 链接';
+            return;
+        }
+        statusDiv.textContent = '正在转换，请稍候...(1分钟左右)';
+    });
+    </script>
+</body>
+</html>
