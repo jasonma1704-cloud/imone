@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FFmpeg Generator - 自动生成 M3U8 下载与转码命令</title>
+  <meta name="description" content="在线 FFmpeg 命令生成器，自动生成 M3U8 下载、MP4 转换、TS 合并、转音频、设置请求头、代理、覆盖输出等 FFmpeg 命令。" />
+  <meta name="keywords" content="ffmpeg生成器,m3u8 ffmpeg,在线生成ffmpeg命令,hls下载命令,m3u8转mp4命令,ffmpeg 下载 m3u8" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100">
+  <div id="toast" class="pointer-events-none fixed left-1/2 top-1/2 z-50 hidden w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-[calc(50%+12px)] rounded-2xl border px-5 py-4 text-sm font-medium opacity-0 shadow-2xl backdrop-blur transition-all duration-300"></div>
+
+  <header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+      <a href="/" class="text-xl font-bold">M3U8 Online Player</a>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
+        <a href="/" class="hover:text-blue-400">Home</a>
+        <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+        <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+        <a href="/ffmpeg/" class="font-semibold text-blue-400">FFmpeg</a>
+        <a href="/post/" class="hover:text-blue-400">Help Center</a>
+        <a href="/about.html" class="hover:text-blue-400">About</a>
+      </nav>
+      <a href="/preview.html" class="rounded-xl bg-blue-500 px-5 py-2 text-sm font-semibold hover:bg-blue-600">Start Playing</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative overflow-hidden px-6 py-16">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,#2563eb55,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e44,transparent_30%)]"></div>
+      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <div>
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">FFmpeg Command Builder</p>
+          <h1 class="mb-4 text-4xl font-bold md:text-5xl">FFmpeg Generator</h1>
+          <p class="max-w-3xl text-lg leading-8 text-slate-300">输入 M3U8、MP4、TS、MP3 等链接，自动生成可直接复制的 FFmpeg 命令。支持下载 HLS、转 MP4、提取音频、自定义请求头、User-Agent、Referer、Cookie、代理、覆盖输出和命名文件。</p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+              <div class="text-sm text-slate-400">适合场景</div>
+              <div class="mt-2 font-semibold text-white">M3U8 下载 / 转码 / 调试</div>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+              <div class="text-sm text-slate-400">输出结果</div>
+              <div class="mt-2 font-semibold text-white">一键生成完整命令</div>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+              <div class="text-sm text-slate-400">无需安装</div>
+              <div class="mt-2 font-semibold text-white">页面负责生成，你本地执行</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-2xl shadow-blue-950/20">
+          <h2 class="text-xl font-bold">使用说明</h2>
+          <ol class="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+            <li>1. 输入视频或音频链接，支持 m3u8 / mp4 / ts / mp3 等 URL。</li>
+            <li>2. 选择命令用途，例如下载 M3U8、转为 MP4、提取音频。</li>
+            <li>3. 按需填写 Referer、User-Agent、Cookie 或代理。</li>
+            <li>4. 点击“生成命令”，复制后在本地终端执行。</li>
+          </ol>
+          <div class="mt-5 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
+            提示：如果源站有鉴权限制，通常需要带上 Referer、Cookie 或 User-Agent，否则 FFmpeg 会提示 403 / 401 / Forbidden。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 pb-16">
+      <div class="grid gap-8 xl:grid-cols-[1.1fr_0.9fr] p-8">
+        <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
+          <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-2xl font-bold">命令配置</h2>
+              <p class="mt-1 text-sm text-slate-400">按照你的需求组合参数，页面会实时生成 FFmpeg 命令。</p>
+            </div>
+            <button id="fill-sample-btn" class="rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-700">填入示例</button>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <label for="input-url" class="mb-2 block text-sm font-medium text-slate-300">输入地址 URL</label>
+              <textarea id="input-url" rows="3" placeholder="https://example.com/video/index.m3u8" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/20"></textarea>
+              <p class="mt-2 text-xs text-slate-500">支持 M3U8、MP4、TS、MP3 等媒体地址，也可从Analyzer页面自动带入。</p>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div>
+                <label for="command-type" class="mb-2 block text-sm font-medium text-slate-300">命令用途</label>
+                <select id="command-type" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-500/20">
+                  <option value="m3u8-copy-mp4">M3U8 无损下载为 MP4</option>
+                  <option value="m3u8-copy-ts">M3U8 无损下载为 TS</option>
+                  <option value="m3u8-transcode-mp4">M3U8 转码为 MP4（H.264 + AAC）</option>
+                  <option value="extract-mp3">提取音频为 MP3</option>
+                  <option value="extract-aac">提取音频为 AAC</option>
+                  <option value="remux-mp4">MP4/TS 重新封装为 MP4</option>
+                  <option value="custom">自定义基础命令模板</option>
+                </select>
+              </div>
+              <div>
+                <label for="output-name" class="mb-2 block text-sm font-medium text-slate-300">输出文件名</label>
+                <input id="output-name" type="text" value="output.mp4" placeholder="output.mp4" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/20" />
+              </div>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                <span class="mb-2 block text-sm font-medium text-slate-300">User-Agent</span>
+                <input id="user-agent" type="text" placeholder="Mozilla/5.0 ..." class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                <span class="mb-2 block text-sm font-medium text-slate-300">Referer</span>
+                <input id="referer" type="text" placeholder="https://example.com/" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4 md:col-span-2 xl:col-span-1">
+                <span class="mb-2 block text-sm font-medium text-slate-300">Cookie</span>
+                <input id="cookie" type="text" placeholder="token=abc; session=123" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                <span class="mb-2 block text-sm font-medium text-slate-300">HTTP 代理</span>
+                <input id="proxy" type="text" placeholder="http://127.0.0.1:7890" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                <span class="mb-2 block text-sm font-medium text-slate-300">额外 Headers</span>
+                <input id="headers" type="text" placeholder="X-Token: abc123 | X-App: demo" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
+                <input id="overwrite" type="checkbox" checked class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
+                覆盖输出文件（-y）
+              </label>
+              <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
+                <input id="copy-timestamps" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
+                保留时间戳（-copyts）
+              </label>
+              <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
+                <input id="use-bsf" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
+                添加 AAC ADTS 过滤器
+              </label>
+              <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
+                <input id="safe-zero" type="checkbox" checked class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
+                允许绝对路径（-safe 0）
+              </label>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                <span class="mb-2 block text-sm font-medium text-slate-300">视频编码参数</span>
+                <input id="video-args" type="text" placeholder="-c:v libx264 -preset medium -crf 23" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+              <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
+                <span class="mb-2 block text-sm font-medium text-slate-300">音频编码参数</span>
+                <input id="audio-args" type="text" placeholder="-c:a aac -b:a 192k" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
+              </label>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <button id="generate-btn" class="rounded-xl bg-blue-500 px-6 py-3 font-semibold hover:bg-blue-600">生成命令</button>
+              <button id="copy-btn" class="rounded-xl bg-emerald-500 px-6 py-3 font-semibold hover:bg-emerald-600">复制命令</button>
+              <button id="reset-btn" class="rounded-xl bg-slate-800 px-6 py-3 font-semibold hover:bg-slate-700">重置</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h2 class="text-2xl font-bold">生成结果</h2>
+                <p class="mt-1 text-sm text-slate-400">你可以直接复制到终端里执行。</p>
+              </div>
+            </div>
+            <pre id="command-output" class="mt-5 min-h-[280px] overflow-x-auto whitespace-pre-wrap break-words rounded-2xl bg-slate-950 p-4 text-sm leading-7 text-slate-200"></pre>
+          </div>
+
+          <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
+            <h3 class="text-xl font-bold">命令说明</h3>
+            <div id="command-summary" class="mt-4 space-y-3 text-sm leading-7 text-slate-300"></div>
+          </div>
+
+          <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
+            <h3 class="text-xl font-bold">常见模板</h3>
+            <div class="mt-4 space-y-3 text-sm text-slate-300">
+              <button data-template="m3u8-copy-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">M3U8 无损下载为 MP4</button>
+              <button data-template="m3u8-transcode-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">M3U8 转码为兼容 MP4</button>
+              <button data-template="extract-mp3" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">提取音频为 MP3</button>
+              <button data-template="remux-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">MP4 / TS 重新封装</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 pb-16">
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl bg-slate-900 p-6">
+          <h3 class="mb-2 font-bold">为什么 FFmpeg 无法下载？</h3>
+          <p class="text-sm leading-6 text-slate-400">最常见原因是源站限制了 Referer、Cookie、User-Agent，或必须通过代理访问。把这些请求头带上，一般就能恢复。</p>
+        </div>
+        <div class="rounded-2xl bg-slate-900 p-6">
+          <h3 class="mb-2 font-bold">什么时候用 copy？</h3>
+          <p class="text-sm leading-6 text-slate-400">如果原始流本身就是 H.264/AAC，推荐使用 <code>-c copy</code> 无损封装，速度更快，也不会重复压缩导致画质下降。</p>
+        </div>
+        <div class="rounded-2xl bg-slate-900 p-6">
+          <h3 class="mb-2 font-bold">什么时候用转码？</h3>
+          <p class="text-sm leading-6 text-slate-400">当Play器兼容性差、音视频编码异常、想压缩体积或改码率时，使用 H.264 + AAC 转码命令更稳妥。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 py-6 text-center text-sm text-slate-500">© 2019 - 2026 M3U8 Online Player | 仅生成命令，请自行确认资源授权与使用合规性</footer>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let toastTimer = null;
+
+    const sample = {
+      url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+      output: 'demo-output.mp4',
+      referer: 'https://example.com/',
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+      cookie: 'sessionid=demo123; token=example',
+      proxy: 'http://127.0.0.1:7890',
+      headers: 'X-Token: abc123 | X-App: web-m3u8'
+    };
+
+    const summaries = {
+      'm3u8-copy-mp4': [
+        '适用于大多数 HLS 视频直接下载为 MP4。',
+        '使用 -c copy 无损封装，不重新编码，速度快。',
+        '如果输出 MP4 Play异常，可切换到“转码为 MP4”。'
+      ],
+      'm3u8-copy-ts': [
+        '适合先把直播流或点播流原样保存为 TS。',
+        'TS 封装兼容性好，部分特殊流比 MP4 更稳。',
+        '后续还可以再重新封装或二次处理。'
+      ],
+      'm3u8-transcode-mp4': [
+        '将输入视频转码为兼容性更高的 H.264 + AAC。',
+        '适合编码不规范、目标设备兼容性差、或需要压缩体积时使用。',
+        '视频和音频编码参数可自定义。'
+      ],
+      'extract-mp3': [
+        '从视频或直播录制文件中提取音频并输出 MP3。',
+        '适合做播客、语音留档或背景音提取。',
+        '可自定义码率，比如 128k / 192k / 320k。'
+      ],
+      'extract-aac': [
+        '将音轨提取或转为 AAC 文件。',
+        '适合保留 AAC 生态兼容性。',
+        '遇到 ADTS 场景可结合 AAC 过滤器。'
+      ],
+      'remux-mp4': [
+        '不重新编码，直接把输入重新封装到 MP4。',
+        '适合 TS 转 MP4、修正容器、快速整理素材。',
+        '如果流中编码本身不兼容 MP4，可能仍需转码。'
+      ],
+      'custom': [
+        '提供一个基础模板，便于你自行追加高级参数。',
+        '适合熟悉 FFmpeg 命令的用户继续二次编辑。'
+      ]
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      bindEvents();
+      hydrateFromQuery();
+      updateDefaultsByType();
+      clearGeneratedResult('请配置参数后点击“生成命令”，生成结果会显示在这里。');
+    });
+
+    function bindEvents() {
+      $('generate-btn').addEventListener('click', generateCommand);
+      $('copy-btn').addEventListener('click', () => copyGeneratedCommand());
+      $('reset-btn').addEventListener('click', resetForm);
+      $('fill-sample-btn').addEventListener('click', fillSample);
+      $('command-type').addEventListener('change', () => {
+        updateDefaultsByType();
+        clearGeneratedResult('模板已切换，请点击“生成命令”查看结果。');
+      });
+
+      ['input-url', 'output-name', 'user-agent', 'referer', 'cookie', 'proxy', 'headers', 'video-args', 'audio-args'].forEach((id) => {
+        $(id).addEventListener('input', () => clearGeneratedResult('参数已修改，请点击“生成命令”重新生成结果。'));
+      });
+      ['overwrite', 'copy-timestamps', 'use-bsf', 'safe-zero'].forEach((id) => {
+        $(id).addEventListener('change', () => clearGeneratedResult('参数已修改，请点击“生成命令”重新生成结果。'));
+      });
+
+      document.querySelectorAll('.template-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          $('command-type').value = button.dataset.template;
+          updateDefaultsByType();
+          clearGeneratedResult('已切换模板，请点击“生成命令”查看结果。');
+          showStatus('已切换模板', 'success');
+        });
+      });
+    }
+
+    function hydrateFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get('url') || '';
+      const type = params.get('type') || '';
+      const referer = params.get('referer') || '';
+      const ua = params.get('ua') || '';
+      const output = params.get('output') || '';
+
+      if (url) $('input-url').value = url;
+      if (referer) $('referer').value = referer;
+      if (ua) $('user-agent').value = ua;
+      if (output) $('output-name').value = output;
+      if (type && summaries[type]) $('command-type').value = type;
+    }
+
+    function fillSample() {
+      $('input-url').value = sample.url;
+      $('output-name').value = sample.output;
+      $('referer').value = sample.referer;
+      $('user-agent').value = sample.userAgent;
+      $('cookie').value = sample.cookie;
+      $('proxy').value = sample.proxy;
+      $('headers').value = sample.headers;
+      $('command-type').value = 'm3u8-copy-mp4';
+      updateDefaultsByType();
+      clearGeneratedResult('示例已填充，请点击“生成命令”查看结果。');
+      showStatus('示例已填充', 'success');
+    }
+
+    function resetForm() {
+      $('input-url').value = '';
+      $('output-name').value = 'output.mp4';
+      $('user-agent').value = '';
+      $('referer').value = '';
+      $('cookie').value = '';
+      $('proxy').value = '';
+      $('headers').value = '';
+      $('overwrite').checked = true;
+      $('copy-timestamps').checked = false;
+      $('use-bsf').checked = false;
+      $('safe-zero').checked = true;
+      $('command-type').value = 'm3u8-copy-mp4';
+      updateDefaultsByType();
+      clearGeneratedResult('已重置表单，请重新生成命令。');
+      showStatus('已重置表单', 'success');
+    }
+
+    function updateDefaultsByType() {
+      const type = $('command-type').value;
+      const currentOutput = $('output-name').value.trim();
+      const currentLooksDefault = /^output\.(mp4|ts|mp3|aac)$/i.test(currentOutput) || !currentOutput;
+
+      if (currentLooksDefault) {
+        const defaults = {
+          'm3u8-copy-mp4': 'output.mp4',
+          'm3u8-copy-ts': 'output.ts',
+          'm3u8-transcode-mp4': 'output.mp4',
+          'extract-mp3': 'output.mp3',
+          'extract-aac': 'output.aac',
+          'remux-mp4': 'output.mp4',
+          'custom': 'output.mp4'
+        };
+        $('output-name').value = defaults[type] || 'output.mp4';
+      }
+
+      if (type === 'm3u8-transcode-mp4') {
+        if (!$('video-args').value.trim()) $('video-args').value = '-c:v libx264 -preset medium -crf 23';
+        if (!$('audio-args').value.trim()) $('audio-args').value = '-c:a aac -b:a 192k';
+      } else if (type === 'extract-mp3') {
+        $('video-args').value = '-vn';
+        if (!$('audio-args').value.trim() || $('audio-args').value.includes('aac')) $('audio-args').value = '-c:a libmp3lame -b:a 192k';
+      } else if (type === 'extract-aac') {
+        $('video-args').value = '-vn';
+        if (!$('audio-args').value.trim() || $('audio-args').value.includes('libmp3lame')) $('audio-args').value = '-c:a aac -b:a 192k';
+      } else if (type === 'm3u8-copy-mp4' || type === 'm3u8-copy-ts' || type === 'remux-mp4') {
+        $('video-args').value = '-c copy';
+        $('audio-args').value = '';
+      } else if (type === 'custom') {
+        if (!$('video-args').value.trim()) $('video-args').value = '-c copy';
+      }
+
+      renderSummary(type);
+    }
+
+    function generateCommand() {
+      const url = $('input-url').value.trim();
+      const type = $('command-type').value;
+      const outputName = $('output-name').value.trim();
+
+      if (!url) {
+        clearGeneratedResult('请先输入媒体地址，再点击“生成命令”。');
+        renderSummary(type);
+        showStatus('请输入媒体地址', 'error');
+        return;
+      }
+
+      const command = buildCommand({
+        url,
+        type,
+        outputName,
+        referer: $('referer').value.trim(),
+        userAgent: $('user-agent').value.trim(),
+        cookie: $('cookie').value.trim(),
+        proxy: $('proxy').value.trim(),
+        headers: $('headers').value.trim(),
+        overwrite: $('overwrite').checked,
+        copyTimestamps: $('copy-timestamps').checked,
+        useBsf: $('use-bsf').checked,
+        safeZero: $('safe-zero').checked,
+        videoArgs: $('video-args').value.trim(),
+        audioArgs: $('audio-args').value.trim()
+      });
+
+      $('command-output').textContent = command;
+      $('command-output').dataset.generated = 'true';
+      renderSummary(type);
+      showStatus('命令生成成功', 'success');
+    }
+
+    function buildCommand(options) {
+      const parts = ['ffmpeg'];
+      if (options.overwrite) parts.push('-y');
+      if (options.copyTimestamps) parts.push('-copyts');
+      if (options.proxy) parts.push('-http_proxy', quote(options.proxy));
+      if (options.safeZero) parts.push('-safe', '0');
+      if (options.userAgent) parts.push('-user_agent', quote(options.userAgent));
+      if (options.referer) parts.push('-referer', quote(options.referer));
+      if (options.cookie) parts.push('-headers', quote(`Cookie: ${options.cookie}`));
+
+      const extraHeaders = buildExtraHeaders(options.headers);
+      extraHeaders.forEach((header) => parts.push('-headers', quote(header)));
+
+      parts.push('-i', quote(options.url));
+
+      switch (options.type) {
+        case 'm3u8-copy-mp4':
+          parts.push('-c', 'copy');
+          if (options.useBsf) parts.push('-bsf:a', 'aac_adtstoasc');
+          parts.push(quote(withFallbackOutput(options.outputName, 'output.mp4')));
+          break;
+        case 'm3u8-copy-ts':
+          parts.push('-c', 'copy', '-f', 'mpegts', quote(withFallbackOutput(options.outputName, 'output.ts')));
+          break;
+        case 'm3u8-transcode-mp4':
+          appendArgString(parts, options.videoArgs || '-c:v libx264 -preset medium -crf 23');
+          appendArgString(parts, options.audioArgs || '-c:a aac -b:a 192k');
+          parts.push('-movflags', '+faststart', quote(withFallbackOutput(options.outputName, 'output.mp4')));
+          break;
+        case 'extract-mp3':
+          appendArgString(parts, options.videoArgs || '-vn');
+          appendArgString(parts, options.audioArgs || '-c:a libmp3lame -b:a 192k');
+          parts.push(quote(withFallbackOutput(options.outputName, 'output.mp3')));
+          break;
+        case 'extract-aac':
+          appendArgString(parts, options.videoArgs || '-vn');
+          appendArgString(parts, options.audioArgs || '-c:a aac -b:a 192k');
+          parts.push(quote(withFallbackOutput(options.outputName, 'output.aac')));
+          break;
+        case 'remux-mp4':
+          parts.push('-c', 'copy');
+          if (options.useBsf) parts.push('-bsf:a', 'aac_adtstoasc');
+          parts.push(quote(withFallbackOutput(options.outputName, 'output.mp4')));
+          break;
+        case 'custom':
+        default:
+          appendArgString(parts, options.videoArgs || '-c copy');
+          appendArgString(parts, options.audioArgs);
+          parts.push(quote(withFallbackOutput(options.outputName, 'output.mp4')));
+          break;
+      }
+
+      return parts.join(' ');
+    }
+
+    function buildExtraHeaders(value) {
+      if (!value) return [];
+      return value
+        .split('|')
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .map((item) => (item.endsWith('\\r\\n') ? item : `${item}\\r\\n`));
+    }
+
+    function appendArgString(parts, argString) {
+      if (!argString) return;
+      const tokens = argString.match(/(?:"[^"]*"|'[^']*'|\S+)/g) || [];
+      tokens.forEach((token) => parts.push(token));
+    }
+
+    function withFallbackOutput(value, fallback) {
+      return value || fallback;
+    }
+
+    function quote(value) {
+      return `"${String(value).replace(/"/g, '\\"')}"`;
+    }
+
+    function renderSummary(type) {
+      const items = summaries[type] || [];
+      $('command-summary').innerHTML = items.map((item) => `<div class="rounded-2xl bg-slate-950 px-4 py-3">${escapeHtml(item)}</div>`).join('');
+    }
+
+    function clearGeneratedResult(message) {
+      $('command-output').textContent = message;
+      $('command-output').dataset.generated = 'false';
+    }
+
+    function copyGeneratedCommand() {
+      if ($('command-output').dataset.generated !== 'true') {
+        showStatus('请先点击“生成命令”，再复制命令', 'error');
+        return;
+      }
+      copyText($('command-output').textContent, 'FFmpeg 命令已复制');
+    }
+
+    function showStatus(message, type) {
+      const el = $('toast');
+      const toastType = type || 'info';
+      const classMap = {
+        success: 'border-emerald-400/50 bg-emerald-500/20 text-emerald-50 shadow-emerald-950/40',
+        error: 'border-red-400/50 bg-red-500/20 text-red-50 shadow-red-950/40',
+        info: 'border-blue-400/50 bg-blue-500/20 text-blue-50 shadow-blue-950/40'
+      };
+      const iconMap = {
+        success: '✓',
+        error: '!',
+        info: 'i'
+      };
+      const titleMap = {
+        success: '操作成功',
+        error: '操作失败',
+        info: '提示'
+      };
+      const iconClassMap = {
+        success: 'bg-emerald-500 text-white',
+        error: 'bg-red-500 text-white',
+        info: 'bg-blue-500 text-white'
+      };
+
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+        toastTimer = null;
+      }
+
+      el.className = `pointer-events-none fixed right-5 top-24 z-50 w-[calc(100%-2.5rem)] max-w-sm rounded-2xl border px-5 py-4 text-sm font-medium shadow-2xl backdrop-blur transition-all duration-300 ${classMap[toastType] || classMap.info}`;
+      el.innerHTML = `
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-base font-bold ${iconClassMap[toastType] || iconClassMap.info}">${iconMap[toastType] || iconMap.info}</span>
+          <span class="min-w-0">
+            <span class="block font-bold">${escapeHtml(titleMap[toastType] || titleMap.info)}</span>
+            <span class="mt-0.5 block leading-6 opacity-90">${escapeHtml(message)}</span>
+          </span>
+        </div>
+      `;
+      el.classList.remove('hidden', 'opacity-0', 'translate-y-[-12px]');
+      el.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimer = setTimeout(() => {
+        el.classList.remove('opacity-100', 'translate-y-0');
+        el.classList.add('opacity-0', 'translate-y-[-12px]');
+        setTimeout(() => el.classList.add('hidden'), 300);
+      }, 3000);
+    }
+
+    async function copyText(text, message) {
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        showStatus(message, 'success');
+      } catch (error) {
+        showStatus('复制失败，请手动选择复制', 'error');
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    }
+  </script>
+  <script src="/resane/js/lang-sync.js"></script>
+</body>
+</html>

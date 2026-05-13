@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M3U8オンラインプレーヤー - HLSストリーム再生・解析・変換ツール</title>
+  <meta name="description" content="M3U8オンラインプレーヤーはHLSストリーム再生、M3U8をMP4に変換、ビットレート分析、FFmpegコマンド生成に対応。無料・安全・インストール不要でブラウザからすぐ利用可能。">
+  <meta name="keywords" content="m3u8プレーヤー,m3u8オンライン再生,m3u8 mp4変換,hlsプレーヤー,m3u8オンライン解析">
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+  <meta property="og:title" content="M3U8オンラインプレーヤー - 無料HLSストリーム再生ツール">
+  <meta property="og:description" content="プラグイン不要でM3U8ストリームの再生・解析・変換・分析ができる無料オンラインツール。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <style>
+    .card-glow {
+      transition: all 0.3s ease;
+    }
+
+    .card-glow:hover {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .nav-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .title-glow {
+      text-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-white">
+  <div
+    class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
+  </div>
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+    <div class="text-xl font-bold">M3U8オンラインプレーヤー</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">ホーム</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8→MP4変換</a>
+      <a href="/analyzer/" class="hover:text-blue-400">アナライザー</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="text-blue-400 font-bold">ヘルプセンター</a>
+      <a href="/about.html" class="hover:text-blue-400">概要</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="ja" selected>日本語</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
+      </div>
+      <a href="/preview.html"><button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">再生開始</button></a>
+    </div>
+  </header>
+  <section class="text-center py-20 px-4">
+    <h1 class="text-4xl font-bold mb-4 title-glow">M3U8オンラインプレーヤー</h1>
+    <p class="text-gray-400 mb-8">M3U8オンラインプレーヤーはHLS（HTTP Live Streaming）プロトコルに基づく、ストリーミング動画再生専用のWebツールです。</p>
+    <div class="flex flex-col md:flex-row justify-center gap-3 max-w-2xl mx-auto">
+      <input type="text" id="hero-m3u8-url" placeholder="M3U8再生URLを入力"
+        value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        class="flex-1 px-4 py-3 rounded-lg text-black shadow-md" />
+      <button id="play-btn"
+        class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶ 再生</button>
+      <button id="analyze-btn"
+        class="bg-gray-700 px-6 py-3 rounded-lg hover:bg-gray-600 transition shadow-lg hover:shadow-gray-500/20">解析</button>
+    </div>
+    <div class="mt-10 mx-auto max-w-5xl">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 shadow-2xl shadow-blue-950/30 md:p-6">
+        <div class="mb-3 flex items-center justify-between gap-3">
+          <h2 class="text-lg font-bold title-glow">プレーヤープレビュー</h2>
+          <span id="player-status" class="text-sm text-slate-400">未再生</span>
+        </div>
+        <div id="player-shell" class="overflow-hidden rounded-xl bg-black min-h-[220px]">
+          <video id="player-container-id" preload="auto" playsinline webkit-playsinline
+            class="w-full min-h-[220px] bg-black"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="px-6 py-16 max-w-6xl mx-auto">
+    <h2 class="text-2xl font-bold mb-10 text-center title-glow">万能M3U8ツール</h2>
+    <div class="grid md:grid-cols-4 gap-6">
+      <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
+        <h3 class="font-bold mb-2">M3U8プレーヤー</h3>
+        <p class="text-gray-400 text-sm">M3U8ストリームをオンライン再生</p>
+        <div class="mt-4 text-blue-400 text-sm">開く →</div>
+      </a>
+      <a href="/analyzer/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
+        <h3 class="font-bold mb-2">M3U8アナライザー</h3>
+        <p class="text-gray-400 text-sm">ストリーム詳細を表示</p>
+        <div class="mt-4 text-blue-400 text-sm">開く →</div>
+      </a>
+      <a href="/m3u8_to_mp4/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
+        <h3 class="font-bold mb-2">MP4変換</h3>
+        <p class="text-gray-400 text-sm">M3U8をMP4に変換</p>
+        <div class="mt-4 text-blue-400 text-sm">開く →</div>
+      </a>
+      <a href="/ffmpeg/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
+        <h3 class="font-bold mb-2">FFmpegジェネレーター</h3>
+        <p class="text-gray-400 text-sm">FFmpegコマンド自動生成</p>
+        <div class="mt-4 text-blue-400 text-sm">開く →</div>
+      </a>
+    </div>
+  </section>
+  <section class="bg-slate-800 py-16">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+      <div>
+        <h3 class="font-bold mb-2 text-lg">⚡ 高速再生</h3>
+        <p class="text-gray-400">即時ストリーミング開始</p>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2 text-lg">🔒 安全安心</h3>
+        <p class="text-gray-400">データ保存なし、プライバシー保護</p>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2 text-lg">🆓 完全無料</h3>
+        <p class="text-gray-400">全機能無料利用可</p>
+      </div>
+    </div>
+  </section>
+  <section class="max-w-4xl mx-auto px-6 pt-16">
+    <h2 class="text-2xl font-bold mb-4 title-glow">サイト埋め込みコード：</h2>
+    <div class="bg-slate-800 p-6 rounded-lg mb-4 text-left text-slate-200 shadow-lg">
+      <pre
+        class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=https://****index.m3u8"&gt;&lt;/iframe&gt;</pre>
+    </div>
+    <p class="text-gray-400 leading-relaxed">M3U8PlayerはChrome拡張機能のHLSクライアント再生ツールです。m3u8形式のHTTP Live Streamingに対応。HTML5ビデオとMedia Source Extensionsを利用し、MPEG-2 TS・AAC/MP3ストリームをMP4フラグメントに変換し再生します。Web Workerによる非同期トランスコーディングやHLS+fmp4にも対応。</p>
+  </section>
+  <section class="max-w-4xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold mb-4 title-glow">M3U8とは何か？</h2>
+    <p class="text-gray-400 leading-relaxed">M3U8はUTF-8エンコードのプレーンテキストプレイリスト形式です。動画・音声本体を保存せず、メディアリソースのURLだけを記録し、プレーヤーが読み込んでストリーミング再生します。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">ネットラジオ・ローカルメディアリスト作成など幅広く利用可能。M3U8で一括再生が可能です。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">絶対パス・相対パス・URLに対応しコメントも記載可能。元々音楽プレイリスト用だったが、現在は動画配信・ライブ配信で主流に使われています。</p>
+    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">M3U8ファイルの開き方</h2>
+    <p class="text-gray-400 leading-relaxed">メモ帳などテキストエディタでM3U8を開いて中身を確認できますが、再生はできません。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">VLC、iTunes、XMMS(Linux)、CocoModX(Mac)など専用プレーヤーで再生可能。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">オンラインM3U8プレーヤーでURLから直接再生も可能。ローカルファイルには非対応です。</p>
+  </section>
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h2 class="text-2xl font-bold mb-6 title-glow">よくある質問</h2>
+    <div class="space-y-4">
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8プロトコルとは？</a>
+        <p class="text-gray-400 text-sm mt-2">Web動画配信用のHLSストリーミングインデックス規格です。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/play-m3u8-video.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8動画の再生方法</a>
+        <p class="text-gray-400 text-sm mt-2">ストリーム対応プレーヤー・ブラウザ・オンラインツールで再生可能。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/m3u8-advantages.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8形式のメリット</a>
+        <p class="text-gray-400 text-sm mt-2">分割読み込み・低遅延・モバイル対応・帯域適応・リンク保護に優れる。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8と通常動画形式の違い</a>
+        <p class="text-gray-400 text-sm mt-2">M3U8は分割リスト、MP4などは完全な単一動画ファイル。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/common-video-formats.html"
+          class="text-blue-400 hover:text-blue-300 font-semibold">一般的な動画形式</a>
+        <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebMなど。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8ライブ配信の仕組み</a>
+        <p class="text-gray-400 text-sm mt-2">ライブ映像をリアルタイム分割し、クライアントが逐次読み込み低遅延再生を実現。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8プロトコル動作原理</a>
+        <p class="text-gray-400 text-sm mt-2">動画を小さなTSチャンクに分割、M3U8が順序とURLを記録し逐次読み込み。</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow"><a
+          href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8の解析方法</a>
+        <p class="text-gray-400 text-sm mt-2">コード・ツールでインデックスを読み取り、分割URL抽出して完全動画に結合。</p>
+      </div>
+    </div>
+  </section>
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">© 2026 M3U8オンラインプレーヤー | リソースはネットより引用、著作権に関する削除依頼はお問い合わせください</footer>
+  <script src="/resane/js/lang-sync.js"></script>
+  <script>
+    const heroM3u8UrlInput = document.getElementById('hero-m3u8-url');
+    let player;
+
+    function getUrlParam(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return unescape(r[2]);
+      return null;
+    }
+
+    function setPlayerStatus(text) {
+      const el = document.getElementById('player-status');
+      if (el) el.textContent = text;
+    }
+
+    function initPlayer(e) {
+      window.TCPlayer && e && (
+        player || (
+          player = TCPlayer("player-container-id", {
+            licenseUrl: "这里粘贴你申请到的 licenseUrl",
+            sources: [{ src: e }]
+          })
+        ),
+        player.src(e),
+        setPlayerStatus("再生中")
+      )
+    }
+
+    document.getElementById('play-btn').addEventListener('click', function () {
+      const e = heroM3u8UrlInput.value.trim();
+      initPlayer(e);
+    });
+
+    document.getElementById('analyze-btn').addEventListener('click', function () {
+      const e = heroM3u8UrlInput.value.trim();
+      window.location.href = e ? '/analyzer/?url=' + encodeURIComponent(e) : '/analyzer/';
+    });
+
+    heroM3u8UrlInput.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        document.getElementById('play-btn').click();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const e = getUrlParam('url') || heroM3u8UrlInput.value.trim();
+      heroM3u8UrlInput.value = e;
+      setPlayerStatus(e ? 'クリックして読み込み開始' : '未再生');
+    });
+  </script>
+
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>M3U8 和普通视频格式有什么不同？</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8オンラインプレーヤー</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">ホーム</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8をMP4へ</a>
+      <a href="/analyzer/" class="hover:text-blue-400">アナライザー</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">ヘルプセンター</a>
+      <a href="/about.html" class="hover:text-blue-400">概要</a>
+    </nav>
+    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
+      再生を開始
+    </button>
+  </header>
+
+  <!-- Content -->
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">M3U8 和普通视频格式有什么不同？</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 和传统的视频格式（如 MP4、AVI）在结构和用途上有显著差异：
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">文件内容</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>M3U8：</strong> 纯文本文件，包含媒体片段的 URL 列表，不包含实际视频数据。
+    </p>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>普通视频格式：</strong> 二进制文件，直接包含编码后的视频和音频数据。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">再生方式</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>M3U8：</strong> 流式再生，按需下载片段，支持自适应码率。
+    </p>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>普通视频格式：</strong> 通常需要完整下载或本地存储后再生。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">适用场景</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>M3U8：</strong> 主要用于在线流媒体、直播和点播服务。
+    </p>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>普通视频格式：</strong> 适用于本地存储、离线再生和文件共享。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">优势对比</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 在网络传输和用户体验方面具有优势，而普通格式在本地处理和兼容性上更强。
+    </p>
+    <p class="text-gray-400 leading-relaxed">
+      理解这些差异有助于选择合适的格式用于不同应用场景。
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8オンラインプレーヤー | リソースはインターネット由来です。権利侵害がある場合は削除のためご連絡ください。
+  </footer>
+
+  <script src="/resane/js/lang-sync.js"></script>
+</body>
+</html>

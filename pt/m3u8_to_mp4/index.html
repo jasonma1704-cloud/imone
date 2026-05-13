@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M3U8 para MP4在线工具 - 视频转换器</title>
+  <meta name="description" content="M3U8 para MP4在线工具，支持HLS流媒体m3u8链接一键转换为MP4视频文件，纯前端实现，无需安装、无需上传，安全快速，适合短视频m3u8转mp4下载。" />
+  <meta name="keywords" content="m3u8转mp4, m3u8 to mp4, hls转mp4, 在线m3u8转mp4, 视频格式转换, 纯前端视频转换, m3u8下载, mp4下载, hls下载, m3u8合并, m3u8转换器" />
+  <link rel="canonical" href="https://m3u8player.org/m3u8_to_mp4/" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="M3U8 para MP4在线工具 - 视频转换器" />
+  <meta property="og:description" content="M3U8 para MP4在线工具，支持HLS流媒体m3u8链接一键转换为MP4视频文件，纯前端实现，无需安装、无需上传，安全快速，适合短视频m3u8转mp4下载。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://m3u8player.org/m3u8_to_mp4/" />
+  <meta property="og:image" content="https://m3u8player.org/images/logo.png" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="icon" href="/images/logo.ico" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js"></script>
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script>LA.init({id: "3G9QRCtAm0z4ABfe", ck: "3G9QRCtAm0z4ABfe"})</script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <header class="border-b border-slate-800 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="text-xl font-bold">M3U8 转 MP4 在线工具</div>
+        <div class="text-slate-400 text-sm">纯前端转换，支持 HLS m3u8 链接直接生成 MP4。</div>
+      </div>
+      <nav class="flex flex-wrap gap-4 text-slate-300 text-sm">
+        <a href="/" class="hover:text-blue-400">Início</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 para MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analisador</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">Central de Ajuda</a>
+      <a href="/about.html" class="hover:text-blue-400">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-6">
+    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl shadow-slate-950/30">
+      <div class="w-full max-w-3xl mx-auto">
+        <div>
+          <div class="text-sky-400 uppercase tracking-[0.25em] text-xs font-semibold mb-2">在线转换</div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-3">M3U8 转 MP4</h1>
+          <p class="text-slate-400 text-base leading-6">
+            输入 m3u8 视频链接，纯前端一键Converter para MP4 文件。仅支持 CORS 允许的 m3u8，适合短视频处理和下载。
+          </p>
+
+          <form class="mt-5 space-y-3" autocomplete="off">
+            <label class="flex flex-col gap-1.5 text-slate-300">
+              <span class="text-xs">请输入 m3u8 链接</span>
+              <input id="m3u8-url" name="url" type="text" placeholder="https://example.com/video.m3u8" value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-slate-100 outline-none text-sm focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20" />
+            </label>
+            <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-sky-500 px-4 py-2.5 font-semibold text-slate-950 text-sm transition hover:bg-sky-400">
+              开始转换
+            </button>
+          </form>
+
+          <div id="status" class="min-h-[1.2rem] text-slate-200 text-xs mt-3"></div>
+
+          <div class="mt-5 rounded-2xl border border-slate-800 bg-slate-950 p-4">
+            <h2 class="text-lg font-semibold text-white mb-2">转换步骤说明</h2>
+            <ol class="space-y-2 text-slate-300 text-xs leading-6 list-decimal list-inside">
+              <li>输入 m3u8 视频链接，点击“开始转换”。</li>
+              <li>工具自动下载 m3u8 文件并解析 ts 分片。</li>
+              <li>依次下载所有 ts 分片（需支持 CORS）。</li>
+              <li>在浏览器内拼接分片并转为 MP4 文件。</li>
+              <li>转换完成后自动下载 MP4 文件到本地。</li>
+            </ol>
+            <div class="mt-3 rounded-xl bg-slate-900 p-3 border border-slate-800 text-slate-400 text-xs">
+              注：仅适合短视频，且 m3u8/ts 需允许跨域访问。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-6 grid gap-3 sm:grid-cols-2">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+        <h3 class="font-semibold text-white mb-2 text-sm">使用说明</h3>
+        <p class="text-slate-400 text-xs leading-6">
+          该工具基于浏览器前端实现，无需安装任何软件。请确保 m3u8 地址可直接访问，并且 ts 分片允许跨域，否则转换过程会失败。
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+        <h3 class="font-semibold text-white mb-2 text-sm">适用场景</h3>
+        <p class="text-slate-400 text-xs leading-6">
+          适合短视频、演示片段、测试流等快速转换。大文件或长时间直播流可能会因浏览器内存、网络和跨域限制导致转换失败。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 py-5 text-center text-slate-500 text-xs">
+    © 2024 <a href="https://m3u8player.org/" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300">m3u8player.org</a> | 仅供学习交流，禁止商用
+  </footer>
+
+  <script>
+    const { createFFmpeg, fetchFile } = FFmpeg;
+    const ffmpeg = createFFmpeg({ log: true });
+    const statusDiv = document.getElementById('status');
+
+    document.querySelector('form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const url = this.url.value.trim();
+      if (!url) {
+        statusDiv.textContent = '请输入 m3u8 链接';
+        return;
+      }
+      statusDiv.textContent = '正在转换，请稍候...(1分钟左右)';
+    });
+  </script>
+  <script src="/resane/js/lang-sync.js"></script>
+</body>
+</html>

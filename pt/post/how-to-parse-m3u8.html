@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>解析 M3U8 文件的方法？</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">Player M3U8 Online</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">Início</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 para MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analisador</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">Central de Ajuda</a>
+      <a href="/about.html" class="hover:text-blue-400">Sobre</a>
+    </nav>
+    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
+      Começar a reproduzir
+    </button>
+  </header>
+
+  <!-- Content -->
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">解析 M3U8 文件的方法？</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      解析 M3U8 文件有多种方法，从简单的手动查看到编程自动化处理：
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">1. 手动解析</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      使用文本编辑器打开 M3U8 文件，查看片段 URL 和元数据。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">2. 使用在线工具</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 Analisador可以自动解析文件结构，提取关键信息。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">3. 编程解析</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      使用 Python、JavaScript 等语言编写脚本：
+    </p>
+    <pre class="bg-slate-800 p-4 rounded-lg text-green-400 mb-4"># Python 示例
+import requests
+
+response = requests.get('https://example.com/playlist.m3u8')
+lines = response.text.split('\n')
+
+for line in lines:
+    if line.startswith('#EXTINF'):
+        duration = line.split(':')[1].split(',')[0]
+        print(f"片段时长: {duration}秒")
+    elif not line.startswith('#'):
+        print(f"片段URL: {line}")</pre>
+    <h2 class="text-2xl font-bold mb-4 mt-8">4. 使用 FFmpeg</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      FFmpeg 可以解析 M3U8 并下载合并片段：
+    </p>
+    <pre class="bg-slate-800 p-4 rounded-lg text-green-400 mb-4">ffmpeg -i playlist.m3u8 -c copy output.mp4</pre>
+    <p class="text-gray-400 leading-relaxed">
+      选择解析方法取决于您的需求和技能水平。
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 Player M3U8 Online | Os recursos vêm da internet. Entre em contato para remoção em caso de infração.
+  </footer>
+
+  <script src="/resane/js/lang-sync.js"></script>
+</body>
+</html>

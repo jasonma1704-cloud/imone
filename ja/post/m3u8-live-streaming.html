@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>M3U8 在直播领域如何使用？</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8オンラインプレーヤー</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">ホーム</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8をMP4へ</a>
+      <a href="/analyzer/" class="hover:text-blue-400">アナライザー</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">ヘルプセンター</a>
+      <a href="/about.html" class="hover:text-blue-400">概要</a>
+    </nav>
+    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
+      再生を開始
+    </button>
+  </header>
+
+  <!-- Content -->
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">M3U8 在直播领域如何使用？</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 在直播领域发挥着关键作用，是 HLS (HTTP Live Streaming) 协议的核心：
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">实时切片</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      直播流被实时切分成多个短小的 TS 片段，通常每 10 秒一个片段。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">动态索引</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 文件实时更新，添加新片段的 URL，同时移除旧片段以控制再生列表长度。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">低延迟再生</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      再生器持续拉取最新的 M3U8 文件和片段，实现近实时的直播体验。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">自适应码率</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      支持多码率流，观众可以根据网络条件选择合适的质量。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">广泛应用</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      用于体育赛事、新闻直播、在线演唱会等各种实时事件传输。
+    </p>
+    <p class="text-gray-400 leading-relaxed">
+      M3U8 的设计使得直播既高效又灵活，满足了现代流媒体的需求。
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8オンラインプレーヤー | リソースはインターネット由来です。権利侵害がある場合は削除のためご連絡ください。
+  </footer>
+
+  <script src="/resane/js/lang-sync.js"></script>
+</body>
+</html>
