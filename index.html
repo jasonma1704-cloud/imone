@@ -17,136 +17,20 @@
   <script src="./resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="./resane/js/taiwindcss.js"></script>
   <script src="./resane/js/jquery.min.js"></script>
-  <style>
-    .card-glow {
-      transition: all 0.3s ease;
-    }
+  <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
 
-    .card-glow:hover {
-      box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .nav-shadow {
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .title-glow {
-      text-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-    }
-
-    /* 新增：汉堡按钮样式 */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 20px;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    /* 新增：移动端导航菜单样式 */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 250px;
-      height: 100vh;
-      background-color: #0f172a; /* slate-900 */
-      z-index: 90;
-      padding-top: 80px;
-      padding-left: 20px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .mobile-nav.active {
-      transform: translateX(0);
-    }
-
-    .mobile-nav a {
-      display: block;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
-    .mobile-nav-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 80;
-      display: none;
-    }
-
-    .mobile-nav-overlay.active {
-      display: block;
-    }
-
-    /* 响应式断点：平板/手机 */
-    @media (max-width: 1024px) {
-      header nav {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      header .flex.items-center.gap-4 {
-        gap: 20px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      header {
-        padding: 4px 16px;
-      }
-      .mobile-nav {
-        width: 200px;
-      }
-      header .flex.items-center.gap-4 {
-        gap: 10px;
-      }
-      header .flex.items-center.gap-4 button {
-        padding: 2px 8px;
-        font-size: 12px;
-      }
-      #language-selector {
-        width: 100px;
-        padding: 2px 8px;
-      }
-      h1.title-glow {
-        font-size: 32px;
-      }
-      .flex.flex-col.md\:flex-row {
-        flex-direction: column;
-      }
-      .flex.flex-col.md\:flex-row button {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 
 <body class="bg-slate-950 text-white">
-  <div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]"></div>
-  
+  <div
+    class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
+  </div>
+
   <!-- 导航栏 -->
-  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
     <div class="text-xl font-bold">m3u8在线播放器</div>
-    
+
     <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
       <a href="/" class="text-blue-400 font-bold">首页</a>
@@ -156,11 +40,12 @@
       <a href="/post/" class="hover:text-blue-400">帮助中心</a>
       <a href="/about.html" class="hover:text-blue-400">关于</a>
     </nav>
-    
+
     <!-- 右侧操作区 -->
     <div class="flex items-center gap-4">
       <div class="relative">
-        <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
           <option value="zh" selected>中文</option>
           <option value="en">English</option>
           <option value="pt">Português</option>
@@ -169,9 +54,10 @@
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
       <a href="/preview.html">
-        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+        <button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
       </a>
-      
+
       <!-- 汉堡按钮（移动端） -->
       <div class="hamburger" id="hamburger">
         <span></span>
@@ -190,7 +76,7 @@
     <a href="/post/" class="hover:text-blue-400">帮助中心</a>
     <a href="/about.html" class="hover:text-blue-400">关于</a>
   </div>
-  
+
   <!-- 遮罩层 -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
@@ -199,9 +85,14 @@
     <h1 class="text-4xl font-bold mb-4 title-glow">m3u8在线播放器</h1>
     <p class="text-gray-400 mb-8">M3U8在线播放器是一种基于 HLS（HTTP Live Streaming）协议的网页工具，专为播放流媒体视频设计。</p>
     <div class="flex flex-col md:flex-row justify-center gap-3 max-w-2xl mx-auto">
-      <input type="text" id="hero-m3u8-url" placeholder="请输入m3u8播放地址" value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" class="flex-1 px-4 py-3 rounded-lg text-black shadow-md" />
-      <button id="play-btn" class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶ 播放</button>
-      <button id="analyze-btn" class="bg-gray-700 px-6 py-3 rounded-lg hover:bg-gray-600 transition shadow-lg hover:shadow-gray-500/20">分析</button>
+      <input type="text" id="hero-m3u8-url" placeholder="请输入m3u8播放地址"
+        value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        class="flex-1 px-4 py-3 rounded-lg text-black shadow-md" />
+      <button id="play-btn"
+        class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶
+        播放</button>
+      <button id="analyze-btn"
+        class="bg-gray-700 px-6 py-3 rounded-lg hover:bg-gray-600 transition shadow-lg hover:shadow-gray-500/20">分析</button>
     </div>
     <div class="mt-10 mx-auto max-w-5xl">
       <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 shadow-2xl shadow-blue-950/30 md:p-6">
@@ -210,7 +101,8 @@
           <span id="player-status" class="text-sm text-slate-400">尚未播放</span>
         </div>
         <div id="player-shell" class="overflow-hidden rounded-xl bg-black min-h-[220px]">
-          <video id="player-container-id" preload="auto" playsinline webkit-playsinline class="w-full min-h-[220px] bg-black"></video>
+          <video id="player-container-id" preload="auto" playsinline webkit-playsinline
+            class="w-full min-h-[220px] bg-black"></video>
         </div>
       </div>
     </div>
@@ -262,28 +154,39 @@
   <section class="max-w-4xl mx-auto px-6 pt-16">
     <h2 class="text-2xl font-bold mb-4 title-glow">嵌入网站：</h2>
     <div class="bg-slate-800 p-6 rounded-lg mb-4 text-left text-slate-200 shadow-lg">
-      <pre class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=https://****index.m3u8"&gt;&lt;/iframe&gt;</pre>
+      <pre
+        class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=https://****index.m3u8"&gt;&lt;/iframe&gt;</pre>
     </div>
-    <p class="text-gray-400 leading-relaxed">M3U8Player 是一款实现 HTTP 实时流客户端的 Chrome 浏览器扩展工具。你可以播放 .m3u8 HTTP Live Streaming (HLS)。它依靠 HTML5 视频和媒体源扩展进行播放。它的工作原理是将 MPEG-2 传输流和 AAC/MP3 流转换成 ISO BMFF (MP4) 片段。如果浏览器中有 Web Worker，可使用它异步执行转码。它还支持 HLS + fmp4。</p>
+    <p class="text-gray-400 leading-relaxed">M3U8Player 是一款实现 HTTP 实时流客户端的 Chrome 浏览器扩展工具。你可以播放 .m3u8 HTTP Live
+      Streaming (HLS)。它依靠 HTML5 视频和媒体源扩展进行播放。它的工作原理是将 MPEG-2 传输流和 AAC/MP3 流转换成 ISO BMFF (MP4) 片段。如果浏览器中有 Web
+      Worker，可使用它异步执行转码。它还支持 HLS + fmp4。</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-8">
     <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">什么是 M3U8?</h2>
-    <p class="text-gray-400 leading-relaxed">m3u8 后缀文件，是采用 UTF-8 编码的纯文本播放列表格式。本身不储存视频、音频内容，只记录各类媒体资源的访问地址，供播放器读取并加载对应影音内容。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">日常使用场景十分广泛：既能用于网络电台的线上音源挂载，也能本地手动创建，整理专属音乐、视频合集清单。借助 m3u8 列表，就能一键批量播放收藏的音视频资源，省去逐个打开文件的麻烦。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">文件内可通过绝对路径、相对路径或网络 URL，关联单个媒体文件、整个资源文件夹，同时还能添加文字注释，标注内容备注信息。最初这类格式仅用于音频播放，例如 MP3 曲目列表，如今已广泛应用于网络短视频、直播流媒体等视频场景，主流播放软件基本都能完美兼容 m3u8 格式。</p>
-    
+    <p class="text-gray-400 leading-relaxed">m3u8 后缀文件，是采用 UTF-8
+      编码的纯文本播放列表格式。本身不储存视频、音频内容，只记录各类媒体资源的访问地址，供播放器读取并加载对应影音内容。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">日常使用场景十分广泛：既能用于网络电台的线上音源挂载，也能本地手动创建，整理专属音乐、视频合集清单。借助 m3u8
+      列表，就能一键批量播放收藏的音视频资源，省去逐个打开文件的麻烦。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">文件内可通过绝对路径、相对路径或网络
+      URL，关联单个媒体文件、整个资源文件夹，同时还能添加文字注释，标注内容备注信息。最初这类格式仅用于音频播放，例如 MP3 曲目列表，如今已广泛应用于网络短视频、直播流媒体等视频场景，主流播放软件基本都能完美兼容 m3u8
+      格式。</p>
+
     <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">如何打开 M3U8 文件?</h2>
-    <p class="text-gray-400 leading-relaxed">电脑自带的记事本等任意文本编辑器，都能直接打开并查看 m3u8 内部代码与资源链接。但文本工具仅支持查看编辑，无法直接解码播放影音内容，不能替代专业播放器使用。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">想要正常播放 m3u8 流媒体或本地列表文件，可以选用 VLC、iTunes 等专业影音软件；Linux 系统可使用 XMMS，Mac 设备则推荐 CocoModX，多款工具均可流畅适配该格式。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">除此之外，也能直接使用在线 m3u8 播放器快速解析播放。需要注意的是，在线工具仅支持网络 URL 形式的 m3u8 地址，无法读取本地储存的 m3u8 本地文件，且要求对应的流媒体资源处于正常在线可访问状态。</p>
+    <p class="text-gray-400 leading-relaxed">电脑自带的记事本等任意文本编辑器，都能直接打开并查看 m3u8
+      内部代码与资源链接。但文本工具仅支持查看编辑，无法直接解码播放影音内容，不能替代专业播放器使用。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">想要正常播放 m3u8 流媒体或本地列表文件，可以选用 VLC、iTunes 等专业影音软件；Linux 系统可使用 XMMS，Mac
+      设备则推荐 CocoModX，多款工具均可流畅适配该格式。</p>
+    <p class="text-gray-400 leading-relaxed mt-4">除此之外，也能直接使用在线 m3u8 播放器快速解析播放。需要注意的是，在线工具仅支持网络 URL 形式的 m3u8
+      地址，无法读取本地储存的 m3u8 本地文件，且要求对应的流媒体资源处于正常在线可访问状态。</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
     <h2 class="text-2xl font-bold mb-6 title-glow">常见问题</h2>
     <div class="space-y-4">
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 协议是什么？</a>
+        <a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
+          协议是什么？</a>
         <p class="text-gray-400 text-sm mt-2">是 HLS 流媒体索引协议，多用于网络视频分发。</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
@@ -295,23 +198,28 @@
         <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强、易防盗链。</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 和普通视频格式有什么不同？</a>
+        <a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
+          和普通视频格式有什么不同？</a>
         <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/common-video-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">常见的视频播放格式有哪些？</a>
+        <a href="/post/common-video-formats.html"
+          class="text-blue-400 hover:text-blue-300 font-semibold">常见的视频播放格式有哪些？</a>
         <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 在直播领域如何使用？</a>
+        <a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
+          在直播领域如何使用？</a>
         <p class="text-gray-400 text-sm mt-2">直播实时切片生成索引，客户端持续拉取分片，实现低延迟在线直播。</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 协议的运行原理？</a>
+        <a href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
+          协议的运行原理？</a>
         <p class="text-gray-400 text-sm mt-2">把视频切为短小 TS 分片，m3u8 文件记录分片顺序、地址，按需逐段加载。</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">解析 M3U8 文件的方法？</a>
+        <a href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">解析 M3U8
+          文件的方法？</a>
         <p class="text-gray-400 text-sm mt-2">用代码、解析工具读取索引文本，提取分片链接，合并合成完整视频。</p>
       </div>
     </div>
@@ -323,24 +231,9 @@
   </footer>
 
   <!-- 脚本（新增移动端导航逻辑） -->
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="./resane/js/responsive-nav.js"></script>
+ 
   <script>
-    // 移动端导航逻辑
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-    // 切换导航菜单显示/隐藏
-    function toggleMobileNav() {
-      mobileNav.classList.toggle('active');
-      mobileNavOverlay.classList.toggle('active');
-      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', toggleMobileNav);
-    mobileNavOverlay.addEventListener('click', toggleMobileNav);
-
-    // 原有播放器逻辑（保持不变）
     const heroM3u8UrlInput = document.getElementById('hero-m3u8-url');
     let player;
 
@@ -365,7 +258,7 @@
           })
         ),
         player.src(e),
-        setPlayerStatus("播放中")
+        setPlayerStatus("Playing")
       )
     }
 
@@ -388,9 +281,9 @@
     document.addEventListener('DOMContentLoaded', function () {
       const e = getUrlParam('url') || heroM3u8UrlInput.value.trim();
       heroM3u8UrlInput.value = e;
-      setPlayerStatus(e ? '点击播放开始加载' : '尚未播放');
+      setPlayerStatus(e ? 'Click Play to load' : 'Not playing');
     });
   </script>
-
 </body>
+
 </html>
