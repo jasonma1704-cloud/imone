@@ -1,63 +1,42 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>M3U8 分析器 - HLS 流媒体分析工具</title>
 
-  <meta
-    name="description"
-    content="在线 M3U8 分析器，支持 HLS 主播放列表、媒体分片、码率、加密 KEY、MAP、FFmpeg 命令、TS 分片分析。"
-  />
+  <meta name="description" content="在线 M3U8 分析器，支持 HLS 主播放列表、媒体分片、码率、加密 KEY、MAP、FFmpeg 命令、TS 分片分析。" />
 
-  <meta
-    name="keywords"
-    content="m3u8 analyzer,hls analyzer,hls stream inspector,m3u8 parser,ffmpeg,m3u8 tool"
-  />
+  <meta name="keywords" content="m3u8 analyzer,hls analyzer,hls stream inspector,m3u8 parser,ffmpeg,m3u8 tool" />
 
   <link rel="canonical" href="https://your-domain.com/analyzer/" />
   <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
   <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="../resane/js/taiwindcss.js"></script>
-  <script src="../resane/js/jquery.min.js"></script>
   <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
-   <script src="../resane/js/responsive-nav.js"></script>
-
-
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "M3U8 Analyzer",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "All"
-  }
-  </script>
 </head>
 
 <body class="bg-slate-950 text-white">
 
-<header
-    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
-    <div class="text-xl font-bold">m3u8在线分析器</div>
-
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+    <div class="text-xl font-bold">m3u8在线播放器</div>
+    
     <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
       <a href="/" class="hover:text-blue-400">首页</a>
       <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="text-blue-400 font-bold">分析器</a>
+      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
       <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="/about.html" class="text-blue-400 font-bold">关于</a>
     </nav>
-
+    
     <!-- 右侧操作区 -->
     <div class="flex items-center gap-4">
       <div class="relative">
-        <select id="language-selector"
-          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+        <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
           <option value="zh" selected>中文</option>
           <option value="en">English</option>
           <option value="pt">Português</option>
@@ -66,10 +45,9 @@
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
       <a href="/preview.html">
-        <button
-          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
       </a>
-
+      
       <!-- 汉堡按钮（移动端） -->
       <div class="hamburger" id="hamburger">
         <span></span>
@@ -79,220 +57,205 @@
     </div>
   </header>
 
-<main>
+  <!-- 移动端导航菜单 -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/" class="text-blue-400 font-bold">首页</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+    <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
+    <a href="/about.html" class="hover:text-blue-400">关于</a>
+  </div>
+  
+  <!-- 遮罩层 -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-<section class="px-6 py-16">
-  <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]"></div>
-  <div class="max-w-5xl mx-auto text-center">
-    <p class="uppercase tracking-[0.3em] text-blue-300 text-sm mb-3">
-      HLS Stream Inspector
-    </p>
-    <h2 class="text-5xl font-bold mb-6">
-      M3U8 分析器
-    </h2>
-    <p class="text-slate-400 max-w-3xl mx-auto mb-10 leading-8">
-      在线分析 HLS / M3U8 流媒体播放列表，支持主播放列表、媒体分片、AES-128 加密、MAP、FFmpeg 命令生成、TS 分片统计等功能。
-    </p>
 
-    <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6 text-left shadow-2xl">
-      <label class="block text-sm text-slate-400 mb-2">
-        M3U8 URL
-      </label>
-      <div class="flex flex-col md:flex-row gap-3">
-        <input
-          id="m3u8-url"
-          type="url"
-          placeholder="https://example.com/index.m3u8"
-          class="flex-1 rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 outline-none focus:border-blue-400"
-        />
-        <button
-          id="analyze-url-btn"
-          class="bg-blue-500 hover:bg-blue-600 rounded-xl px-6 py-3 font-semibold"
-        >
-          分析 URL
-        </button>
+
+  <main>
+
+    <section class="px-6 py-16">
+      <div
+        class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
+      </div>
+      <div class="max-w-5xl mx-auto text-center">
+        <p class="uppercase tracking-[0.3em] text-blue-300 text-sm mb-3">
+          HLS Stream Inspector
+        </p>
+        <h2 class="text-5xl font-bold mb-6">
+          M3U8 分析器
+        </h2>
+        <p class="text-slate-400 max-w-3xl mx-auto mb-10 leading-8">
+          在线分析 HLS / M3U8 流媒体播放列表，支持主播放列表、媒体分片、AES-128 加密、MAP、FFmpeg 命令生成、TS 分片统计等功能。
+        </p>
+
+        <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6 text-left shadow-2xl">
+          <label class="block text-sm text-slate-400 mb-2">
+            M3U8 URL
+          </label>
+          <div class="flex flex-col md:flex-row gap-3">
+            <input id="m3u8-url" type="url" placeholder="https://example.com/index.m3u8"
+              class="flex-1 rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 outline-none focus:border-blue-400" />
+            <button id="analyze-url-btn" class="bg-blue-500 hover:bg-blue-600 rounded-xl px-6 py-3 font-semibold">
+              分析 URL
+            </button>
+          </div>
+
+          <div class="my-5 flex items-center gap-3">
+            <div class="h-px flex-1 bg-slate-800"></div>
+            <span class="text-slate-500 text-xs">或</span>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+
+          <label class="block text-sm text-slate-400 mb-2">
+            粘贴 M3U8 内容
+          </label>
+          <textarea id="m3u8-content" rows="8"
+            class="w-full rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 font-mono text-sm outline-none focus:border-blue-400"></textarea>
+
+          <div class="flex flex-wrap gap-3 mt-4">
+            <button id="analyze-text-btn"
+              class="bg-emerald-500 hover:bg-emerald-600 rounded-xl px-6 py-3 font-semibold">
+              分析文本
+            </button>
+            <button id="sample-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">
+              示例
+            </button>
+            <button id="clear-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">
+              清空
+            </button>
+          </div>
+          <p class="mt-4 text-sm text-slate-500 leading-7">
+            用于 HLS 流媒体调试、开发测试、播放器兼容性分析。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 pb-16">
+      <div id="status" class="hidden mb-6 rounded-2xl border p-4 text-sm"></div>
+
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+          <p class="text-sm text-slate-400">播放列表类型</p>
+          <p id="playlist-type" class="text-2xl font-bold mt-2">-</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+          <p class="text-sm text-slate-400">总时长</p>
+          <p id="total-duration" class="text-2xl font-bold mt-2">-</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+          <p class="text-sm text-slate-400">媒体分片</p>
+          <p id="segment-count" class="text-2xl font-bold mt-2">-</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+          <p class="text-sm text-slate-400">变体流</p>
+          <p id="variant-count" class="text-2xl font-bold mt-2">-</p>
+        </div>
       </div>
 
-      <div class="my-5 flex items-center gap-3">
-        <div class="h-px flex-1 bg-slate-800"></div>
-        <span class="text-slate-500 text-xs">或</span>
-        <div class="h-px flex-1 bg-slate-800"></div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
+        <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
+          <h3 class="text-xl font-bold">基础信息</h3>
+          <button id="copy-ffmpeg-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">
+            复制 FFmpeg
+          </button>
+        </div>
+        <dl id="basic-info" class="grid md:grid-cols-2 gap-3 text-sm"></dl>
+        <pre id="ffmpeg-command" class="mt-5 rounded-xl bg-slate-950 p-4 overflow-x-auto text-xs text-slate-300"></pre>
       </div>
 
-      <label class="block text-sm text-slate-400 mb-2">
-        粘贴 M3U8 内容
-      </label>
-      <textarea
-        id="m3u8-content"
-        rows="8"
-        class="w-full rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 font-mono text-sm outline-none focus:border-blue-400"
-      ></textarea>
-
-      <div class="flex flex-wrap gap-3 mt-4">
-        <button
-          id="analyze-text-btn"
-          class="bg-emerald-500 hover:bg-emerald-600 rounded-xl px-6 py-3 font-semibold"
-        >
-          分析文本
-        </button>
-        <button
-          id="sample-btn"
-          class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold"
-        >
-          示例
-        </button>
-        <button
-          id="clear-btn"
-          class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold"
-        >
-          清空
-        </button>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
+        <h3 class="text-xl font-bold mb-4">多码率播放列表</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[900px] text-sm">
+            <thead class="bg-slate-800 text-slate-300">
+              <tr>
+                <th class="text-left px-4 py-3">#</th>
+                <th class="text-left px-4 py-3">带宽</th>
+                <th class="text-left px-4 py-3">分辨率</th>
+                <th class="text-left px-4 py-3">编码</th>
+                <th class="text-left px-4 py-3">URL</th>
+              </tr>
+            </thead>
+            <tbody id="variants-body"></tbody>
+          </table>
+        </div>
       </div>
-      <p class="mt-4 text-sm text-slate-500 leading-7">
-        用于 HLS 流媒体调试、开发测试、播放器兼容性分析。
-      </p>
-    </div>
-  </div>
-</section>
 
-<section class="max-w-7xl mx-auto px-6 pb-16">
-  <div id="status" class="hidden mb-6 rounded-2xl border p-4 text-sm"></div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
+        <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
+          <h3 class="text-xl font-bold">媒体分片</h3>
+          <input id="segment-filter" placeholder="搜索分片 URL"
+            class="rounded-xl bg-slate-950 border border-slate-700 px-4 py-2 text-sm" />
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[900px] text-sm">
+            <thead class="bg-slate-800 text-slate-300">
+              <tr>
+                <th class="text-left px-4 py-3">#</th>
+                <th class="text-left px-4 py-3">时长</th>
+                <th class="text-left px-4 py-3">开始时间</th>
+                <th class="text-left px-4 py-3">URL</th>
+              </tr>
+            </thead>
+            <tbody id="segments-body"></tbody>
+          </table>
+        </div>
+        <p id="segments-note" class="mt-4 text-sm text-slate-500"></p>
+      </div>
 
-  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-      <p class="text-sm text-slate-400">播放列表类型</p>
-      <p id="playlist-type" class="text-2xl font-bold mt-2">-</p>
-    </div>
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-      <p class="text-sm text-slate-400">总时长</p>
-      <p id="total-duration" class="text-2xl font-bold mt-2">-</p>
-    </div>
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-      <p class="text-sm text-slate-400">媒体分片</p>
-      <p id="segment-count" class="text-2xl font-bold mt-2">-</p>
-    </div>
-    <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-      <p class="text-sm text-slate-400">变体流</p>
-      <p id="variant-count" class="text-2xl font-bold mt-2">-</p>
-    </div>
-  </div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
+        <h3 class="text-xl font-bold mb-4">加密 / MAP 信息</h3>
+        <div id="security-list" class="space-y-4"></div>
+      </div>
 
-  <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
-    <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
-      <h3 class="text-xl font-bold">基础信息</h3>
-      <button
-        id="copy-ffmpeg-btn"
-        class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm"
-      >
-        复制 FFmpeg
-      </button>
-    </div>
-    <dl id="basic-info" class="grid md:grid-cols-2 gap-3 text-sm"></dl>
-    <pre
-      id="ffmpeg-command"
-      class="mt-5 rounded-xl bg-slate-950 p-4 overflow-x-auto text-xs text-slate-300"
-    ></pre>
-  </div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold">原始内容</h3>
+          <button id="copy-raw-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">
+            复制原文
+          </button>
+        </div>
+        <pre id="raw-content"
+          class="max-h-[500px] overflow-auto rounded-xl bg-slate-950 p-4 text-xs leading-6 text-slate-300"></pre>
+      </div>
+    </section>
 
-  <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
-    <h3 class="text-xl font-bold mb-4">多码率播放列表</h3>
-    <div class="overflow-x-auto">
-      <table class="w-full min-w-[900px] text-sm">
-        <thead class="bg-slate-800 text-slate-300">
-          <tr>
-            <th class="text-left px-4 py-3">#</th>
-            <th class="text-left px-4 py-3">带宽</th>
-            <th class="text-left px-4 py-3">分辨率</th>
-            <th class="text-left px-4 py-3">编码</th>
-            <th class="text-left px-4 py-3">URL</th>
-          </tr>
-        </thead>
-        <tbody id="variants-body"></tbody>
-      </table>
-    </div>
-  </div>
+    <section class="max-w-5xl mx-auto px-6 pb-20">
+      <div class="rounded-3xl bg-slate-900 p-8">
+        <h3 class="text-3xl font-bold mb-6">什么是 M3U8？</h3>
+        <div class="space-y-5 text-slate-400 leading-8">
+          <p>
+            M3U8 是 HLS（HTTP Live Streaming）协议中的播放列表格式，广泛用于在线视频、直播流媒体、OTT、CDN 视频分发等场景。
+          </p>
+          <p>HLS 播放列表通常包含：</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>媒体分片（TS / fMP4）</li>
+            <li>多码率主播放列表</li>
+            <li>AES-128 加密信息</li>
+            <li>EXTINF 时长标签</li>
+            <li>直播流元数据</li>
+          </ul>
+          <p>本工具用于开发测试、播放器调试、HLS 流媒体分析。</p>
+        </div>
+      </div>
+    </section>
 
-  <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
-    <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
-      <h3 class="text-xl font-bold">媒体分片</h3>
-      <input
-        id="segment-filter"
-        placeholder="搜索分片 URL"
-        class="rounded-xl bg-slate-950 border border-slate-700 px-4 py-2 text-sm"
-      />
-    </div>
-    <div class="overflow-x-auto">
-      <table class="w-full min-w-[900px] text-sm">
-        <thead class="bg-slate-800 text-slate-300">
-          <tr>
-            <th class="text-left px-4 py-3">#</th>
-            <th class="text-left px-4 py-3">时长</th>
-            <th class="text-left px-4 py-3">开始时间</th>
-            <th class="text-left px-4 py-3">URL</th>
-          </tr>
-        </thead>
-        <tbody id="segments-body"></tbody>
-      </table>
-    </div>
-    <p id="segments-note" class="mt-4 text-sm text-slate-500"></p>
-  </div>
+  </main>
 
-  <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
-    <h3 class="text-xl font-bold mb-4">加密 / MAP 信息</h3>
-    <div id="security-list" class="space-y-4"></div>
-  </div>
+  <footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
+    © 2026 M3U8 Analyzer · HLS Stream Toolkit
+  </footer>
+  <script src="../resane/js/responsive-nav.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
 
-  <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-bold">原始内容</h3>
-      <button
-        id="copy-raw-btn"
-        class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm"
-      >
-        复制原文
-      </button>
-    </div>
-    <pre
-      id="raw-content"
-      class="max-h-[500px] overflow-auto rounded-xl bg-slate-950 p-4 text-xs leading-6 text-slate-300"
-    ></pre>
-  </div>
-</section>
+    let currentRaw = '';
+    let currentUrl = '';
+    let currentSegments = [];
 
-<section class="max-w-5xl mx-auto px-6 pb-20">
-  <div class="rounded-3xl bg-slate-900 p-8">
-    <h3 class="text-3xl font-bold mb-6">什么是 M3U8？</h3>
-    <div class="space-y-5 text-slate-400 leading-8">
-      <p>
-        M3U8 是 HLS（HTTP Live Streaming）协议中的播放列表格式，广泛用于在线视频、直播流媒体、OTT、CDN 视频分发等场景。
-      </p>
-      <p>HLS 播放列表通常包含：</p>
-      <ul class="list-disc pl-6 space-y-2">
-        <li>媒体分片（TS / fMP4）</li>
-        <li>多码率主播放列表</li>
-        <li>AES-128 加密信息</li>
-        <li>EXTINF 时长标签</li>
-        <li>直播流元数据</li>
-      </ul>
-      <p>本工具用于开发测试、播放器调试、HLS 流媒体分析。</p>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
-  © 2026 M3U8 Analyzer · HLS Stream Toolkit
-</footer>
-
-<script>
-const $ = (id) => document.getElementById(id);
-
-let currentRaw = '';
-let currentUrl = '';
-let currentSegments = [];
-
-const sampleContent = `#EXTM3U
+    const sampleContent = `#EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-TARGETDURATION:10
 #EXT-X-MEDIA-SEQUENCE:0
@@ -305,169 +268,169 @@ fileSequence1.ts
 fileSequence2.ts
 #EXT-X-ENDLIST`;
 
-// 移动端导航
-const hamburger = $('hamburger');
-const mobileNav = $('mobileNav');
-const mobileOverlay = $('mobileNavOverlay');
-hamburger.addEventListener('click', () => {
-  mobileNav.classList.toggle('active');
-  mobileOverlay.classList.toggle('active');
-});
-mobileOverlay.addEventListener('click', () => {
-  mobileNav.classList.remove('active');
-  mobileOverlay.classList.remove('active');
-});
-
-$('sample-btn').addEventListener('click', () => {
-  $('m3u8-content').value = sampleContent;
-});
-
-$('clear-btn').addEventListener('click', clearResult);
-$('analyze-url-btn').addEventListener('click', analyzeFromUrl);
-$('analyze-text-btn').addEventListener('click', analyzeFromText);
-$('copy-raw-btn').addEventListener('click', () => {
-  copyText(currentRaw);
-});
-
-$('copy-ffmpeg-btn').addEventListener('click', () => {
-  copyText($('ffmpeg-command').textContent);
-});
-
-async function analyzeFromUrl() {
-  const url = $('m3u8-url').value.trim();
-  if (!url) {
-    return showStatus('请输入 URL', 'error');
-  }
-  if (!/^https?:\/\//i.test(url)) {
-    return showStatus('请输入合法 URL', 'error');
-  }
-  const controller = new AbortController();
-  const timeout = setTimeout(() => {
-    controller.abort();
-  }, 10000);
-  setLoading(true);
-  try {
-    const response = await fetch(url, {
-      cache: 'no-store',
-      signal: controller.signal,
+    // 移动端导航
+    const hamburger = $('hamburger');
+    const mobileNav = $('mobileNav');
+    const mobileOverlay = $('mobileNavOverlay');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
     });
-    clearTimeout(timeout);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    const text = await response.text();
-    if (text.length > 5 * 1024 * 1024) {
-      throw new Error('文件过大');
-    }
-    currentUrl = url;
-    analyze(text, url);
-  } catch (err) {
-    if (err.name === 'AbortError') {
-      showStatus('请求超时', 'error');
-    } else {
-      showStatus(err.message, 'error');
-    }
-  } finally {
-    clearTimeout(timeout);
-    setLoading(false);
-  }
-}
+    mobileOverlay.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+      mobileOverlay.classList.remove('active');
+    });
 
-function analyzeFromText() {
-  const text = $('m3u8-content').value.trim();
-  if (!text) {
-    return showStatus('请输入 M3U8 内容', 'error');
-  }
-  analyze(text, currentUrl);
-}
+    $('sample-btn').addEventListener('click', () => {
+      $('m3u8-content').value = sampleContent;
+    });
 
-function analyze(content, baseUrl) {
-  if (!content.includes('#EXTM3U')) {
-    return showStatus('不是有效的 M3U8', 'error');
-  }
-  currentRaw = content;
-  const data = parseM3U8(content, baseUrl);
-  render(data, content, baseUrl);
-  showStatus('分析完成', 'success');
-}
+    $('clear-btn').addEventListener('click', clearResult);
+    $('analyze-url-btn').addEventListener('click', analyzeFromUrl);
+    $('analyze-text-btn').addEventListener('click', analyzeFromText);
+    $('copy-raw-btn').addEventListener('click', () => {
+      copyText(currentRaw);
+    });
 
-function parseM3U8(content, baseUrl) {
-  const lines = content
-    .replace(/\r/g, '')
-    .split('\n')
-    .map(line => line.trim())
-    .filter(Boolean);
+    $('copy-ffmpeg-btn').addEventListener('click', () => {
+      copyText($('ffmpeg-command').textContent);
+    });
 
-  const data = {
-    type: '媒体播放列表',
-    variants: [],
-    segments: [],
-    keys: [],
-    maps: [],
-    totalSeconds: 0,
-  };
-
-  let pendingStream = null;
-  let pendingDuration = null;
-  let elapsed = 0;
-
-  for (const line of lines) {
-    if (data.segments.length > 50000) {
-      throw new Error('分片数量过大');
-    }
-    if (line.startsWith('#EXT-X-STREAM-INF:')) {
-      data.type = '主播放列表';
-      pendingStream = parseAttributes(valueAfterColon(line));
-    }
-    else if (line.startsWith('#EXT-X-KEY:')) {
-      const key = parseAttributes(valueAfterColon(line));
-      data.keys.push(key);
-    }
-    else if (line.startsWith('#EXT-X-MAP:')) {
-      const map = parseAttributes(valueAfterColon(line));
-      data.maps.push(map);
-    }
-    else if (line.startsWith('#EXTINF:')) {
-      pendingDuration = parseFloat(
-        valueAfterColon(line).split(',')[0]
-      );
-    }
-    else if (!line.startsWith('#')) {
-      const absoluteUrl = absolutize(line, baseUrl);
-      if (pendingStream) {
-        data.variants.push({
-          ...pendingStream,
-          url: absoluteUrl,
-        });
-        pendingStream = null;
+    async function analyzeFromUrl() {
+      const url = $('m3u8-url').value.trim();
+      if (!url) {
+        return showStatus('请输入 URL', 'error');
       }
-      else if (pendingDuration !== null) {
-        data.segments.push({
-          index: data.segments.length + 1,
-          duration: pendingDuration,
-          start: elapsed,
-          url: absoluteUrl,
+      if (!/^https?:\/\//i.test(url)) {
+        return showStatus('请输入合法 URL', 'error');
+      }
+      const controller = new AbortController();
+      const timeout = setTimeout(() => {
+        controller.abort();
+      }, 10000);
+      setLoading(true);
+      try {
+        const response = await fetch(url, {
+          cache: 'no-store',
+          signal: controller.signal,
         });
-        elapsed += pendingDuration;
-        pendingDuration = null;
+        clearTimeout(timeout);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const text = await response.text();
+        if (text.length > 5 * 1024 * 1024) {
+          throw new Error('文件过大');
+        }
+        currentUrl = url;
+        analyze(text, url);
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          showStatus('请求超时', 'error');
+        } else {
+          showStatus(err.message, 'error');
+        }
+      } finally {
+        clearTimeout(timeout);
+        setLoading(false);
       }
     }
-  }
-  data.totalSeconds = elapsed;
-  return data;
-}
 
-function render(data, raw, baseUrl) {
-  $('playlist-type').textContent = data.type;
-  $('total-duration').textContent = formatTime(data.totalSeconds);
-  $('segment-count').textContent = data.segments.length;
-  $('variant-count').textContent = data.variants.length;
-  $('raw-content').textContent = raw;
-  $('ffmpeg-command').textContent = baseUrl
-    ? `ffmpeg -i "${baseUrl}" -c copy output.mp4`
-    : '请输入 URL';
+    function analyzeFromText() {
+      const text = $('m3u8-content').value.trim();
+      if (!text) {
+        return showStatus('请输入 M3U8 内容', 'error');
+      }
+      analyze(text, currentUrl);
+    }
 
-  $('basic-info').innerHTML = `
+    function analyze(content, baseUrl) {
+      if (!content.includes('#EXTM3U')) {
+        return showStatus('不是有效的 M3U8', 'error');
+      }
+      currentRaw = content;
+      const data = parseM3U8(content, baseUrl);
+      render(data, content, baseUrl);
+      showStatus('分析完成', 'success');
+    }
+
+    function parseM3U8(content, baseUrl) {
+      const lines = content
+        .replace(/\r/g, '')
+        .split('\n')
+        .map(line => line.trim())
+        .filter(Boolean);
+
+      const data = {
+        type: '媒体播放列表',
+        variants: [],
+        segments: [],
+        keys: [],
+        maps: [],
+        totalSeconds: 0,
+      };
+
+      let pendingStream = null;
+      let pendingDuration = null;
+      let elapsed = 0;
+
+      for (const line of lines) {
+        if (data.segments.length > 50000) {
+          throw new Error('分片数量过大');
+        }
+        if (line.startsWith('#EXT-X-STREAM-INF:')) {
+          data.type = '主播放列表';
+          pendingStream = parseAttributes(valueAfterColon(line));
+        }
+        else if (line.startsWith('#EXT-X-KEY:')) {
+          const key = parseAttributes(valueAfterColon(line));
+          data.keys.push(key);
+        }
+        else if (line.startsWith('#EXT-X-MAP:')) {
+          const map = parseAttributes(valueAfterColon(line));
+          data.maps.push(map);
+        }
+        else if (line.startsWith('#EXTINF:')) {
+          pendingDuration = parseFloat(
+            valueAfterColon(line).split(',')[0]
+          );
+        }
+        else if (!line.startsWith('#')) {
+          const absoluteUrl = absolutize(line, baseUrl);
+          if (pendingStream) {
+            data.variants.push({
+              ...pendingStream,
+              url: absoluteUrl,
+            });
+            pendingStream = null;
+          }
+          else if (pendingDuration !== null) {
+            data.segments.push({
+              index: data.segments.length + 1,
+              duration: pendingDuration,
+              start: elapsed,
+              url: absoluteUrl,
+            });
+            elapsed += pendingDuration;
+            pendingDuration = null;
+          }
+        }
+      }
+      data.totalSeconds = elapsed;
+      return data;
+    }
+
+    function render(data, raw, baseUrl) {
+      $('playlist-type').textContent = data.type;
+      $('total-duration').textContent = formatTime(data.totalSeconds);
+      $('segment-count').textContent = data.segments.length;
+      $('variant-count').textContent = data.variants.length;
+      $('raw-content').textContent = raw;
+      $('ffmpeg-command').textContent = baseUrl
+        ? `ffmpeg -i "${baseUrl}" -c copy output.mp4`
+        : '请输入 URL';
+
+      $('basic-info').innerHTML = `
     <div class="rounded-xl bg-slate-950 p-3">
       <dt class="text-slate-500">播放列表类型</dt>
       <dd class="mt-1 font-semibold">${escapeHtml(data.type)}</dd>
@@ -486,13 +449,13 @@ function render(data, raw, baseUrl) {
     </div>
   `;
 
-  renderVariants(data.variants);
-  renderSegments(data.segments);
-  renderSecurity(data.keys, data.maps);
-}
+      renderVariants(data.variants);
+      renderSegments(data.segments);
+      renderSecurity(data.keys, data.maps);
+    }
 
-function renderVariants(variants) {
-  $('variants-body').innerHTML = variants.map((v, i) => `
+    function renderVariants(variants) {
+      $('variants-body').innerHTML = variants.map((v, i) => `
     <tr class="border-t border-slate-800 hover:bg-slate-800/40">
       <td class="px-4 py-3">${i + 1}</td>
       <td class="px-4 py-3">
@@ -515,13 +478,13 @@ function renderVariants(variants) {
       </td>
     </tr>
   `).join('');
-}
+    }
 
-function renderSegments(segments) {
-  currentSegments = segments;
-  $('segments-body').innerHTML = segments
-    .slice(0, 300)
-    .map(s => `
+    function renderSegments(segments) {
+      currentSegments = segments;
+      $('segments-body').innerHTML = segments
+        .slice(0, 300)
+        .map(s => `
       <tr class="border-t border-slate-800 hover:bg-slate-800/40">
         <td class="px-4 py-3">${s.index}</td>
         <td class="px-4 py-3">
@@ -542,13 +505,13 @@ function renderSegments(segments) {
       </tr>
     `).join('');
 
-  $('segments-note').textContent = `
+      $('segments-note').textContent = `
     共 ${segments.length} 个分片，最多显示 300 个
   `;
-}
+    }
 
-function renderSecurity(keys, maps) {
-  const keyHtml = keys.map((key, i) => `
+    function renderSecurity(keys, maps) {
+      const keyHtml = keys.map((key, i) => `
     <div class="rounded-xl bg-slate-950 p-4">
       <p class="text-amber-300 font-semibold mb-3">
         KEY #${i + 1}
@@ -562,7 +525,7 @@ function renderSecurity(keys, maps) {
     </div>
   `).join('');
 
-  const mapHtml = maps.map((map, i) => `
+      const mapHtml = maps.map((map, i) => `
     <div class="rounded-xl bg-slate-950 p-4">
       <p class="text-cyan-300 font-semibold mb-3">
         MAP #${i + 1}
@@ -576,121 +539,121 @@ function renderSecurity(keys, maps) {
     </div>
   `).join('');
 
-  $('security-list').innerHTML = keyHtml + mapHtml;
-}
+      $('security-list').innerHTML = keyHtml + mapHtml;
+    }
 
-function clearResult() {
-  $('playlist-type').textContent = '-';
-  $('total-duration').textContent = '-';
-  $('segment-count').textContent = '-';
-  $('variant-count').textContent = '-';
-  $('basic-info').innerHTML = '';
-  $('variants-body').innerHTML = '';
-  $('segments-body').innerHTML = '';
-  $('security-list').innerHTML = '';
-  $('raw-content').textContent = '';
-  $('ffmpeg-command').textContent = '';
-  showStatus('结果已清空', 'success');
-}
+    function clearResult() {
+      $('playlist-type').textContent = '-';
+      $('total-duration').textContent = '-';
+      $('segment-count').textContent = '-';
+      $('variant-count').textContent = '-';
+      $('basic-info').innerHTML = '';
+      $('variants-body').innerHTML = '';
+      $('segments-body').innerHTML = '';
+      $('security-list').innerHTML = '';
+      $('raw-content').textContent = '';
+      $('ffmpeg-command').textContent = '';
+      showStatus('结果已清空', 'success');
+    }
 
-function parseAttributes(input) {
-  const attrs = {};
-  const regex = /([A-Z0-9-]+)=((?:"[^"]*")|[^,]*)/g;
-  let match;
-  while ((match = regex.exec(input)) !== null) {
-    attrs[match[1]] = match[2];
-  }
-  return attrs;
-}
+    function parseAttributes(input) {
+      const attrs = {};
+      const regex = /([A-Z0-9-]+)=((?:"[^"]*")|[^,]*)/g;
+      let match;
+      while ((match = regex.exec(input)) !== null) {
+        attrs[match[1]] = match[2];
+      }
+      return attrs;
+    }
 
-function valueAfterColon(line) {
-  return line.slice(line.indexOf(':') + 1).trim();
-}
+    function valueAfterColon(line) {
+      return line.slice(line.indexOf(':') + 1).trim();
+    }
 
-function absolutize(uri, baseUrl) {
-  try {
-    return baseUrl
-      ? new URL(uri, baseUrl).href
-      : uri;
-  }
-  catch {
-    return uri;
-  }
-}
+    function absolutize(uri, baseUrl) {
+      try {
+        return baseUrl
+          ? new URL(uri, baseUrl).href
+          : uri;
+      }
+      catch {
+        return uri;
+      }
+    }
 
-function formatBandwidth(value) {
-  const n = Number(value);
-  return n
-    ? `${(n / 1000000).toFixed(2)} Mbps`
-    : '-';
-}
+    function formatBandwidth(value) {
+      const n = Number(value);
+      return n
+        ? `${(n / 1000000).toFixed(2)} Mbps`
+        : '-';
+    }
 
-function formatTime(seconds) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  return h
-    ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-    : `${m}:${String(s).padStart(2, '0')}`;
-}
+    function formatTime(seconds) {
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = Math.floor(seconds % 60);
+      return h
+        ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+        : `${m}:${String(s).padStart(2, '0')}`;
+    }
 
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, c => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-  }[c]));
-}
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[c]));
+    }
 
-function escapeAttr(value) {
-  return escapeHtml(value);
-}
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
 
-function setLoading(loading) {
-  $('analyze-url-btn').disabled = loading;
-  $('analyze-url-btn').textContent = loading
-    ? '分析中...'
-    : '分析 URL';
-}
+    function setLoading(loading) {
+      $('analyze-url-btn').disabled = loading;
+      $('analyze-url-btn').textContent = loading
+        ? '分析中...'
+        : '分析 URL';
+    }
 
-function showStatus(message, type) {
-  const el = $('status');
-  el.classList.remove('hidden');
-  let className = 'border-blue-500/50 bg-blue-950/50 text-blue-200';
-  if (type === 'error') {
-    className = 'border-red-500/50 bg-red-950/50 text-red-200';
-  }
-  if (type === 'success') {
-    className = 'border-emerald-500/50 bg-emerald-950/50 text-emerald-200';
-  }
-  el.className = `mb-6 rounded-2xl border p-4 text-sm ${className}`;
-  el.textContent = message;
-}
+    function showStatus(message, type) {
+      const el = $('status');
+      el.classList.remove('hidden');
+      let className = 'border-blue-500/50 bg-blue-950/50 text-blue-200';
+      if (type === 'error') {
+        className = 'border-red-500/50 bg-red-950/50 text-red-200';
+      }
+      if (type === 'success') {
+        className = 'border-emerald-500/50 bg-emerald-950/50 text-emerald-200';
+      }
+      el.className = `mb-6 rounded-2xl border p-4 text-sm ${className}`;
+      el.textContent = message;
+    }
 
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    showStatus('复制成功', 'success');
-  }
-  catch {
-    showStatus('复制失败', 'error');
-  }
-}
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showStatus('复制成功', 'success');
+      }
+      catch {
+        showStatus('复制失败', 'error');
+      }
+    }
 
-// 分片搜索
-$('segment-filter').addEventListener('input', () => {
-  const keyword = $('segment-filter')
-    .value
-    .trim()
-    .toLowerCase();
-  const filtered = currentSegments.filter(segment => {
-    return segment.url.toLowerCase().includes(keyword);
-  });
-  $('segments-body').innerHTML = filtered
-    .slice(0, 300)
-    .map(s => `
+    // 分片搜索
+    $('segment-filter').addEventListener('input', () => {
+      const keyword = $('segment-filter')
+        .value
+        .trim()
+        .toLowerCase();
+      const filtered = currentSegments.filter(segment => {
+        return segment.url.toLowerCase().includes(keyword);
+      });
+      $('segments-body').innerHTML = filtered
+        .slice(0, 300)
+        .map(s => `
       <tr class="border-t border-slate-800 hover:bg-slate-800/40">
         <td class="px-4 py-3">${s.index}</td>
         <td class="px-4 py-3">
@@ -711,117 +674,118 @@ $('segment-filter').addEventListener('input', () => {
       </tr>
     `).join('');
 
-  $('segments-note').textContent = `
+      $('segments-note').textContent = `
     搜索结果：${filtered.length} 个分片
   `;
-});
+    });
 
-// 回车自动分析
-$('m3u8-url').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    analyzeFromUrl();
-  }
-});
+    // 回车自动分析
+    $('m3u8-url').addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        analyzeFromUrl();
+      }
+    });
 
-// 页面 URL 自动分析
-window.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const url = params.get('url');
-  if (url) {
-    $('m3u8-url').value = url;
-    analyzeFromUrl();
-  }
-});
+    // 页面 URL 自动分析
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get('url');
+      if (url) {
+        $('m3u8-url').value = url;
+        analyzeFromUrl();
+      }
+    });
 
-// HLS 校验
-function validateHLS(data) {
-  const warnings = [];
-  if (!data.segments.length && !data.variants.length) {
-    warnings.push('播放列表为空');
-  }
-  if (data.segments.length > 0) {
-    const maxDuration = Math.max(
-      ...data.segments.map(s => s.duration)
-    );
-    if (maxDuration > 20) {
-      warnings.push('发现超长分片');
+    // HLS 校验
+    function validateHLS(data) {
+      const warnings = [];
+      if (!data.segments.length && !data.variants.length) {
+        warnings.push('播放列表为空');
+      }
+      if (data.segments.length > 0) {
+        const maxDuration = Math.max(
+          ...data.segments.map(s => s.duration)
+        );
+        if (maxDuration > 20) {
+          warnings.push('发现超长分片');
+        }
+      }
+      if (data.keys.length > 0) {
+        warnings.push('检测到 HLS 加密');
+      }
+      return warnings;
     }
-  }
-  if (data.keys.length > 0) {
-    warnings.push('检测到 HLS 加密');
-  }
-  return warnings;
-}
 
-// 统计信息
-function calculateStats(data) {
-  const durations = data.segments.map(s => s.duration);
-  if (!durations.length) {
-    return null;
-  }
-  const min = Math.min(...durations);
-  const max = Math.max(...durations);
-  const avg = durations.reduce((a, b) => a + b, 0) / durations.length;
-  return { min, max, avg };
-}
+    // 统计信息
+    function calculateStats(data) {
+      const durations = data.segments.map(s => s.duration);
+      if (!durations.length) {
+        return null;
+      }
+      const min = Math.min(...durations);
+      const max = Math.max(...durations);
+      const avg = durations.reduce((a, b) => a + b, 0) / durations.length;
+      return { min, max, avg };
+    }
 
-// 复制分享链接
-const shareBtn = document.createElement('button');
-shareBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
-shareBtn.textContent = '复制分享链接';
-shareBtn.addEventListener('click', async () => {
-  if (!currentUrl) {
-    return showStatus('请先分析 URL', 'error');
-  }
-  const shareUrl = `${location.origin}${location.pathname}?url=${encodeURIComponent(currentUrl)}`;
-  try {
-    await navigator.clipboard.writeText(shareUrl);
-    showStatus('分享链接已复制', 'success');
-  } catch {
-    showStatus('复制失败', 'error');
-  }
-});
-document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(shareBtn);
+    // 复制分享链接
+    const shareBtn = document.createElement('button');
+    shareBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
+    shareBtn.textContent = '复制分享链接';
+    shareBtn.addEventListener('click', async () => {
+      if (!currentUrl) {
+        return showStatus('请先分析 URL', 'error');
+      }
+      const shareUrl = `${location.origin}${location.pathname}?url=${encodeURIComponent(currentUrl)}`;
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        showStatus('分享链接已复制', 'success');
+      } catch {
+        showStatus('复制失败', 'error');
+      }
+    });
+    document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(shareBtn);
 
-// 导出JSON报告
-const exportBtn = document.createElement('button');
-exportBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
-exportBtn.textContent = '导出 JSON';
-exportBtn.addEventListener('click', () => {
-  const report = {
-    url: currentUrl,
-    generatedAt: new Date().toISOString(),
-    raw: currentRaw,
-    segments: currentSegments,
-  };
-  const blob = new Blob(
-    [JSON.stringify(report, null, 2)],
-    { type: 'application/json' }
-  );
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'm3u8-report.json';
-  a.click();
-});
-document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(exportBtn);
+    // 导出JSON报告
+    const exportBtn = document.createElement('button');
+    exportBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
+    exportBtn.textContent = '导出 JSON';
+    exportBtn.addEventListener('click', () => {
+      const report = {
+        url: currentUrl,
+        generatedAt: new Date().toISOString(),
+        raw: currentRaw,
+        segments: currentSegments,
+      };
+      const blob = new Blob(
+        [JSON.stringify(report, null, 2)],
+        { type: 'application/json' }
+      );
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'm3u8-report.json';
+      a.click();
+    });
+    document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(exportBtn);
 
-// 拖拽上传m3u8文件
-const textarea = $('m3u8-content');
-textarea.addEventListener('dragover', e => {
-  e.preventDefault();
-});
-textarea.addEventListener('drop', async e => {
-  e.preventDefault();
-  const file = e.dataTransfer.files[0];
-  if (!file) return;
-  if (!file.name.endsWith('.m3u8')) {
-    return showStatus('请上传 m3u8 文件', 'error');
-  }
-  const text = await file.text();
-  textarea.value = text;
-  showStatus('文件已加载', 'success');
-});
-</script>
+    // 拖拽上传m3u8文件
+    const textarea = $('m3u8-content');
+    textarea.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+    textarea.addEventListener('drop', async e => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (!file) return;
+      if (!file.name.endsWith('.m3u8')) {
+        return showStatus('请上传 m3u8 文件', 'error');
+      }
+      const text = await file.text();
+      textarea.value = text;
+      showStatus('文件已加载', 'success');
+    });
+  </script>
 
 </body>
+
 </html>

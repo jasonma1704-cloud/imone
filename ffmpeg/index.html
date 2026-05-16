@@ -6,25 +6,71 @@
   <title>FFmpeg 生成器 - 自动生成 M3U8 下载与转码命令</title>
   <meta name="description" content="在线 FFmpeg 命令生成器，自动生成 M3U8 下载、MP4 转换、TS 合并、转音频、设置请求头、代理、覆盖输出等 FFmpeg 命令。" />
   <meta name="keywords" content="ffmpeg生成器,m3u8 ffmpeg,在线生成ffmpeg命令,hls下载命令,m3u8转mp4命令,ffmpeg 下载 m3u8" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
-  <div id="toast" class="pointer-events-none fixed left-1/2 top-1/2 z-50 hidden w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-[calc(50%+12px)] rounded-2xl border px-5 py-4 text-sm font-medium opacity-0 shadow-2xl backdrop-blur transition-all duration-300"></div>
+  <div
+    class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
+  </div>
 
-  <header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-      <a href="/" class="text-xl font-bold">m3u8在线播放器</a>
-      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
-        <a href="/" class="hover:text-blue-400">首页</a>
-        <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-        <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
-        <a href="/ffmpeg/" class="font-semibold text-blue-400">FFmpeg</a>
-        <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-        <a href="/about.html" class="hover:text-blue-400">关于</a>
-      </nav>
-      <a href="/preview.html" class="rounded-xl bg-blue-500 px-5 py-2 text-sm font-semibold hover:bg-blue-600">开始播放</a>
+  <!-- 导航栏 -->
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+    <div class="text-xl font-bold">m3u8在线播放器</div>
+
+    <!-- 桌面端导航 -->
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="text-blue-400 font-bold">首页</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
+      <a href="/about.html" class="hover:text-blue-400">关于</a>
+    </nav>
+
+    <!-- 右侧操作区 -->
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+          <option value="zh" selected>中文</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="ja">日本語</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
+      </div>
+      <a href="/preview.html">
+        <button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+      </a>
+
+      <!-- 汉堡按钮（移动端） -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </header>
+
+  <!-- 移动端导航菜单 -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/" class="text-blue-400 font-bold">首页</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+    <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
+    <a href="/about.html" class="hover:text-blue-400">关于</a>
+  </div>
+
+  <!-- 遮罩层 -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
 
   <main>
     <section class="relative overflow-hidden px-6 py-16">
@@ -578,6 +624,6 @@
       return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
     }
   </script>
-  <script src="/resane/js/lang-sync.js"></script>
+   <script src="../resane/js/responsive-nav.js"></script>
 </body>
 </html>
