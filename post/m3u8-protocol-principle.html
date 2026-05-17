@@ -1,66 +1,63 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 协议的运行原理？</title>
+  <title>How Does the M3U8 Protocol Work?</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-slate-900 text-white">
 
-  <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
+    <div class="text-xl font-bold">M3U8 Online Player</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
-    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
-      开始播放
-    </button>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+    </a>
   </header>
 
-  <!-- Content -->
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 协议的运行原理？</h1>
+    <h1 class="text-3xl font-bold mb-6">How Does the M3U8 Protocol Work?</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 协议的运行基于分段传输和动态索引的原理：
+      M3U8 is built on segmented delivery and dynamic indexing:
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">1. 视频切片</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">1. Video Segmentation</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      原始视频被切分成多个短小的 MPEG-2 TS 片段，每个片段通常持续 10 秒左右。
+      Source video is split into short MPEG-2 TS segments, usually around 10 seconds each.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">2. 生成索引</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">2. Index Generation</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      创建 M3U8 文件，记录每个片段的 URL、时长和顺序信息。
+      An M3U8 file lists each segment’s URL, duration, and playback order.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">3. 按需加载</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">3. On-Demand Loading</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      播放器读取 M3U8 文件，按顺序下载和解码片段，实现流式播放。
+      The player reads the M3U8, then downloads and decodes segments in sequence for streaming playback.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">4. 自适应调整</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">4. Adaptive Switching</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      根据网络条件，播放器可以切换到不同码率的流媒体版本。
+      Based on network conditions, the player can switch to a different bitrate variant.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">5. 缓冲管理</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">5. Buffer Management</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      播放器预加载多个片段，确保播放流畅，避免卡顿。
+      The player preloads several segments ahead to keep playback smooth and reduce stalling.
     </p>
     <p class="text-gray-400 leading-relaxed">
-      这种设计使得 M3U8 既支持点播也支持直播，提供高效的流媒体体验。
+      This design supports both on-demand and live streaming for an efficient viewing experience.
     </p>
   </section>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 m3u8在线播放器 | 资源来源于网络，如有侵权请联系客服删除
+    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
   </footer>
 
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

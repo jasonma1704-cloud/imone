@@ -1,66 +1,63 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 格式有哪些优势？</title>
+  <title>What Are the Advantages of M3U8?</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-slate-900 text-white">
 
-  <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
+    <div class="text-xl font-bold">M3U8 Online Player</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
-    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
-      开始播放
-    </button>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+    </a>
   </header>
 
-  <!-- Content -->
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 格式有哪些优势？</h1>
+    <h1 class="text-3xl font-bold mb-6">What Are the Advantages of M3U8?</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 格式作为 HLS 协议的一部分，具有许多独特的优势，使其成为流媒体传输的首选格式：
+      As part of the HLS protocol, M3U8 offers several unique benefits that make it a preferred format for streaming:
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">1. 分段加载</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">1. Segmented Loading</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 将视频分成多个小片段，播放器可以按需加载，避免一次性下载整个文件。这大大减少了启动时间和缓冲需求。
+      M3U8 splits video into small segments that the player loads on demand, avoiding a full-file download upfront. This greatly reduces startup time and buffering.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">2. 自适应码率</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">2. Adaptive Bitrate</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      支持多码率版本，播放器可以根据网络条件自动切换质量，提供流畅的观看体验。
+      Multiple quality levels are supported; the player can switch automatically based on network conditions for a smoother viewing experience.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">3. 兼容性强</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">3. Broad Compatibility</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      广泛支持各种设备和平台，包括桌面、移动设备和智能电视。
+      Widely supported across desktops, mobile devices, and smart TVs.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">4. 易于防盗链</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">4. Access Control</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      通过令牌验证和动态 URL，可以有效防止未经授权的访问。
+      Token validation and dynamic URLs help prevent unauthorized access.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">5. 低延迟直播</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">5. Low-Latency Live Streaming</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      对于直播流，M3U8 支持低延迟播放，适合实时事件传输。
+      For live streams, M3U8 supports low-latency playback suitable for real-time events.
     </p>
     <p class="text-gray-400 leading-relaxed">
-      这些优势使得 M3U8 成为现代视频流媒体服务的核心技术之一。
+      These advantages make M3U8 a core technology for modern video streaming services.
     </p>
   </section>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 m3u8在线播放器 | 资源来源于网络，如有侵权请联系客服删除
+    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
   </footer>
 
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

@@ -1,7 +1,5 @@
 /**
- * imone site language switcher
- * - Default language: English (root paths, no /en/ prefix)
- * - Other languages: /zh/, /pt/, /ja/
+ * Alias of lang-switcher.js (kept for existing HTML references).
  */
 (function () {
   'use strict';
@@ -67,7 +65,6 @@
     return '/' + targetLang + '/' + pagePath + suffix;
   }
 
-  /** Always derive language from URL (fixes back-button / bfcache stale select). */
   function syncSelectorFromUrl() {
     var selector = document.getElementById('language-selector');
     if (!selector) {
@@ -111,7 +108,6 @@
     bindSelectorOnce();
   }
 
-  // Back/forward may restore page from cache without re-running DOMContentLoaded.
   window.addEventListener('pageshow', syncSelectorFromUrl);
 
   if (document.readyState === 'loading') {

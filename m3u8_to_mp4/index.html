@@ -1,25 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>M3U8转MP4在线工具 | 支持AES-128自动解密 全网跨域无限制</title>
-  <meta name="description" content="专业M3U8转MP4在线转换器，内置WebWorker绕过跨域限制，自动解析AES-128加密流媒体，纯前端无需安装，一键解密合并下载高清视频。">
-  <meta name="keywords" content="M3U8转MP4, AES128解密M3U8, 在线M3U8下载, 绕过跨域M3U8, HLS流媒体解析, m3u8自动解密工具">
-  <meta name="robots" content="index, follow" />
-  <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/ffmpeg.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M3U8 to MP4 Professional Conversion Tool</title>
+  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
   <style>
-    .log { max-height:200px; overflow-y:auto; }
-    .log::-webkit-scrollbar { width:4px; }
-    .log::-webkit-scrollbar-thumb { background:#475569; }
-  </style>
-  <!-- AES 解密核心 -->
-  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
-  <style>
-    /* 参考图风格：低饱和深蓝+纯黑背景 */
     body {
       background: #050a1a;
       background-image: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 50%);
@@ -27,559 +18,274 @@
       color: #e2e8f0;
     }
 
-    .log {
-      max-height: 200px;
+    .log-box {
+      height: 180px;
       overflow-y: auto;
-      background: #0f172a !important;
-      border: 1px solid #1e293b !important;
-      color: #94a3b8 !important;
-      border-radius: 8px;
     }
 
-    .log::-webkit-scrollbar {
+    .log-box::-webkit-scrollbar {
       width: 4px;
     }
 
-    .log::-webkit-scrollbar-thumb {
-      background: #334155;
+    .log-box::-webkit-scrollbar-thumb {
+      background: #334555;
       border-radius: 2px;
-    }
-
-    .ads-box {
-      min-height: 90px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #64748b;
-      font-size: 14px;
-      backdrop-filter: blur(4px);
     }
 
     textarea {
       background: #0f172a !important;
       border: 1px solid #1e293b !important;
       color: #e2e8f0 !important;
-      border-radius: 8px;
+      border-radius: 8px !important;
     }
 
+    
     textarea::placeholder {
       color: #475569 !important;
-    }
-
-    /* 按钮和交互色 */
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-      transition: background 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-    }
-
-    .btn-secondary {
-      background: #1e293b;
-      color: #e2e8f0;
-      transition: background 0.2s;
-    }
-
-    .btn-secondary:hover {
-      background: #334155;
     }
   </style>
 </head>
 
-<body>
-  <!-- 头部导航 -->
-  <header class="bg-[#050a1a]/95 border-b border-[#1e293b]">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="/" class="text-xl font-bold text-white">M3U8转换器</a>
-      <nav class="hidden md:flex gap-6 text-sm">
-        <a href="/" class="text-slate-400 hover:text-white">首页</a>
-        <a href="/m3u8_to_mp4.html" class="text-white font-medium">M3U8转MP4</a>
-        <a href="/faq.html" class="text-slate-400 hover:text-white">常见问题</a>
-        <a href="/about.html" class="text-slate-400 hover:text-white">关于我们</a>
-      </nav>
+<body class="min-h-screen">
+  <div
+    class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
+  </div>
+
+  <!-- 导航栏 -->
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+    <div class="text-xl font-bold">M3U8 Online Player</div>
+
+    <!-- 桌面端导航 -->
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="text-blue-400 font-bold">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
+    </nav>
+
+    <!-- 右侧操作区 -->
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="ja">日本語</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
+      </div>
+      <a href="/preview.html">
+        <button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Start
+          Playing</button>
+      </a>
+
+      <!-- 汉堡按钮（移动端） -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </header>
-  <main class="max-w-6xl mx-auto px-4 py-6">
-    <!-- 面包屑 -->
-    <div class="text-xs text-slate-500 mb-4">
-      <a href="/" class="hover:text-white">首页</a> / <span class="text-slate-300">M3U8转MP4在线工具</span>
-    </div>
-    <!-- 1. 顶部广告位 AdSense -->
-    <div class="ads-box mb-6">
-      【AdSense 顶部横幅广告位】粘贴广告代码此处
-    </div>
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- 左侧主内容区 -->
-      <div class="md:col-span-2">
-        <!-- 文章标题+介绍 -->
-        <article class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 mb-6 border border-[#1e293b]">
-          <h1 class="text-2xl md:text-3xl font-bold mb-4 text-white">M3U8转MP4在线工具 支持AES-128自动解密</h1>
-          <p class="text-slate-300 leading-relaxed mb-3">
-            这是一款纯前端高级M3U8转MP4工具，采用WebWorker技术绕过浏览器跨域限制，支持全网任意网站HLS流媒体链接解析。自动识别AES-128加密格式，自动下载密钥、解密TS分片，无需安装任何软件、无需服务器代理，浏览器打开即可使用。
-          </p>
-          <p class="text-slate-300 leading-relaxed">
-            适合网页短视频、影视流媒体、直播回放M3U8链接一键转换，解密后无损合并为标准MP4格式，支持电脑、手机本地播放。
-          </p>
-        </article>
-        <!-- 2. 文中广告位 -->
-        <div class="ads-box mb-6">
-          【AdSense 文中信息流广告位】粘贴广告代码此处
-        </div>
-        <!-- 工具主功能区 -->
-        <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 mb-6 border border-[#1e293b]">
-          <h2 class="text-lg font-semibold mb-4 border-l-4 border-[#2563eb] pl-3 text-white">在线转换工具</h2>
-          <textarea id="m3u8Input"
-            class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 h-28 mb-4 outline-none text-sm resize-none"
-            placeholder="粘贴普通/加密M3U8链接到这里..."></textarea>
-          <div class="flex gap-3 mb-4 flex-wrap">
-            <button id="startBtn" class="btn-primary px-5 py-2 rounded-lg font-medium">开始解析转换</button>
-            <button id="clearLogBtn" class="btn-secondary px-4 py-2 rounded-lg">清空日志</button>
-          </div>
-          <!-- 进度条 -->
-          <div class="mb-4 hidden" id="progressBox">
-            <div class="flex justify-between text-xs text-slate-400 mb-1">
-              <span>转换进度</span>
-              <span id="progressTxt">0%</span>
-            </div>
-            <div class="h-2 bg-[#1e293b] rounded-full overflow-hidden">
-              <div id="progressBar" class="h-full bg-[#2563eb] w-0 transition-all"></div>
-            </div>
-          </div>
-          <div id="status" class="text-sm text-slate-300 mb-3 h-5"></div>
-          <div id="log" class="log bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600"></div>
-        </div>
-        <!-- 功能优势 -->
-        <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 mb-6 border border-[#1e293b]">
-          <h2 class="text-lg font-semibold mb-4 border-l-4 border-[#2563eb] pl-3 text-white">工具核心优势</h2>
-          <ul class="space-y-2 text-slate-300 text-sm">
-            <li>✅ WebWorker 绕过浏览器跨域限制，支持全网M3U8</li>
-            <li>✅ 自动识别 AES-128-CBC 加密，一键自动解密</li>
-            <li>✅ 纯前端Wasm运算，不上传视频、保护隐私</li>
-            <li>✅ 自动合并TS分片，无损封装为标准MP4</li>
-            <li>✅ 无需安装软件、无需搭建代理服务器</li>
-            <li>✅ 手机电脑全平台浏览器兼容使用</li>
-          </ul>
-        </div>
-        <!-- 使用教程 -->
-        <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 mb-6 border border-[#1e293b]">
-          <h2 class="text-lg font-semibold mb-4 border-l-4 border-[#2563eb] pl-3 text-white">使用教程</h2>
-          <ol class="space-y-2 text-slate-300 text-sm list-decimal list-inside">
-            <li>复制网页视频的 M3U8 流媒体链接</li>
-            <li>将链接粘贴到工具输入框中</li>
-            <li>点击「开始解析转换」按钮</li>
-            <li>工具自动下载索引、检测加密、拉取密钥解密</li>
-            <li>自动合并分片并生成MP4，浏览器自动下载</li>
-          </ol>
-        </div>
-        <!-- FAQ常见问题 -->
-        <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 border border-[#1e293b]">
-          <h2 class="text-lg font-semibold mb-4 border-l-4 border-[#2563eb] pl-3 text-white">常见问题FAQ</h2>
-          <div class="space-y-4 text-sm">
-            <div>
-              <h3 class="font-medium text-white">1. 为什么有的M3U8还是无法下载？</h3>
-              <p class="text-slate-300 mt-1">部分网站做了防盗链、Token鉴权、IP限制，仅靠Worker无法绕过，普通个人流媒体均可正常解析。</p>
-            </div>
-            <div>
-              <h3 class="font-medium text-white">2. 支持长时间长视频转换吗？</h3>
-              <p class="text-slate-300 mt-1">纯前端受浏览器内存限制，适合短视频、剧集片段，超大长视频建议分段转换。</p>
-            </div>
-            <div>
-              <h3 class="font-medium text-white">3. 解密后的视频画质会压缩吗？</h3>
-              <p class="text-slate-300 mt-1">采用copy无损封装，不重新编码，画质和原流媒体完全一致。</p>
-            </div>
-          </div>
+
+  <!-- 移动端导航菜单 -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/" class="text-blue-400 font-bold">Home</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+    <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+    <a href="/post/" class="hover:text-blue-400">Help Center</a>
+    <a href="/about.html" class="hover:text-blue-400">About</a>
+  </div>
+
+  <!-- 遮罩层 -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+
+    <!-- Main Content Left Area (2/3 width) -->
+    <div class="md:col-span-2 bg-[#0f172a]/80 rounded-xl shadow-sm p-6 md:p-8 border border-[#1e293b]">
+
+      <!-- Header Title -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-white">🎬 Online M3U8 to MP4 Converter</h1>
+        <p class="text-slate-400 mt-2">True Lossless Conversion | Encrypted HLS Support | Auto-Clean Server Storage</p>
+      </div>
+
+      <!-- Input Area -->
+      <div class="bg-[#1e293b]/50 p-5 rounded-lg mb-6 border border-[#1e293b]">
+        <h2 class="text-lg font-semibold mb-3 text-white">🔗 Enter M3U8 URL</h2>
+        <textarea id="m3u8Url" rows="3" placeholder="Please paste your video link ending with .m3u8
+Supports standard/encrypted M3U8, live streams, and movie segments"
+          class="w-full p-3 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+        <div class="flex flex-wrap gap-3 mt-4">
+          <button id="convertBtn"
+            class="bg-[#2563eb] text-white px-5 py-2 rounded-lg hover:bg-[#1d4ed8] transition-colors">
+            Start Conversion
+          </button>
+          <button id="clearBtn"
+            class="bg-[#1e293b] text-white px-5 py-2 rounded-lg hover:bg-[#334155] transition-colors">
+            Clear Input
+          </button>
+          <button id="testBtn"
+            class="bg-[#059669] text-white px-5 py-2 rounded-lg hover:bg-[#047857] transition-colors">
+            Fill Test URL
+          </button>
         </div>
       </div>
-      <!-- 右侧侧边栏 -->
-      <div class="md:col-span-1">
-        <!-- 3. 侧边栏广告位 -->
-        <div class="ads-box mb-6 sticky top-4">
-          【AdSense 侧边栏广告位】粘贴广告代码此处
+
+      <!-- Status & Log Box -->
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold mb-3 text-white">📋 Real-time Conversion Log</h2>
+        <div id="logBox" class="log-box bg-[#0f172a] text-green-400 p-4 rounded-lg text-sm border border-[#1e293b]">
+          System ready, waiting for conversion tasks...
         </div>
-        <!-- 工具说明侧边栏 -->
-        <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 mb-6 border border-[#1e293b]">
-          <h3 class="font-semibold text-base mb-3 text-white">工具适配格式</h3>
-          <ul class="text-sm text-slate-300 space-y-2">
-            <li>• 标准 HLS M3U8 流</li>
-            <li>• AES-128-CBC 加密流</li>
-            <li>• 普通非加密 TS 分片流</li>
-            <li>• 网页短视频、课程流媒体</li>
-          </ul>
+        <div id="statusText" class="mt-3 text-base font-medium"></div>
+      </div>
+
+      <!-- Download Button -->
+      <a id="downloadBtn" href="" target="_blank"
+        class="hidden block text-center bg-emerald-600 text-white py-3 rounded-lg text-lg font-medium hover:bg-emerald-700 mb-8 transition-colors">
+        📥 Download MP4 Video Now
+      </a>
+
+      <!-- Tutorial -->
+      <div class="border-t border-[#1e293b] pt-6 mb-6">
+        <h2 class="text-xl font-bold mb-4 text-white">📖 How to Use</h2>
+        <ul class="list-disc pl-5 text-slate-300 space-y-2">
+          <li>Get the direct M3U8 link of the video (must end with .m3u8)</li>
+          <li>Paste the link into the input box above</li>
+          <li>Click &quot;Start Conversion&quot; and wait for processing</li>
+          <li>Once completed, click download. <strong class="text-white">Files are auto-deleted from the server after
+              downloading to save space.</strong></li>
+        </ul>
+      </div>
+
+      <!-- FAQ -->
+      <div class="border-t border-[#1e293b] pt-6">
+        <h2 class="text-xl font-bold mb-4 text-white">❓ FAQ</h2>
+        <div class="space-y-3 text-slate-300">
+          <div><strong class="text-white">Q: Will this use up server storage/memory?</strong><br>A: No, it employs
+            stream transcoding and automatic file deletion post-download alongside scheduled wipeouts of expired files
+            to ensure zero persistent overhead.</div>
+          <div><strong class="text-white">Q: Does it support encrypted videos?</strong><br>A: Yes, it supports standard
+            AES-128-CBC encrypted HLS M3U8, handling automatic decryption and merging.</div>
+          <div><strong class="text-white">Q: Will the conversion reduce video quality?</strong><br>A: No, it utilizes
+            lossless stream copying without re-encoding, so the quality remains identical to the original video.</div>
+          <div><strong class="text-white">Q: What should I do if the conversion fails?</strong><br>A: Check if the link
+            can be opened directly in your browser and verify it isn&#39;t being blocked by CORS restrictions.</div>
         </div>
-        <!-- 推荐工具 -->
-        <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-5 border border-[#1e293b]">
-          <h3 class="font-semibold text-base mb-3 text-white">相关工具</h3>
-          <div class="space-y-2 text-sm">
-            <a href="#" class="block text-[#3b82f6] hover:underline">M3U8链接解析器</a>
-            <a href="#" class="block text-[#3b82f6] hover:underline">视频格式转换工具</a>
-            <a href="#" class="block text-[#3b82f6] hover:underline">流媒体链接提取教程</a>
-          </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Right Area -->
+    <div class="md:col-span-1 space-y-6">
+      <!-- Supported Formats -->
+      <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-6 border border-[#1e293b]">
+        <h3 class="text-lg font-bold text-white mb-4">🔧 Supported Formats</h3>
+        <ul class="space-y-2 text-slate-300 text-sm">
+          <li>• Standard HLS M3U8 Streams</li>
+          <li>• AES-128-CBC Encrypted Streams</li>
+          <li>• Standard Non-encrypted TS Segments</li>
+          <li>• Web Short Videos &amp; E-learning Streams</li>
+        </ul>
+      </div>
+
+      <!-- Related Tools -->
+      <div class="bg-[#0f172a]/80 rounded-xl shadow-sm p-6 border border-[#1e293b]">
+        <h3 class="text-lg font-bold text-white mb-4">🔗 Related Tools</h3>
+        <div class="space-y-3 text-sm">
+          <a href="#" class="block text-blue-400 hover:text-blue-300 transition-colors">M3U8 Link Parser</a>
+          <a href="#" class="block text-blue-400 hover:text-blue-300 transition-colors">Video Format Converter</a>
+          <a href="#" class="block text-blue-400 hover:text-blue-300 transition-colors">Streaming Link Extraction
+            Guide</a>
         </div>
       </div>
     </div>
-    <!-- 4. 底部广告位 -->
-    <div class="ads-box mt-6">
-      【AdSense 底部横幅广告位】粘贴广告代码此处
-    </div>
-  </main>
-  <!-- 页脚 -->
-  <footer class="bg-[#050a1a]/95 border-t border-[#1e293b] mt-8 py-6">
-    <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500">
-      <p>本工具仅供个人学习交流使用，禁止用于商用及侵权用途</p>
-      <p class="mt-2">© 2025 M3U8转换器 版权所有</p>
-    </div>
-  </footer>
+
+  </div>
+
   <script>
-   const { createFFmpeg } = FFmpeg;
-let ffmpeg = null;
-let worker = null;
-let isRunning = false;
+    const m3u8Url = document.getElementById('m3u8Url');
+    const convertBtn = document.getElementById('convertBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const testBtn = document.getElementById('testBtn');
+    const logBox = document.getElementById('logBox');
+    const statusText = document.getElementById('statusText');
+    const downloadBtn = document.getElementById('downloadBtn');
 
-// DOM 元素
-const m3u8Input = document.getElementById('m3u8Input');
-const startBtn = document.getElementById('startBtn');
-const clearLogBtn = document.getElementById('clearLogBtn');
-const statusEl = document.getElementById('status');
-const logEl = document.getElementById('log');
-const progressBox = document.getElementById('progressBox');
-const progressBar = document.getElementById('progressBar');
-const progressTxt = document.getElementById('progressTxt');
+    // Test public m3u8 link
+    const testUrl = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
 
-// 日志函数
-function log(msg) {
-  const t = new Date().toLocaleTimeString();
-  logEl.innerHTML += `[${t}] ${msg}<br>`;
-  logEl.scrollTop = logEl.scrollHeight;
-  console.log(`[${t}] ${msg}`); // 同步到控制台，方便调试
-}
-
-// 清空日志
-clearLogBtn.onclick = () => {
-  logEl.innerHTML = '';
-  log('日志已清空');
-};
-
-// 设置进度
-function setProgress(p) {
-  p = Math.min(100, Math.max(0, p));
-  progressBar.style.width = p + '%';
-  progressTxt.innerText = `${p.toFixed(1)}%`;
-}
-
-// 初始化Worker（增加错误捕获）
-function initWorker() {
-  return new Promise((resolve, reject) => {
-    if (worker) {
-      resolve(worker);
-      return;
+    // Logging function
+    function addLog(text) {
+      const time = new Date().toLocaleTimeString();
+      logBox.innerHTML += `[${time}] ${text}\n`;
+      logBox.scrollTop = logBox.scrollHeight;
     }
-    try {
-      // 确认worker.js路径正确，若部署在子目录需调整路径
-      worker = new Worker('worker.js');
-      log('WebWorker 初始化成功');
-      
-      // Worker错误监听
-      worker.onerror = (error) => {
-        log(`Worker错误: ${error.message} (行${error.lineno})`);
-        reject(error);
-      };
-      
-      // Worker终止监听
-      worker.onmessageerror = (error) => {
-        log(`Worker消息错误: ${error.message}`);
-        reject(error);
-      };
-      
-      resolve(worker);
-    } catch (err) {
-      log(`Worker初始化失败: ${err.message}`);
-      reject(err);
-    }
-  });
-}
 
-// 初始化FFmpeg（增加超时和错误处理）
-async function initFFmpeg() {
-  if (ffmpeg) return ffmpeg;
-  
-  statusEl.innerText = '加载FFmpeg内核中...';
-  log('开始加载FFmpeg Wasm内核（约20MB）');
-  
-  try {
-    // 设置超时（15秒）
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('FFmpeg加载超时')), 15000)
-    );
-    
-    const ffmpegPromise = (async () => {
-      ffmpeg = createFFmpeg({
-        log: false,
-        corePath: "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/ffmpeg-core.js" // 替换更稳定的CDN
-      });
-      await ffmpeg.load();
-      return ffmpeg;
-    })();
-    
-    // 竞态：超时或加载完成
-    ffmpeg = await Promise.race([ffmpegPromise, timeoutPromise]);
-    log('FFmpeg 内核加载完成');
-    statusEl.innerText = 'FFmpeg加载完成';
-    return ffmpeg;
-  } catch (err) {
-    log(`FFmpeg加载失败: ${err.message}`);
-    statusEl.innerText = `FFmpeg加载失败: ${err.message}`;
-    throw err; // 抛出错误让上层处理
-  }
-}
-
-// M3U8解析器（原有逻辑保留）
-function parseM3U8(text) {
-  const lines = text.split('\n').map(x => x.trim()).filter(Boolean);
-  const res = { isEncrypt: false, keyUrl: '', iv: '', tsList: [] };
-  let nextIsTs = false;
-  for (let line of lines) {
-    if (line.startsWith('#EXT-X-KEY')) {
-      res.isEncrypt = true;
-      const uriMatch = line.match(/URI="([^"]+)"/);
-      if (uriMatch) res.keyUrl = uriMatch[1];
-      const ivMatch = line.match(/IV=0x([0-9A-Fa-f]+)/);
-      if (ivMatch) res.iv = ivMatch[1];
-    }
-    if (line.startsWith('#EXTINF')) {
-      nextIsTs = true;
-      continue;
-    }
-    if (nextIsTs && !line.startsWith('#')) {
-      res.tsList.push(line);
-      nextIsTs = false;
-    }
-  }
-  return res;
-}
-
-// AES解密（原有逻辑保留）
-function aesDecrypt(dataBuf, keyBuf, ivHex) {
-  const key = CryptoJS.lib.WordArray.create(keyBuf);
-  const iv = CryptoJS.enc.Hex.parse(ivHex);
-  const encrypted = CryptoJS.lib.WordArray.create(dataBuf);
-  const decrypted = CryptoJS.AES.decrypt(
-    { ciphertext: encrypted },
-    key,
-    { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.padding.Pkcs7 }
-  );
-  return new Uint8Array(decrypted.toString(CryptoJS.enc.Base64));
-}
-
-// Worker请求（优化Promise逻辑）
-function workerFetch(url) {
-  return new Promise((resolve, reject) => {
-    if (!worker) {
-      reject(new Error('Worker未初始化'));
-      return;
-    }
-    // 避免重复监听，先清除旧监听
-    const onMessageHandler = (e) => {
-      worker.removeEventListener('message', onMessageHandler);
-      if (e.data.error) reject(new Error(e.data.error));
-      else resolve(e.data.buffer);
+    // Clear input
+    clearBtn.onclick = () => {
+      m3u8Url.value = '';
+      statusText.innerHTML = '';
+      downloadBtn.classList.add('hidden');
     };
-    worker.addEventListener('message', onMessageHandler);
-    worker.postMessage({ type: 'fetch', url });
-  });
-}
 
-// 拼接URL（原有逻辑保留）
-function resolveUrl(base, rel) {
-  try {
-    return new URL(rel, base).href;
-  } catch (err) {
-    log(`URL拼接失败: ${base} + ${rel}`);
-    throw err;
-  }
-}
+    // Auto-fill test link
+    testBtn.onclick = () => {
+      m3u8Url.value = testUrl;
+      addLog('Official test URL has been auto-filled');
+    };
 
-// 验证URL格式
-function isValidUrl(url) {
-  try {
-    new URL(url);
-    return url.startsWith('http://') || url.startsWith('https://');
-  } catch {
-    return false;
-  }
-}
-
-// 主转换流程（核心修复）
-startBtn.onclick = async () => {
-  // 防止重复点击
-  if (isRunning) {
-    log('任务正在运行中，请勿重复点击');
-    statusEl.innerText = '任务正在运行中';
-    return;
-  }
-  
-  // 输入验证
-  const m3u8Url = m3u8Input.value.trim();
-  if (!m3u8Url) {
-    statusEl.innerText = '❌ 请输入M3U8链接';
-    log('错误：未输入M3U8链接');
-    return;
-  }
-  if (!isValidUrl(m3u8Url)) {
-    statusEl.innerText = '❌ 请输入有效的HTTP/HTTPS链接';
-    log('错误：无效的URL格式');
-    return;
-  }
-  
-  // 初始化状态
-  isRunning = true;
-  startBtn.disabled = true;
-  startBtn.innerText = '处理中...';
-  progressBox.classList.remove('hidden');
-  setProgress(0);
-  log('===== 开始M3U8转换任务 =====');
-  statusEl.innerText = '初始化中...';
-  
-  try {
-    // 1. 初始化Worker（带错误捕获）
-    await initWorker();
-    setProgress(5);
-    
-    // 2. 初始化FFmpeg（带超时）
-    await initFFmpeg();
-    setProgress(10);
-    
-    // 3. 下载M3U8索引文件
-    statusEl.innerText = '下载M3U8索引...';
-    log('下载M3U8索引文件: ' + m3u8Url);
-    const m3u8Buf = await workerFetch(m3u8Url);
-    const m3u8Text = new TextDecoder().decode(m3u8Buf);
-    setProgress(15);
-    
-    // 4. 解析M3U8
-    statusEl.innerText = '解析M3U8结构...';
-    log('解析M3U8结构，检测加密状态');
-    const info = parseM3U8(m3u8Text);
-    log(`检测到分片数量: ${info.tsList.length}`);
-    if (info.isEncrypt) {
-      log(`检测到AES-128加密，密钥地址: ${info.keyUrl || '未找到'}`);
-      log(`IV向量: ${info.iv || '未找到'}`);
-    } else {
-      log('未检测到AES加密');
-    }
-    setProgress(20);
-    
-    // 5. 下载密钥（如果加密）
-    let keyBuf = null;
-    if (info.isEncrypt && info.keyUrl) {
-      statusEl.innerText = '下载解密密钥...';
-      const fullKeyUrl = resolveUrl(m3u8Url, info.keyUrl);
-      log('下载密钥: ' + fullKeyUrl);
-      keyBuf = await workerFetch(fullKeyUrl);
-      log('密钥下载完成');
-    }
-    setProgress(25);
-    
-    // 6. 下载并处理TS分片
-    statusEl.innerText = '下载TS分片...';
-    const total = info.tsList.length;
-    if (total === 0) {
-      throw new Error('未解析到TS分片，请检查M3U8链接是否有效');
-    }
-    log(`开始下载${total}个TS分片`);
-    
-    for (let i = 0; i < total; i++) {
-      const tsUrl = resolveUrl(m3u8Url, info.tsList[i]);
-      log(`下载分片 ${i + 1}/${total}: ${tsUrl}`);
-      let tsBuf = await workerFetch(tsUrl);
-      
-      // 解密分片（如果加密）
-      if (info.isEncrypt && keyBuf && info.iv) {
-        log(`解密分片 ${i + 1}`);
-        tsBuf = aesDecrypt(tsBuf, keyBuf, info.iv);
+    // Convert operation
+    convertBtn.onclick = async () => {
+      const url = m3u8Url.value.trim();
+      if (!url) {
+        statusText.innerHTML = '<span class="text-red-500">Please enter an M3U8 video link</span>';
+        return;
       }
-      
-      // 写入FFmpeg文件系统
-      ffmpeg.FS('writeFile', `part${i}.ts`, tsBuf);
-      
-      // 更新进度
-      const progress = 25 + Math.floor(((i + 1) / total) * 60);
-      setProgress(progress);
-      statusEl.innerText = `处理分片 ${i + 1}/${total}`;
-    }
-    
-    // 7. 生成合并列表
-    statusEl.innerText = '生成合并列表...';
-    let concatTxt = '';
-    for (let i = 0; i < total; i++) {
-      concatTxt += `file 'part${i}.ts'\n`;
-    }
-    ffmpeg.FS('writeFile', 'list.txt', concatTxt);
-    setProgress(90);
-    
-    // 8. FFmpeg合并为MP4
-    statusEl.innerText = '合并为MP4...';
-    log('开始合并分片为MP4（无损封装）');
-    await ffmpeg.run(
-      '-f', 'concat', '-safe', '0', '-i', 'list.txt',
-      '-c', 'copy', 'output.mp4'
-    );
-    setProgress(95);
-    
-    // 9. 生成下载链接
-    statusEl.innerText = '生成下载文件...';
-    const outData = ffmpeg.FS('readFile', 'output.mp4');
-    const blob = new Blob([outData.buffer], { type: 'video/mp4' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'M3U8转换_' + Date.now() + '.mp4';
-    a.click();
-    URL.revokeObjectURL(a.href);
-    
-    // 清理FFmpeg文件
-    for (let i = 0; i < total; i++) {
-      ffmpeg.FS('unlink', `part${i}.ts`);
-    }
-    ffmpeg.FS('unlink', 'list.txt');
-    ffmpeg.FS('unlink', 'output.mp4');
-    
-    // 完成状态
-    setProgress(100);
-    statusEl.innerText = '✅ 转换完成！文件已自动下载';
-    log('===== 任务完成 =====');
-    
-  } catch (err) {
-    // 错误处理
-    console.error('任务失败:', err);
-    statusEl.innerText = `❌ 失败: ${err.message}`;
-    log(`错误: ${err.message}`);
-    log('===== 任务失败 =====');
-    
-  } finally {
-    // 重置状态
-    isRunning = false;
-    startBtn.disabled = false;
-    startBtn.innerText = '开始解析转换';
-    // 2.5秒后隐藏进度条
-    setTimeout(() => {
-      if (!isRunning) {
-        progressBox.classList.add('hidden');
-      }
-    }, 2500);
-  }
-};
 
-// 页面加载完成初始化
-window.onload = () => {
-  log('页面加载完成，等待输入M3U8链接');
-  statusEl.innerText = '就绪';
-};
+      convertBtn.disabled = true;
+      statusText.innerHTML = '<span class="text-blue-400">Parsing and converting, please wait...</span>';
+      downloadBtn.classList.add('hidden');
+      addLog('Initiating conversion task request...');
+
+      try {
+        const res = await fetch('http://localhost:3000/api/convert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ m3u8Url: url })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          addLog('✅ Conversion completed, preparing download link');
+          statusText.innerHTML = '<span class="text-green-400">Conversion successful! Click the button below to download</span>';
+          downloadBtn.href = data.downloadUrl;
+          downloadBtn.classList.remove('hidden');
+        } else {
+          addLog('❌ ' + data.error);
+          statusText.innerHTML = `<span class="text-red-400">${data.error}</span>`;
+        }
+      } catch (e) {
+        addLog('❌ Failed to connect to the backend, please check if the service is running');
+        statusText.innerHTML = '<span class="text-red-400">Backend service is offline or a network error occurred</span>';
+      } finally {
+        convertBtn.disabled = false;
+      }
+    };
+
+    addLog('Page loaded successfully, ready for use');
   </script>
+  <script src="./resane/js/responsive-nav.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 
 </html>

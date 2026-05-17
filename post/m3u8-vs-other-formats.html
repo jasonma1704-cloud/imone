@@ -1,71 +1,68 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 和普通视频格式有什么不同？</title>
+  <title>How Is M3U8 Different from Regular Video Formats?</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-slate-900 text-white">
 
-  <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
+    <div class="text-xl font-bold">M3U8 Online Player</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
-    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
-      开始播放
-    </button>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+    </a>
   </header>
 
-  <!-- Content -->
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 和普通视频格式有什么不同？</h1>
+    <h1 class="text-3xl font-bold mb-6">How Is M3U8 Different from Regular Video Formats?</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 和传统的视频格式（如 MP4、AVI）在结构和用途上有显著差异：
+      M3U8 differs from traditional formats (such as MP4 and AVI) in structure and purpose:
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">文件内容</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">File Content</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      <strong>M3U8：</strong> 纯文本文件，包含媒体片段的 URL 列表，不包含实际视频数据。
-    </p>
-    <p class="text-gray-400 leading-relaxed mb-4">
-      <strong>普通视频格式：</strong> 二进制文件，直接包含编码后的视频和音频数据。
-    </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">播放方式</h2>
-    <p class="text-gray-400 leading-relaxed mb-4">
-      <strong>M3U8：</strong> 流式播放，按需下载片段，支持自适应码率。
+      <strong>M3U8:</strong> A plain-text playlist listing segment URLs—it does not contain actual video data.
     </p>
     <p class="text-gray-400 leading-relaxed mb-4">
-      <strong>普通视频格式：</strong> 通常需要完整下载或本地存储后播放。
+      <strong>Regular formats:</strong> Binary files that store encoded video and audio directly.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">适用场景</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Playback</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      <strong>M3U8：</strong> 主要用于在线流媒体、直播和点播服务。
+      <strong>M3U8:</strong> Streamed playback with on-demand segment loading and adaptive bitrate.
     </p>
     <p class="text-gray-400 leading-relaxed mb-4">
-      <strong>普通视频格式：</strong> 适用于本地存储、离线播放和文件共享。
+      <strong>Regular formats:</strong> Often require a full download or local file before playback.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">优势对比</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Use Cases</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 在网络传输和用户体验方面具有优势，而普通格式在本地处理和兼容性上更强。
+      <strong>M3U8:</strong> Online streaming, live broadcast, and VOD services.
+    </p>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      <strong>Regular formats:</strong> Local storage, offline playback, and file sharing.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Trade-offs</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 excels at network delivery and user experience; traditional formats are often simpler for local editing and broad offline compatibility.
     </p>
     <p class="text-gray-400 leading-relaxed">
-      理解这些差异有助于选择合适的格式用于不同应用场景。
+      Understanding these differences helps you pick the right format for each scenario.
     </p>
   </section>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 m3u8在线播放器 | 资源来源于网络，如有侵权请联系客服删除
+    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
   </footer>
 
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

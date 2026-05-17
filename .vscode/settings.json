@@ -1,3 +1,5 @@
 {
-    "livePreview.defaultPreviewPath": "/post/index.html"
+    "livePreview.defaultPreviewPath": "/post/index.html",
+    "Codegeex.RepoIndex": true,
+    "Translate-next.targetLanguage": "Japanese"
 }

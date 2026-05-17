@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 协议的运行原理？</title>
+  <title>M3U8プロトコルの仕組み・動作原理とは？</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -27,38 +27,38 @@
 
   <!-- Content -->
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 协议的运行原理？</h1>
+    <h1 class="text-3xl font-bold mb-6">M3U8プロトコルの仕組み・動作原理とは？</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 协议的运行基于分段传输和动态索引的原理：
+      M3U8プロトコルは、動画のセグメント（分割）配信と動的なインデックス管理の原理に基づいて動作しています：
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">1. 视频切片</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">1. 動画のセグメント化（スライシング）</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      原始视频被切分成多个短小的 MPEG-2 TS 片段，每个片段通常持续 10 秒左右。
+      元の動画ファイルは、MPEG-2 TSなどの形式を用いた複数の小さな短いセグメントに分割されます。各セグメントの長さは、通常10秒前後に設定されます。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">2. 生成索引</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">2. インデックス（プレイリスト）の生成</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      创建 M3U8 文件，记录每个片段的 URL、时长和顺序信息。
+      分割された各セグメントのURL、再生時間、および再生順序の情報を記録したM3U8ファイル（プレイリスト）が作成されます。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">3. 按需加载</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">3. オンデマンド読み込み（順次ダウンロード）</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      再生器读取 M3U8 文件，按顺序下载和解码片段，实现流式再生。
+      プレーヤーはまずM3U8ファイルを読み込み、そこに記載された順序に従って動画セグメントをダウンロード・デコードしながら、ストリーミング再生を行います。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">4. 自适应调整</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">4. アダプティブ調整</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      根据网络条件，再生器可以切换到不同码率的流媒体版本。
+      ユーザーのネットワーク帯域の変動に応じて、プレーヤーは異なるビットレート（画質）のストリーム（M3U8）へ自動的に切り替えることができます。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">5. 缓冲管理</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">5. バッファ管理</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      再生器预加载多个片段，确保再生流畅，避免卡顿。
+      プレーヤーは数本先のセグメントをバックグラウンドであらかじめ読み込んでおく（プリロード）ことで、動画が途中で止まる（カクつく）のを防ぎ、スムーズな再生を維持します。
     </p>
     <p class="text-gray-400 leading-relaxed">
-      这种设计使得 M3U8 既支持点播也支持直播，提供高效的流媒体体验。
+      このような設計により、M3U8はオンデマンド（VOD）とライブ配信の双方をサポートし、効率的で優れたストリーミング体験を提供しています。
     </p>
   </section>
 
   <!-- Footer -->
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8オンラインプレーヤー | リソースはインターネット由来です。権利侵害がある場合は削除のためご連絡ください。
+    © 2019 - 2026 M3U8オンラインプレーヤー | 当サイトのリソースはインターネットに由来します。権利侵害がございましたら、削除いたしますのでご連絡ください。
   </footer>
 
   <script src="/resane/js/lang-sync.js"></script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 协议是什么？</title>
+  <title>M3U8プロトコルとは何ですか？</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -27,19 +27,19 @@
 
   <!-- Content -->
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 协议是什么？</h1>
+    <h1 class="text-3xl font-bold mb-6">M3U8プロトコルとは何ですか？</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 协议是 HTTP Live Streaming (HLS) 协议的核心组成部分之一。它是一种基于文本的再生列表格式，用于索引和描述流媒体内容。M3U8 文件本质上是一个纯文本文件，使用 UTF-8 编码，扩展了传统的 M3U 格式。
+      M3U8プロトコルは、HLS（HTTP Live Streaming）プロトコルの中心を構成する重要な要素の一つです。これはストリーミング配信コンテンツをインデックス化し記述するための、テキストベースのプレイリストフォーマットです。M3U8ファイルの本質は、UTF-8でエンコードされた純粋なテキストファイルであり、従来のM3Uフォーマットを拡張したものです。
     </p>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 文件不包含实际的媒体数据，而是存储了一系列媒体片段的 URL 地址。这些片段通常是 MPEG-2 传输流 (TS) 文件或 fMP4 片段。再生器通过读取 M3U8 文件，按顺序下载和再生这些片段，从而实现流式再生。
+      M3U8ファイル自体には実際のメディアデータは含まれておらず、一連のメディアセグメント（動画の断片）のURLアドレスが格納されています。これらのセグメントは通常、MPEG-2 TS（トランスポートストリーム）ファイルやfMP4（fragmented MP4）セグメントです。プレーヤーがM3U8ファイルを読み込み、記載された順序に従ってこれらのセグメントをダウンロードおよび再生することで、ストリーミング再生が実現します。
     </p>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 协议广泛应用于在线视频点播 (VOD) 和直播流媒体服务。它支持自适应比特率流 (ABR)，允许再生器根据网络条件动态选择不同质量的流媒体内容，提供更好的用户体验。
+      M3U8プロトコルは、オンラインのビデオオンデマンド（VOD）やライブストリーミング配信サービスで広く利用されています。アダプティブビットレート（ABR）ストリーミングに対応しているため、プレーヤーがユーザーのネットワーク環境に応じて動的に最適な画質を選択し、より快適な視聴体験を提供することができます。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">M3U8 文件结构</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">M3U8ファイルの構造</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      一个典型的 M3U8 文件以 #EXTM3U 开头，后跟一系列标签和媒体片段信息。例如：
+      典型的なM3U8ファイルは「#EXTM3U」で始まり、その後に一連のタグとメディアセグメントの情報が続きます。以下は記述例です：
     </p>
     <pre class="bg-slate-800 p-4 rounded-lg text-green-400 mb-4">#EXTM3U
 #EXT-X-VERSION:3
@@ -50,13 +50,13 @@ segment1.ts
 segment2.ts
 #EXT-X-ENDLIST</pre>
     <p class="text-gray-400 leading-relaxed">
-      这种格式使得 M3U8 成为现代流媒体传输的标准之一，被各大视频平台和流媒体服务广泛采用。
+      このような効率的なフォーマット特性により、M3U8は現代の動画配信における標準規格の一つとして、大手の動画プラットフォームやストリーミングサービスに広く採用されています。
     </p>
   </section>
 
   <!-- Footer -->
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8オンラインプレーヤー | リソースはインターネット由来です。権利侵害がある場合は削除のためご連絡ください。
+    © 2019 - 2026 M3U8オンラインプレーヤー | 当サイトのリソースはインターネットに由来します。権利侵害がございましたら、削除いたしますのでご連絡ください。
   </footer>
 
   <script src="/resane/js/lang-sync.js"></script>

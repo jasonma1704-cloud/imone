@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja-JP">
 <head>
   <meta charset="utf-8">
@@ -139,27 +139,6 @@
     }
   </script>
 
-  <script>
-    document.getElementById('language-selector').addEventListener('change', function () {
-      const selectedLanguage = this.value;
-      switch (selectedLanguage) {
-        case 'en':
-          window.location.href = '/en/privacy.html';
-          break;
-        case 'pt':
-          window.location.href = '/pt/privacy.html';
-          break;
-        case 'ja':
-          window.location.href = '/ja/privacy.html';
-          break;
-        case 'zh':
-        default:
-          window.location.href = '/privacy.html';
-          break;
-      }
-    });
-  </script>
-
-  <script src="../resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

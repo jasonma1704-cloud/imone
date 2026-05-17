@@ -106,28 +106,6 @@
     © 2019 - 2025 Player M3U8 Online | Os recursos vêm da internet. Entre em contato para remoção em caso de infração.
   </footer>
 
-  <script>
-    document.getElementById('language-selector').addEventListener('change', function() {
-      const selectedLanguage = this.value;
-
-      switch(selectedLanguage) {
-        case 'en':
-          window.location.href = '/en/privacy.html';
-          break;
-        case 'pt':
-          window.location.href = '/pt/privacy.html';
-          break;
-        case 'ja':
-          window.location.href = '/ja/privacy.html';
-          break;
-        case 'zh':
-        default:
-          window.location.href = '/privacy.html';
-          break;
-      }
-    });
-  </script>
-
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

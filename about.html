@@ -1,40 +1,44 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="zh-cn">
+<html dir="ltr" lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>关于我们 - M3U8在线播放器 | 专业的多语言流媒体播放解决方案</title>
-  <meta name="description" content="M3U8在线播放器是一款专业的流媒体播放解决方案，支持多语言界面，提供HLS/M3U8格式视频的在线播放服务。采用先进的HTML5技术，支持跨平台播放，为全球用户提供优质的视频播放体验。" />
-  <meta itemprop="name" content="M3U8在线播放器" />
-  <meta itemprop="description" content="专业的多语言M3U8在线播放器" />
+  <title>About Us - M3U8 Online Player | Professional Multi-Language Streaming Solution</title>
+  <meta name="description"
+    content="M3U8 Online Player is a professional streaming playback solution with multi-language support. It provides online playback for HLS/M3U8 videos using advanced HTML5 technology, cross-platform support, and high-quality video experience for global users." />
+  <meta itemprop="name" content="M3U8 Online Player" />
+  <meta itemprop="description" content="Professional Multi-Language M3U8 Online Player" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="M3U8在线播放器" />
-  <meta name="twitter:description" content="专业的多语言M3U8在线播放器" />
+  <meta name="twitter:title" content="M3U8 Online Player" />
+  <meta name="twitter:description" content="Professional Multi-Language M3U8 Online Player" />
   <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
+  <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
 </head>
 
 <body class="bg-slate-900 text-white">
 
   <!-- Header -->
- <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
-    
-    <!-- 桌面端导航 -->
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+    <div class="text-xl font-bold">M3U8 Online Player</div>
+
+    <!-- Desktop Nav -->
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="text-blue-400 font-bold">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="text-blue-400 font-bold">About</a>
     </nav>
-    
-    <!-- 右侧操作区 -->
+
+    <!-- Right Section -->
     <div class="flex items-center gap-4">
       <div class="relative">
-        <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="zh" selected>中文</option>
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+          <option value="zh">中文</option>
           <option value="en">English</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
@@ -42,10 +46,11 @@
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
       <a href="/preview.html">
-        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+        <button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Start Playing</button>
       </a>
-      
-      <!-- 汉堡按钮（移动端） -->
+
+      <!-- Hamburger -->
       <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -54,52 +59,51 @@
     </div>
   </header>
 
-  <!-- 移动端导航菜单 -->
+  <!-- Mobile Nav -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">首页</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+    <a href="/" class="text-blue-400 font-bold">Home</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
     <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-    <a href="/about.html" class="hover:text-blue-400">关于</a>
+    <a href="/post/" class="hover:text-blue-400">Help Center</a>
+    <a href="/about.html" class="hover:text-blue-400">About</a>
   </div>
-  
-  <!-- 遮罩层 -->
-  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
   <!-- Hero -->
   <section class="text-center py-20 px-4">
     <p class="text-blue-400 text-sm font-semibold mb-3">ABOUT M3U8 PLAYER</p>
-    <h1 class="text-4xl font-bold mb-4">关于 M3U8在线播放器</h1>
+    <h1 class="text-4xl font-bold mb-4">About M3U8 Online Player</h1>
     <p class="text-gray-400 max-w-3xl mx-auto leading-relaxed">
-      专业的流媒体播放解决方案，致力于为全球用户提供高质量、低延迟的视频播放体验。采用先进的 HTML5 技术和 HLS 协议，打造功能强大、易于使用的在线播放平台。
+      A professional streaming playback solution dedicated to providing high-quality, low-latency video experiences for users worldwide. Built with advanced HTML5 technology and the HLS protocol, creating a powerful and easy-to-use online player.
     </p>
   </section>
 
   <!-- Core Features -->
   <section class="px-6 py-12 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mb-10 text-center">核心功能特性</h2>
+    <h2 class="text-2xl font-bold mb-10 text-center">Core Features</h2>
     <div class="grid md:grid-cols-4 gap-6">
       <div class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
         <div class="text-3xl mb-4">🎬</div>
-        <h3 class="font-bold mb-2">多格式支持</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">全面支持 M3U8、HLS 格式视频流播放，兼容各种主流视频编码格式。</p>
+        <h3 class="font-bold mb-2">Multi-Format Support</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Full support for M3U8 and HLS video streams, compatible with all major video encoding formats.</p>
       </div>
       <div class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
         <div class="text-3xl mb-4">🌐</div>
-        <h3 class="font-bold mb-2">跨平台播放</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">支持 Windows、Mac、Linux、iOS、Android 等主流系统和浏览器。</p>
+        <h3 class="font-bold mb-2">Cross-Platform</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Supports Windows, Mac, Linux, iOS, Android and all major browsers.</p>
       </div>
       <div class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
         <div class="text-3xl mb-4">⚡</div>
-        <h3 class="font-bold mb-2">高性能播放</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">支持自适应码率播放，根据网络状况自动调整视频质量。</p>
+        <h3 class="font-bold mb-2">High Performance</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Adaptive bitrate streaming, automatically adjusts video quality based on network conditions.</p>
       </div>
       <div class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
         <div class="text-3xl mb-4">🔧</div>
-        <h3 class="font-bold mb-2">即开即用</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">无需下载安装软件，直接在浏览器中打开即可使用。</p>
+        <h3 class="font-bold mb-2">Ready to Use</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">No software installation required, works directly in your browser.</p>
       </div>
     </div>
   </section>
@@ -107,29 +111,29 @@
   <!-- Technology -->
   <section class="bg-slate-800 py-16">
     <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-2xl font-bold mb-4">技术原理</h2>
+      <h2 class="text-2xl font-bold mb-4">Technology</h2>
       <p class="text-gray-400 leading-relaxed mb-8">
-        M3U8在线播放器基于 HTTP Live Streaming（HLS）协议构建，这是一种由 Apple 公司开发的流媒体传输协议。播放器通过解析播放列表、下载媒体片段、缓冲管理和自适应码率选择，实现稳定流畅的在线播放体验。
+        M3U8 Online Player is built on HTTP Live Streaming (HLS) protocol developed by Apple. The player parses playlists, downloads media segments, manages buffers, and selects adaptive bitrates for stable and smooth playback.
       </p>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-slate-900 p-6 rounded-xl">
-          <h3 class="font-bold mb-4 text-lg">核心技术架构</h3>
+          <h3 class="font-bold mb-4 text-lg">Core Technology</h3>
           <ul class="space-y-3 text-gray-400 text-sm leading-relaxed">
-            <li>✓ HLS 协议支持：兼容主播放列表、媒体播放列表和媒体片段</li>
-            <li>✓ 自适应码率：根据网络带宽自动选择最佳视频质量</li>
-            <li>✓ HTML5 Video API：利用现代浏览器原生视频播放能力</li>
-            <li>✓ Media Source Extensions：支持动态加载和播放视频片段</li>
-            <li>✓ Web Workers：后台处理视频解码任务，提升播放性能</li>
+            <li>✓ HLS Protocol: Supports master playlists, media playlists and segments</li>
+            <li>✓ Adaptive Bitrate: Auto selects best quality based on network bandwidth</li>
+            <li>✓ HTML5 Video API: Uses native browser video capabilities</li>
+            <li>✓ Media Source Extensions: Dynamic loading and playback of video segments</li>
+            <li>✓ Web Workers: Background decoding for improved performance</li>
           </ul>
         </div>
         <div class="bg-slate-900 p-6 rounded-xl">
-          <h3 class="font-bold mb-4 text-lg">播放器工作流程</h3>
+          <h3 class="font-bold mb-4 text-lg">Player Workflow</h3>
           <ul class="space-y-3 text-gray-400 text-sm leading-relaxed">
-            <li>✓ 解析 M3U8 文件，获取视频片段信息</li>
-            <li>✓ 按照播放列表顺序下载视频片段文件</li>
-            <li>✓ 使用 HTML5 Video API 解码并播放视频片段</li>
-            <li>✓ 通过智能缓冲机制确保播放流畅性</li>
-            <li>✓ 根据网络状况动态调整视频质量</li>
+            <li>✓ Parse M3U8 file and get segment information</li>
+            <li>✓ Download video segments in playlist order</li>
+            <li>✓ Decode and play using HTML5 Video API</li>
+            <li>✓ Smart buffering ensures smooth playback</li>
+            <li>✓ Dynamically adjust quality based on network</li>
           </ul>
         </div>
       </div>
@@ -138,13 +142,13 @@
 
   <!-- Languages -->
   <section class="px-6 py-16 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4 text-center">多语言支持</h2>
-    <p class="text-gray-400 text-center mb-10">我们致力于为全球用户提供本地化的播放体验。目前支持以下语言版本：</p>
+    <h2 class="text-2xl font-bold mb-4 text-center">Multi-Language Support</h2>
+    <p class="text-gray-400 text-center mb-10">We provide localized experiences for global users. Currently supported languages:</p>
     <div class="grid md:grid-cols-4 gap-6">
       <a href="/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition text-center">
         <div class="text-4xl mb-4">🇨🇳</div>
-        <h3 class="font-bold mb-2">中文版</h3>
-        <p class="text-gray-400 text-sm">完整的中文界面</p>
+        <h3 class="font-bold mb-2">Chinese</h3>
+        <p class="text-gray-400 text-sm">Full Chinese interface</p>
       </a>
       <a href="/en/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition text-center">
         <div class="text-4xl mb-4">🇺🇸</div>
@@ -168,30 +172,30 @@
   <section class="max-w-5xl mx-auto px-6 py-8">
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-slate-800 p-6 rounded-xl">
-        <h2 class="text-2xl font-bold mb-4">应用场景</h2>
+        <h2 class="text-2xl font-bold mb-4">Use Cases</h2>
         <div class="space-y-5 text-gray-400 leading-relaxed">
           <div>
-            <h3 class="text-white font-bold mb-2">直播流媒体</h3>
-            <p>支持体育赛事、新闻直播、娱乐节目等 M3U8 流媒体播放。</p>
+            <h3 class="text-white font-bold mb-2">Live Streaming</h3>
+            <p>Supports sports, news, entertainment and other M3U8 live streams.</p>
           </div>
           <div>
-            <h3 class="text-white font-bold mb-2">点播视频</h3>
-            <p>适用于在线教育、企业培训、娱乐视频等点播场景。</p>
+            <h3 class="text-white font-bold mb-2">Video On Demand</h3>
+            <p>Ideal for online education, corporate training, and entertainment VOD.</p>
           </div>
           <div>
-            <h3 class="text-white font-bold mb-2">移动端播放</h3>
-            <p>针对移动设备优化播放体验，适配各种屏幕尺寸。</p>
+            <h3 class="text-white font-bold mb-2">Mobile Playback</h3>
+            <p>Optimized for mobile devices with responsive screen support.</p>
           </div>
         </div>
       </div>
       <div class="bg-slate-800 p-6 rounded-xl">
-        <h2 class="text-2xl font-bold mb-4">性能优势</h2>
+        <h2 class="text-2xl font-bold mb-4">Advantages</h2>
         <ul class="space-y-3 text-gray-400 leading-relaxed">
-          <li>✓ 低延迟：优化缓冲策略，减少视频播放延迟</li>
-          <li>✓ 高兼容性：支持 Chrome、Firefox、Safari、Edge 等浏览器</li>
-          <li>✓ 自适应码率：自动调整视频质量，确保流畅播放</li>
-          <li>✓ 跨平台支持：Windows、Mac、Linux、iOS、Android 全平台可用</li>
-          <li>✓ 无插件要求：基于 HTML5 技术，无需安装任何插件</li>
+          <li>✓ Low Latency: Optimized buffering reduces playback delay</li>
+          <li>✓ High Compatibility: Supports Chrome, Firefox, Safari, Edge</li>
+          <li>✓ Adaptive Bitrate: Auto quality for smooth playback</li>
+          <li>✓ Cross-Platform: Windows, Mac, Linux, iOS, Android</li>
+          <li>✓ No Plugins: Pure HTML5 technology, no extra installs</li>
         </ul>
       </div>
     </div>
@@ -199,27 +203,27 @@
 
   <!-- Tools -->
   <section class="px-6 py-16 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mb-10 text-center">全能 M3U8 工具</h2>
+    <h2 class="text-2xl font-bold mb-10 text-center">All-in-One M3U8 Tools</h2>
     <div class="grid md:grid-cols-4 gap-6">
       <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
-        <h3 class="font-bold mb-2">M3U8 播放器</h3>
-        <p class="text-gray-400 text-sm">在线播放 M3U8 流</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">M3U8 Player</h3>
+        <p class="text-gray-400 text-sm">Play M3U8 streams online</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/analyzer/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
-        <h3 class="font-bold mb-2">M3U8 分析器</h3>
-        <p class="text-gray-400 text-sm">查看流媒体详情</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">M3U8 Analyzer</h3>
+        <p class="text-gray-400 text-sm">View streaming details</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/m3u8_to_mp4/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
-        <h3 class="font-bold mb-2">转换为 MP4</h3>
-        <p class="text-gray-400 text-sm">将 M3U8 转成 MP4</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">Convert to MP4</h3>
+        <p class="text-gray-400 text-sm">Convert M3U8 to MP4</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/ffmpeg/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
-        <h3 class="font-bold mb-2">FFmpeg 生成器</h3>
-        <p class="text-gray-400 text-sm">自动生成 FFmpeg 命令</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">FFmpeg Generator</h3>
+        <p class="text-gray-400 text-sm">Auto generate FFmpeg commands</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
     </div>
   </section>
@@ -227,58 +231,63 @@
   <!-- Contact -->
   <section class="bg-slate-800 py-16">
     <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-2xl font-bold mb-4">联系我们</h2>
+      <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
       <p class="text-gray-400 leading-relaxed mb-8">
-        我们重视每一位用户的反馈和建议。如果您在使用过程中遇到任何问题，或有功能改进建议，欢迎通过以下方式联系我们。
+        We value every user's feedback. If you encounter issues or have suggestions, please contact us through the following channels.
       </p>
       <div class="grid md:grid-cols-4 gap-4 mb-8">
-        <a href="mailto:kefu888@gmail.com" class="bg-blue-500 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-blue-600 transition">客服邮箱</a>
-        <a href="https://www.facebook.com/profile.php?id=61578419190409" target="_blank" class="bg-slate-700 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-slate-600 transition">Facebook</a>
-        <a href="https://www.linkedin.com/company/m3u8player" target="_blank" class="bg-slate-700 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-slate-600 transition">LinkedIn</a>
-        <a href="https://github.com/geeeeeeeek/m3u8player" target="_blank" class="bg-slate-700 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-slate-600 transition">GitHub</a>
+        <a href="mailto:kefu888@gmail.com"
+          class="bg-blue-500 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-blue-600 transition">Support Email</a>
+        <a href="https://www.facebook.com/profile.php?id=61578419190409" target="_blank"
+          class="bg-slate-700 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-slate-600 transition">Facebook</a>
+        <a href="https://www.linkedin.com/company/m3u8player" target="_blank"
+          class="bg-slate-700 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-slate-600 transition">LinkedIn</a>
+        <a href="https://github.com/geeeeeeeek/m3u8player" target="_blank"
+          class="bg-slate-700 px-5 py-3 rounded-xl text-sm font-semibold text-center hover:bg-slate-600 transition">GitHub</a>
       </div>
       <div class="bg-slate-900 p-6 rounded-xl text-gray-400 leading-relaxed">
-        <p><span class="text-white font-semibold">客服邮箱：</span>kefu888@gmail.com</p>
-        <p class="mt-2"><span class="text-white font-semibold">技术支持：</span>support@m3u8player.org</p>
-        <p class="mt-2"><span class="text-white font-semibold">商务合作：</span>business@m3u8player.org</p>
+        <p><span class="text-white font-semibold">Support Email:</span> kefu888@gmail.com</p>
+        <p class="mt-2"><span class="text-white font-semibold">Technical Support:</span> support@m3u8player.org</p>
+        <p class="mt-2"><span class="text-white font-semibold">Business Cooperation:</span> business@m3u8player.org</p>
       </div>
     </div>
   </section>
 
   <!-- Vision -->
   <section class="max-w-4xl mx-auto px-6 py-16 text-center">
-    <h2 class="text-2xl font-bold mb-4">发展愿景</h2>
+    <h2 class="text-2xl font-bold mb-4">Our Vision</h2>
     <p class="text-gray-400 leading-relaxed mb-8">
-      我们致力于成为全球领先的在线视频播放解决方案提供商。未来将继续投入技术研发，为用户提供更高质量、更便捷的视频播放体验。
+      We aim to become a leading global online video player solution. We will continue investing in R&D to provide higher-quality and more convenient playback experiences.
     </p>
     <div class="bg-slate-800 p-8 rounded-xl">
-      <p class="text-xl font-semibold">“让视频播放变得简单而强大”</p>
-      <p class="text-gray-400 text-sm mt-3">—— M3U8在线播放器团队</p>
+      <p class="text-xl font-semibold">"Making video playback simple and powerful"</p>
+      <p class="text-gray-400 text-sm mt-3">—— M3U8 Online Player Team</p>
     </div>
     <div id="share" class="mt-8"></div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">© 2026 m3u8在线播放器 |
-    资源来源于网络，如有侵权请联系客服删除
-    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">隐私政策</a>
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">© 2026 M3U8 Online Player |
+    Resources from the internet, contact us to remove if infringed
+    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">Privacy Policy</a>
   </footer>
 
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 
   <script>
     var $config = {
-      title: '关于M3U8在线播放器',
-      description: '专业的多语言M3U8在线播放器',
+      title: 'About M3U8 Online Player',
+      description: 'Professional Multi-Language M3U8 Online Player',
       sites: ['weibo', 'qzone', 'douban', 'facebook', 'twitter', 'linkedin'],
-      wechatQrcodeTitle: '微信扫一扫：分享',
-      wechatQrcodeHelper: '<p>微信里点"发现"，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+      wechatQrcodeTitle: 'Share via WeChat',
+      wechatQrcodeHelper: '<p>Scan with WeChat</p><p>to share to Moments.</p>',
     };
 
     if (typeof socialShare === 'function') {
       socialShare('#share', $config);
     }
   </script>
- <script src="./resane/js/responsive-nav.js"></script>
+  <script src="./resane/js/responsive-nav.js"></script>
 </body>
+
 </html>

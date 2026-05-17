@@ -1,83 +1,61 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>隐私政策 - m3u8在线播放器 | 用户隐私与Cookie政策说明</title>
-  <meta name="description" content="m3u8在线播放器隐私政策，详细说明网站访客信息收集、Cookie使用、第三方广告、用户数据安全与隐私保护相关规则。">
-  <meta name="keywords" content="m3u8在线播放器,隐私政策,网站隐私说明,Cookie政策,用户数据保护">
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-  <meta property="og:title" content="隐私政策 - m3u8在线播放器">
-  <meta property="og:description" content="m3u8在线播放器隐私政策，规范访客信息采集、Cookie广告及个人隐私安全保护条款。">
+  <title>Privacy Policy - m3u8 Online Player | m3u8player.org</title>
+  <meta name="description" content="Learn how m3u8player.org collects, uses, and protects your personal data. We prioritize user privacy and comply with global data protection standards.">
+  <meta name="keywords" content="m3u8 player, privacy policy, data protection, cookie policy, m3u8 to mp4">
+  <!-- OG 标签 -->
+  <meta property="og:title" content="Privacy Policy - m3u8 Online Player">
+  <meta property="og:description" content="m3u8player.org privacy policy: data collection, cookie usage, information security and user rights protection.">
+  <meta property="og:url" content="https://m3u8player.org/en/privacy.html">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="zh_CN">
-  <link rel="canonical" href="https://m3u8player.org/privacy.html">
-
+  <!-- 多语言关联 -->
+  <link rel="alternate" hreflang="en-US" href="https://m3u8player.org/en/privacy.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://m3u8player.org/privacy.html">
+  <link rel="alternate" hreflang="ja-JP" href="https://m3u8player.org/ja/privacy.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://m3u8player.org/pt/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://m3u8player.org/privacy.html">
+  
   <link rel="stylesheet" href="./resane/css/tcplayer.min.css" />
-  <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
   <script src="./resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="./resane/js/taiwindcss.js"></script>
   <script src="./resane/js/jquery.min.js"></script>
-  
 </head>
 
 <body class="bg-slate-900 text-white">
-  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
-    
-    <!-- 桌面端导航 -->
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+    <div class="text-xl font-bold">m3u8 Online Player</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
-      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="../" class="hover:text-blue-400">Home</a>
+      <a href="../m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="../analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="../ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="../post/" class="hover:text-blue-400">Help Center</a>
+      <a href="../about.html" class="hover:text-blue-400">About Us</a>
     </nav>
-    
-    <!-- 右侧操作区 -->
     <div class="flex items-center gap-4">
       <div class="relative">
-        <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="zh" selected>中文</option>
-          <option value="en">English</option>
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+          <option value="zh">中文</option>
+          <option value="en" selected>English</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
-      <a href="/preview.html">
-        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
-      </a>
-      
-      <!-- 汉堡按钮（移动端） -->
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <a href="../preview.html"><button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Start Playing</button></a>
     </div>
   </header>
 
-  <!-- 移动端导航菜单 -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">首页</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
-    <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-    <a href="/about.html" class="hover:text-blue-400">关于</a>
-  </div>
-  
-  <!-- 遮罩层 -->
-  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-
   <section class="text-center py-20 px-4">
-    <h1 class="text-4xl font-bold mb-4">隐私政策</h1>
+    <h1 class="text-4xl font-bold mb-4">Privacy Policy</h1>
     <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed">
-      本站极度重视每位用户的个人隐私权益，以下将详细说明本站如何收集、使用与保护您的浏览相关信息。
+      We attach great importance to the personal privacy rights of each user. Below is a detailed explanation of how we collect, use and protect your browsing-related information.
     </p>
   </section>
 
@@ -85,88 +63,82 @@
     <div class="bg-slate-800 rounded-2xl p-6 md:p-10 shadow-xl shadow-black/20 border border-slate-700">
       <section class="mb-10">
         <p class="text-gray-400 leading-relaxed">
-          欢迎使用 <strong class="text-slate-100">m3u8在线播放器</strong>（<a href="https://m3u8player.org"
-            class="text-blue-400 hover:text-blue-300">https://m3u8player.org</a>）。我们始终把用户隐私保护放在首位，本政策将向您完整说明本站对访客数据的处理规则与保护机制。
+          Welcome to use <strong class="text-slate-100">m3u8 Online Player</strong> (<a href="https://m3u8player.org"
+            class="text-blue-400 hover:text-blue-300">https://m3u8player.org</a>). We always put user privacy protection first. This policy will fully explain the processing rules and protection mechanisms for visitor data on this site.
         </p>
       </section>
 
       <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4">一、访客信息采集范围</h2>
-        <p class="text-gray-400 leading-relaxed mb-4">当您访问本站时，系统会自动抓取以下非私密类访客信息：</p>
+        <h2 class="text-2xl font-bold mb-4">1. Scope of Visitor Information Collection</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">When you visit this site, the system will automatically capture the following non-private visitor information:</p>
         <ul class="space-y-3 text-gray-400 list-disc pl-6">
-          <li>网络IP地址、浏览器版本、设备系统、到访时间及页面浏览轨迹</li>
-          <li>经由第三方统计与广告服务产生的匿名行为数据</li>
+          <li>Network IP address, browser version, device system, visit time and page browsing track</li>
+          <li>Anonymous behavior data generated by third-party statistics and advertising services</li>
         </ul>
-        <p class="text-gray-400 leading-relaxed mt-4">本站不会主动索取任何可以识别个人身份的敏感资料，包括姓名、证件号码、联系方式等。</p>
+        <p class="text-gray-400 leading-relaxed mt-4">This site will not actively request any sensitive data that can identify personal identity, including name, ID number, contact information, etc.</p>
       </section>
 
       <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4">二、Cookie 及第三方广告机制</h2>
+        <h2 class="text-2xl font-bold mb-4">2. Cookie and Third-Party Advertising Mechanism</h2>
         <p class="text-gray-400 leading-relaxed mb-4">
-          本站接入谷歌广告等第三方推广服务，合作平台会借助Cookie、网页追踪标记等技术，记录用户浏览偏好，用于推送匹配兴趣的广告内容，并优化广告投放质量。
+          This site accesses third-party promotion services such as Google Ads. Cooperative platforms will use technologies such as Cookies and web tracking tags to record users' browsing preferences, which are used to push advertising content matching interests and optimize the quality of advertising delivery.
         </p>
         <ul class="space-y-3 text-gray-400 list-disc pl-6">
-          <li>第三方广告服务商可依据您的上网习惯展示个性化推荐广告</li>
-          <li>您可前往谷歌广告设置页面自行关闭个性化推荐，也可查阅官方广告隐私条款</li>
+          <li>Third-party advertising service providers may display personalized recommended ads based on your online habits</li>
+          <li>You can go to the Google Ads settings page to turn off personalized recommendations by yourself, and you can also check the official advertising privacy terms</li>
         </ul>
-        <p class="text-gray-400 leading-relaxed mt-4">您可在浏览器设置中手动关闭或清理Cookie，但可能造成网站部分功能无法正常使用。</p>
-        <p class="text-gray-400 leading-relaxed mt-4"> 您可以访问 Google广告政策 以了解详细信息，也可以在Google广告设置中管理个性化广告。
-          您可以在浏览器设置中禁用Cookie，但这可能影响网站部分功能体验。</p>
-
+        <p class="text-gray-400 leading-relaxed mt-4">You can manually turn off or clear Cookies in your browser settings, but it may cause some functions of the website to not work properly.</p>
+        <p class="text-gray-400 leading-relaxed mt-4"> You can visit Google Ads Policy to learn more details, and you can also manage personalized ads in Google Ads settings.
+          You can disable Cookies in your browser settings, but this may affect the experience of some website functions.</p>
       </section>
 
       <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4">三、信息使用范畴</h2>
+        <h2 class="text-2xl font-bold mb-4">3. Scope of Information Use</h2>
         <ul class="space-y-3 text-gray-400 list-disc pl-6">
-          <li>统计站点访问流量，分析用户使用习惯，用于网站功能优化升级</li>
-          <li>维持广告正常展示、数据统计与平台日常运营维护</li>
+          <li>Count site visit traffic, analyze user usage habits, and use for website function optimization and upgrade</li>
+          <li>Maintain normal ad display, data statistics and daily operation and maintenance of the platform</li>
         </ul>
       </section>
 
       <section class="mb-10">
-        <h2 class="text-2xl font-bold mb-4">四、信息安全与对外披露原则</h2>
+        <h2 class="text-2xl font-bold mb-4">4. Information Security and External Disclosure Principles</h2>
         <p class="text-gray-400 leading-relaxed">
-          本站采用合理安全防护手段，保障访客数据不丢失、不篡改、不滥用。我们绝不会私自向外部机构或个人售卖、转让用户相关信息，仅在法律法规要求或监管部门依法核查时，才会依规提供相关数据记录。
+          This site adopts reasonable security protection measures to ensure that visitor data is not lost, tampered with or abused. We will never privately sell or transfer user-related information to external institutions or individuals, and will only provide relevant data records in accordance with regulations when required by laws and regulations or when regulatory authorities conduct inspections in accordance with the law.
         </p>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4">五、政策修订与更新说明</h2>
-        <p class="text-gray-400 leading-relaxed mb-4">我们会根据平台运营调整及法规变动，适时修订本隐私政策，更新后将直接在本页面生效，不再单独通知每位用户，建议您不定期查阅最新版本。
+        <h2 class="text-2xl font-bold mb-4">5. Explanation of Policy Revision and Update</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">We will revise this privacy policy in a timely manner according to platform operation adjustments and regulatory changes. After the update, it will take effect directly on this page without notifying each user individually. We recommend that you check the latest version from time to time.
         </p>
-        <p class="text-gray-400 leading-relaxed">若您对本隐私政策有疑问、建议或相关维权事宜，可通过邮箱 <a href="mailto:kefu888@gmail.com"
-            class="text-blue-400 hover:text-blue-300">kefu888@gmail.com</a> 联系我们沟通处理。</p>
+        <p class="text-gray-400 leading-relaxed">If you have any questions, suggestions or related rights protection matters about this privacy policy, you can contact us via email <a href="mailto:kefu888@gmail.com"
+            class="text-blue-400 hover:text-blue-300">kefu888@gmail.com</a> for communication and handling.</p>
       </section>
     </div>
   </main>
 
-  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">© 2026 m3u8在线播放器 |
-    资源来源于网络，如有侵权请联系客服删除
-    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">隐私政策</a>
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">© 2026 m3u8 Online Player |
+    Resources are from the Internet. If there is any infringement, please contact customer service to delete.
+    <a href="/en/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">Privacy Policy</a>
   </footer>
 
-  <script>
-    document.getElementById('language-selector').addEventListener('change', function () {
-      const selectedLanguage = this.value;
-      switch (selectedLanguage) {
-        case 'en':
-          window.location.href = '/en/privacy.html';
-          break;
-        case 'pt':
-          window.location.href = '/pt/privacy.html';
-          break;
-        case 'ja':
-          window.location.href = '/ja/privacy.html';
-          break;
-        case 'zh':
-        default:
-          window.location.href = '/privacy.html';
-          break;
-      }
-    });
+  <!-- 结构化数据：隐私政策 Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PrivacyPolicy",
+      "publisher": {
+        "@type": "Organization",
+        "name": "m3u8 Online Player",
+        "url": "https://m3u8player.org"
+      },
+      "url": "https://m3u8player.org/en/privacy.html",
+      "text": "We attach great importance to the personal privacy rights of each user...",
+      "dateCreated": "2026-01-01",
+      "dateModified": "2026-01-01"
+    }
   </script>
-  <script src="./resane/js/responsive-nav.js"></script>
-   <script src="./resane/js/lang-switcher.js"></script>
-</body>
 
+  <script src="/resane/js/lang-switcher.js"></script>
+</body>
 </html>

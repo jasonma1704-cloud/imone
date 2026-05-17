@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>M3U8 分析器 - HLS 流媒体分析工具</title>
+  <title>M3U8 Analyzer - HLS Stream Inspector</title>
 
-  <meta name="description" content="在线 M3U8 分析器，支持 HLS 主播放列表、媒体分片、码率、加密 KEY、MAP、FFmpeg 命令、TS 分片分析。" />
+  <meta name="description" content="Online M3U8 Analyzer for HLS master playlists, media segments, bitrate, encryption keys, MAP, FFmpeg commands, and TS segment analysis." />
 
   <meta name="keywords" content="m3u8 analyzer,hls analyzer,hls stream inspector,m3u8 parser,ffmpeg,m3u8 tool" />
 
-  <link rel="canonical" href="https://your-domain.com/analyzer/" />
+  <link rel="canonical" href="shturl.cc/uiw2MQnPyRYpXbYYqUB4Iag" />
   <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
   <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="../resane/js/taiwindcss.js"></script>
@@ -21,31 +21,31 @@
 <body class="bg-slate-950 text-white">
 
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
+    <div class="text-xl font-bold">M3U8 Player</div>
     
     <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="text-blue-400 font-bold">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="text-blue-400 font-bold">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
     
     <!-- 右侧操作区 -->
     <div class="flex items-center gap-4">
       <div class="relative">
         <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="zh" selected>中文</option>
-          <option value="en">English</option>
+          <option value="en" selected>English</option>
+          <option value="zh">中文</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
       <a href="/preview.html">
-        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Play</button>
       </a>
       
       <!-- 汉堡按钮（移动端） -->
@@ -59,12 +59,12 @@
 
   <!-- 移动端导航菜单 -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">首页</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+    <a href="/" class="text-blue-400 font-bold">Home</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
     <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-    <a href="/about.html" class="hover:text-blue-400">关于</a>
+    <a href="/post/" class="hover:text-blue-400">Help</a>
+    <a href="/about.html" class="hover:text-blue-400">About</a>
   </div>
   
   <!-- 遮罩层 -->
@@ -83,10 +83,10 @@
           HLS Stream Inspector
         </p>
         <h2 class="text-5xl font-bold mb-6">
-          M3U8 分析器
+          M3U8 Analyzer
         </h2>
         <p class="text-slate-400 max-w-3xl mx-auto mb-10 leading-8">
-          在线分析 HLS / M3U8 流媒体播放列表，支持主播放列表、媒体分片、AES-128 加密、MAP、FFmpeg 命令生成、TS 分片统计等功能。
+          Online HLS / M3U8 stream analyzer. Supports master playlists, media segments, AES-128 encryption, MAP, FFmpeg command generation, and TS segment statistics.
         </p>
 
         <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6 text-left shadow-2xl">
@@ -97,18 +97,18 @@
             <input id="m3u8-url" type="url" placeholder="https://example.com/index.m3u8"
               class="flex-1 rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 outline-none focus:border-blue-400" />
             <button id="analyze-url-btn" class="bg-blue-500 hover:bg-blue-600 rounded-xl px-6 py-3 font-semibold">
-              分析 URL
+              Analyze URL
             </button>
           </div>
 
           <div class="my-5 flex items-center gap-3">
             <div class="h-px flex-1 bg-slate-800"></div>
-            <span class="text-slate-500 text-xs">或</span>
+            <span class="text-slate-500 text-xs">OR</span>
             <div class="h-px flex-1 bg-slate-800"></div>
           </div>
 
           <label class="block text-sm text-slate-400 mb-2">
-            粘贴 M3U8 内容
+            Paste M3U8 Content
           </label>
           <textarea id="m3u8-content" rows="8"
             class="w-full rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 font-mono text-sm outline-none focus:border-blue-400"></textarea>
@@ -116,17 +116,17 @@
           <div class="flex flex-wrap gap-3 mt-4">
             <button id="analyze-text-btn"
               class="bg-emerald-500 hover:bg-emerald-600 rounded-xl px-6 py-3 font-semibold">
-              分析文本
+              Analyze Text
             </button>
             <button id="sample-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">
-              示例
+              Sample
             </button>
             <button id="clear-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">
-              清空
+              Clear
             </button>
           </div>
           <p class="mt-4 text-sm text-slate-500 leading-7">
-            用于 HLS 流媒体调试、开发测试、播放器兼容性分析。
+            For HLS streaming debugging, development testing, and player compatibility analysis.
           </p>
         </div>
       </div>
@@ -137,28 +137,28 @@
 
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-          <p class="text-sm text-slate-400">播放列表类型</p>
+          <p class="text-sm text-slate-400">Playlist Type</p>
           <p id="playlist-type" class="text-2xl font-bold mt-2">-</p>
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-          <p class="text-sm text-slate-400">总时长</p>
+          <p class="text-sm text-slate-400">Total Duration</p>
           <p id="total-duration" class="text-2xl font-bold mt-2">-</p>
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-          <p class="text-sm text-slate-400">媒体分片</p>
+          <p class="text-sm text-slate-400">Media Segments</p>
           <p id="segment-count" class="text-2xl font-bold mt-2">-</p>
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-          <p class="text-sm text-slate-400">变体流</p>
+          <p class="text-sm text-slate-400">Variants</p>
           <p id="variant-count" class="text-2xl font-bold mt-2">-</p>
         </div>
       </div>
 
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
         <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
-          <h3 class="text-xl font-bold">基础信息</h3>
+          <h3 class="text-xl font-bold">Basic Info</h3>
           <button id="copy-ffmpeg-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">
-            复制 FFmpeg
+            Copy FFmpeg
           </button>
         </div>
         <dl id="basic-info" class="grid md:grid-cols-2 gap-3 text-sm"></dl>
@@ -166,15 +166,15 @@
       </div>
 
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
-        <h3 class="text-xl font-bold mb-4">多码率播放列表</h3>
+        <h3 class="text-xl font-bold mb-4">Master Playlist Variants</h3>
         <div class="overflow-x-auto">
           <table class="w-full min-w-[900px] text-sm">
             <thead class="bg-slate-800 text-slate-300">
               <tr>
                 <th class="text-left px-4 py-3">#</th>
-                <th class="text-left px-4 py-3">带宽</th>
-                <th class="text-left px-4 py-3">分辨率</th>
-                <th class="text-left px-4 py-3">编码</th>
+                <th class="text-left px-4 py-3">Bandwidth</th>
+                <th class="text-left px-4 py-3">Resolution</th>
+                <th class="text-left px-4 py-3">Codecs</th>
                 <th class="text-left px-4 py-3">URL</th>
               </tr>
             </thead>
@@ -185,8 +185,8 @@
 
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
         <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
-          <h3 class="text-xl font-bold">媒体分片</h3>
-          <input id="segment-filter" placeholder="搜索分片 URL"
+          <h3 class="text-xl font-bold">Media Segments</h3>
+          <input id="segment-filter" placeholder="Search segments URL"
             class="rounded-xl bg-slate-950 border border-slate-700 px-4 py-2 text-sm" />
         </div>
         <div class="overflow-x-auto">
@@ -194,8 +194,8 @@
             <thead class="bg-slate-800 text-slate-300">
               <tr>
                 <th class="text-left px-4 py-3">#</th>
-                <th class="text-left px-4 py-3">时长</th>
-                <th class="text-left px-4 py-3">开始时间</th>
+                <th class="text-left px-4 py-3">Duration</th>
+                <th class="text-left px-4 py-3">Start Time</th>
                 <th class="text-left px-4 py-3">URL</th>
               </tr>
             </thead>
@@ -206,15 +206,15 @@
       </div>
 
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
-        <h3 class="text-xl font-bold mb-4">加密 / MAP 信息</h3>
+        <h3 class="text-xl font-bold mb-4">Encryption / MAP Info</h3>
         <div id="security-list" class="space-y-4"></div>
       </div>
 
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
         <div class="flex justify-between items-center mb-4">
-          <h3 class="text-xl font-bold">原始内容</h3>
+          <h3 class="text-xl font-bold">Raw Content</h3>
           <button id="copy-raw-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">
-            复制原文
+            Copy Raw
           </button>
         </div>
         <pre id="raw-content"
@@ -224,20 +224,20 @@
 
     <section class="max-w-5xl mx-auto px-6 pb-20">
       <div class="rounded-3xl bg-slate-900 p-8">
-        <h3 class="text-3xl font-bold mb-6">什么是 M3U8？</h3>
+        <h3 class="text-3xl font-bold mb-6">What is M3U8?</h3>
         <div class="space-y-5 text-slate-400 leading-8">
           <p>
-            M3U8 是 HLS（HTTP Live Streaming）协议中的播放列表格式，广泛用于在线视频、直播流媒体、OTT、CDN 视频分发等场景。
+            M3U8 is the playlist format for HLS (HTTP Live Streaming), widely used for online video, live streaming, OTT, and CDN video delivery.
           </p>
-          <p>HLS 播放列表通常包含：</p>
+          <p>HLS playlists usually include:</p>
           <ul class="list-disc pl-6 space-y-2">
-            <li>媒体分片（TS / fMP4）</li>
-            <li>多码率主播放列表</li>
-            <li>AES-128 加密信息</li>
-            <li>EXTINF 时长标签</li>
-            <li>直播流元数据</li>
+            <li>Media segments (TS / fMP4)</li>
+            <li>Multi-bitrate master playlists</li>
+            <li>AES-128 encryption</li>
+            <li>EXTINF duration tags</li>
+            <li>Live stream metadata</li>
           </ul>
-          <p>本工具用于开发测试、播放器调试、HLS 流媒体分析。</p>
+          <p>This tool is built for development, player debugging, and HLS streaming analysis.</p>
         </div>
       </div>
     </section>
@@ -299,10 +299,10 @@ fileSequence2.ts
     async function analyzeFromUrl() {
       const url = $('m3u8-url').value.trim();
       if (!url) {
-        return showStatus('请输入 URL', 'error');
+        return showStatus('Please enter a URL', 'error');
       }
       if (!/^https?:\/\//i.test(url)) {
-        return showStatus('请输入合法 URL', 'error');
+        return showStatus('Invalid URL', 'error');
       }
       const controller = new AbortController();
       const timeout = setTimeout(() => {
@@ -320,13 +320,13 @@ fileSequence2.ts
         }
         const text = await response.text();
         if (text.length > 5 * 1024 * 1024) {
-          throw new Error('文件过大');
+          throw new Error('File too large');
         }
         currentUrl = url;
         analyze(text, url);
       } catch (err) {
         if (err.name === 'AbortError') {
-          showStatus('请求超时', 'error');
+          showStatus('Request timeout', 'error');
         } else {
           showStatus(err.message, 'error');
         }
@@ -339,19 +339,19 @@ fileSequence2.ts
     function analyzeFromText() {
       const text = $('m3u8-content').value.trim();
       if (!text) {
-        return showStatus('请输入 M3U8 内容', 'error');
+        return showStatus('Please enter M3U8 content', 'error');
       }
       analyze(text, currentUrl);
     }
 
     function analyze(content, baseUrl) {
       if (!content.includes('#EXTM3U')) {
-        return showStatus('不是有效的 M3U8', 'error');
+        return showStatus('Not a valid M3U8', 'error');
       }
       currentRaw = content;
       const data = parseM3U8(content, baseUrl);
       render(data, content, baseUrl);
-      showStatus('分析完成', 'success');
+      showStatus('Analysis completed', 'success');
     }
 
     function parseM3U8(content, baseUrl) {
@@ -362,7 +362,7 @@ fileSequence2.ts
         .filter(Boolean);
 
       const data = {
-        type: '媒体播放列表',
+        type: 'Media Playlist',
         variants: [],
         segments: [],
         keys: [],
@@ -376,10 +376,10 @@ fileSequence2.ts
 
       for (const line of lines) {
         if (data.segments.length > 50000) {
-          throw new Error('分片数量过大');
+          throw new Error('Too many segments');
         }
         if (line.startsWith('#EXT-X-STREAM-INF:')) {
-          data.type = '主播放列表';
+          data.type = 'Master Playlist';
           pendingStream = parseAttributes(valueAfterColon(line));
         }
         else if (line.startsWith('#EXT-X-KEY:')) {
@@ -428,23 +428,23 @@ fileSequence2.ts
       $('raw-content').textContent = raw;
       $('ffmpeg-command').textContent = baseUrl
         ? `ffmpeg -i "${baseUrl}" -c copy output.mp4`
-        : '请输入 URL';
+        : 'Enter URL to generate';
 
       $('basic-info').innerHTML = `
     <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">播放列表类型</dt>
+      <dt class="text-slate-500">Playlist Type</dt>
       <dd class="mt-1 font-semibold">${escapeHtml(data.type)}</dd>
     </div>
     <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">总时长</dt>
+      <dt class="text-slate-500">Total Duration</dt>
       <dd class="mt-1 font-semibold">${formatTime(data.totalSeconds)}</dd>
     </div>
     <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">KEY 数量</dt>
+      <dt class="text-slate-500">KEY Count</dt>
       <dd class="mt-1 font-semibold">${data.keys.length}</dd>
     </div>
     <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">MAP 数量</dt>
+      <dt class="text-slate-500">MAP Count</dt>
       <dd class="mt-1 font-semibold">${data.maps.length}</dd>
     </div>
   `;
@@ -506,7 +506,7 @@ fileSequence2.ts
     `).join('');
 
       $('segments-note').textContent = `
-    共 ${segments.length} 个分片，最多显示 300 个
+    Total: ${segments.length} segments, showing up to 300
   `;
     }
 
@@ -518,7 +518,7 @@ fileSequence2.ts
       </p>
       ${Object.entries(key).map(([k, v]) => `
         <p class="break-all">
-          <span class="text-slate-500">${escapeHtml(k)}：</span>
+          <span class="text-slate-500">${escapeHtml(k)}: </span>
           ${escapeHtml(v)}
         </p>
       `).join('')}
@@ -532,7 +532,7 @@ fileSequence2.ts
       </p>
       ${Object.entries(map).map(([k, v]) => `
         <p class="break-all">
-          <span class="text-slate-500">${escapeHtml(k)}：</span>
+          <span class="text-slate-500">${escapeHtml(k)}: </span>
           ${escapeHtml(v)}
         </p>
       `).join('')}
@@ -553,7 +553,7 @@ fileSequence2.ts
       $('security-list').innerHTML = '';
       $('raw-content').textContent = '';
       $('ffmpeg-command').textContent = '';
-      showStatus('结果已清空', 'success');
+      showStatus('Results cleared', 'success');
     }
 
     function parseAttributes(input) {
@@ -614,8 +614,8 @@ fileSequence2.ts
     function setLoading(loading) {
       $('analyze-url-btn').disabled = loading;
       $('analyze-url-btn').textContent = loading
-        ? '分析中...'
-        : '分析 URL';
+        ? 'Analyzing...'
+        : 'Analyze URL';
     }
 
     function showStatus(message, type) {
@@ -635,10 +635,10 @@ fileSequence2.ts
     async function copyText(text) {
       try {
         await navigator.clipboard.writeText(text);
-        showStatus('复制成功', 'success');
+        showStatus('Copied', 'success');
       }
       catch {
-        showStatus('复制失败', 'error');
+        showStatus('Copy failed', 'error');
       }
     }
 
@@ -675,7 +675,7 @@ fileSequence2.ts
     `).join('');
 
       $('segments-note').textContent = `
-    搜索结果：${filtered.length} 个分片
+    Search results: ${filtered.length} segments
   `;
     });
 
@@ -700,18 +700,18 @@ fileSequence2.ts
     function validateHLS(data) {
       const warnings = [];
       if (!data.segments.length && !data.variants.length) {
-        warnings.push('播放列表为空');
+        warnings.push('Empty playlist');
       }
       if (data.segments.length > 0) {
         const maxDuration = Math.max(
           ...data.segments.map(s => s.duration)
         );
         if (maxDuration > 20) {
-          warnings.push('发现超长分片');
+          warnings.push('Long segments detected');
         }
       }
       if (data.keys.length > 0) {
-        warnings.push('检测到 HLS 加密');
+        warnings.push('HLS encryption detected');
       }
       return warnings;
     }
@@ -731,17 +731,17 @@ fileSequence2.ts
     // 复制分享链接
     const shareBtn = document.createElement('button');
     shareBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
-    shareBtn.textContent = '复制分享链接';
+    shareBtn.textContent = 'Copy Share Link';
     shareBtn.addEventListener('click', async () => {
       if (!currentUrl) {
-        return showStatus('请先分析 URL', 'error');
+        return showStatus('Analyze a URL first', 'error');
       }
       const shareUrl = `${location.origin}${location.pathname}?url=${encodeURIComponent(currentUrl)}`;
       try {
         await navigator.clipboard.writeText(shareUrl);
-        showStatus('分享链接已复制', 'success');
+        showStatus('Share link copied', 'success');
       } catch {
-        showStatus('复制失败', 'error');
+        showStatus('Copy failed', 'error');
       }
     });
     document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(shareBtn);
@@ -749,7 +749,7 @@ fileSequence2.ts
     // 导出JSON报告
     const exportBtn = document.createElement('button');
     exportBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
-    exportBtn.textContent = '导出 JSON';
+    exportBtn.textContent = 'Export JSON';
     exportBtn.addEventListener('click', () => {
       const report = {
         url: currentUrl,
@@ -778,14 +778,14 @@ fileSequence2.ts
       const file = e.dataTransfer.files[0];
       if (!file) return;
       if (!file.name.endsWith('.m3u8')) {
-        return showStatus('请上传 m3u8 文件', 'error');
+        return showStatus('Upload a .m3u8 file', 'error');
       }
       const text = await file.text();
       textarea.value = text;
-      showStatus('文件已加载', 'success');
+      showStatus('File loaded', 'success');
     });
   </script>
-
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 
 </html>

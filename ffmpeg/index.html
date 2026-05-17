@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FFmpeg 生成器 - 自动生成 M3U8 下载与转码命令</title>
-  <meta name="description" content="在线 FFmpeg 命令生成器，自动生成 M3U8 下载、MP4 转换、TS 合并、转音频、设置请求头、代理、覆盖输出等 FFmpeg 命令。" />
-  <meta name="keywords" content="ffmpeg生成器,m3u8 ffmpeg,在线生成ffmpeg命令,hls下载命令,m3u8转mp4命令,ffmpeg 下载 m3u8" />
+  <title>FFmpeg Command Builder - Auto-generate M3U8 Download & Transcoding Commands</title>
+  <meta name="description" content="Online FFmpeg command generator. Automatically generate FFmpeg commands for M3U8 downloading, MP4 conversion, TS merging, audio extraction, custom headers, proxy settings, output overwriting, and more." />
+  <meta name="keywords" content="ffmpeg generator, m3u8 ffmpeg, generate ffmpeg command online, hls download command, m3u8 to mp4 command, ffmpeg download m3u8" />
     <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
   <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="../resane/js/taiwindcss.js"></script>
@@ -20,16 +20,16 @@
   <!-- 导航栏 -->
   <header
     class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
+    <div class="text-xl font-bold">M3U8 Online Player</div>
 
     <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
-      <a href="/" class="text-blue-400 font-bold">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="text-blue-400 font-bold">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
 
     <!-- 右侧操作区 -->
@@ -37,8 +37,8 @@
       <div class="relative">
         <select id="language-selector"
           class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="zh" selected>中文</option>
-          <option value="en">English</option>
+          <option value="zh">中文</option>
+          <option value="en" selected>English</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
@@ -46,7 +46,7 @@
       </div>
       <a href="/preview.html">
         <button
-          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Play Now</button>
       </a>
 
       <!-- 汉堡按钮（移动端） -->
@@ -60,12 +60,12 @@
 
   <!-- 移动端导航菜单 -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">首页</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+    <a href="/" class="text-blue-400 font-bold">Home</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
     <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-    <a href="/about.html" class="hover:text-blue-400">关于</a>
+    <a href="/post/" class="hover:text-blue-400">Help Center</a>
+    <a href="/about.html" class="hover:text-blue-400">About</a>
   </div>
 
   <!-- 遮罩层 -->
@@ -78,34 +78,34 @@
       <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <div>
           <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">FFmpeg Command Builder</p>
-          <h1 class="mb-4 text-4xl font-bold md:text-5xl">FFmpeg 生成器</h1>
-          <p class="max-w-3xl text-lg leading-8 text-slate-300">输入 M3U8、MP4、TS、MP3 等链接，自动生成可直接复制的 FFmpeg 命令。支持下载 HLS、转 MP4、提取音频、自定义请求头、User-Agent、Referer、Cookie、代理、覆盖输出和命名文件。</p>
+          <h1 class="mb-4 text-4xl font-bold md:text-5xl">FFmpeg Generator</h1>
+          <p class="max-w-3xl text-lg leading-8 text-slate-300">Input M3U8, MP4, TS, MP3, or other URLs to automatically generate ready-to-copy FFmpeg commands. Supports HLS downloading, MP4 conversion, audio extraction, custom headers, User-Agent, Referer, Cookies, proxies, output overwriting, and file renaming.</p>
           <div class="mt-8 grid gap-4 sm:grid-cols-3">
             <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
-              <div class="text-sm text-slate-400">适合场景</div>
-              <div class="mt-2 font-semibold text-white">M3U8 下载 / 转码 / 调试</div>
+              <div class="text-sm text-slate-400">Best For</div>
+              <div class="mt-2 font-semibold text-white">M3U8 Download / Transcode / Debug</div>
             </div>
             <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
-              <div class="text-sm text-slate-400">输出结果</div>
-              <div class="mt-2 font-semibold text-white">一键生成完整命令</div>
+              <div class="text-sm text-slate-400">Output Result</div>
+              <div class="mt-2 font-semibold text-white">One-click Full Command Generation</div>
             </div>
             <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
-              <div class="text-sm text-slate-400">无需安装</div>
-              <div class="mt-2 font-semibold text-white">页面负责生成，你本地执行</div>
+              <div class="text-sm text-slate-400">No Installation</div>
+              <div class="mt-2 font-semibold text-white">Generated Here, Executed Locally</div>
             </div>
           </div>
         </div>
 
         <div class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-2xl shadow-blue-950/20">
-          <h2 class="text-xl font-bold">使用说明</h2>
+          <h2 class="text-xl font-bold">Instructions</h2>
           <ol class="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-            <li>1. 输入视频或音频链接，支持 m3u8 / mp4 / ts / mp3 等 URL。</li>
-            <li>2. 选择命令用途，例如下载 M3U8、转为 MP4、提取音频。</li>
-            <li>3. 按需填写 Referer、User-Agent、Cookie 或代理。</li>
-            <li>4. 点击“生成命令”，复制后在本地终端执行。</li>
+            <li>1. Enter a video or audio URL (supports m3u8 / mp4 / ts / mp3, etc.).</li>
+            <li>2. Select the command purpose, such as downloading M3U8, converting to MP4, or extracting audio.</li>
+            <li>3. Fill in the Referer, User-Agent, Cookie, or Proxy as required.</li>
+            <li>4. Click &quot;Generate Command&quot;, copy it, and run it in your local terminal.</li>
           </ol>
           <div class="mt-5 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
-            提示：如果源站有鉴权限制，通常需要带上 Referer、Cookie 或 User-Agent，否则 FFmpeg 会提示 403 / 401 / Forbidden。
+            Tip: If the source site has authentication restrictions, you usually need to include the Referer, Cookie, or User-Agent; otherwise, FFmpeg will return a 403 / 401 / Forbidden error.
           </div>
         </div>
       </div>
@@ -116,34 +116,34 @@
         <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
           <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h2 class="text-2xl font-bold">命令配置</h2>
-              <p class="mt-1 text-sm text-slate-400">按照你的需求组合参数，页面会实时生成 FFmpeg 命令。</p>
+              <h2 class="text-2xl font-bold">Command Configuration</h2>
+              <p class="mt-1 text-sm text-slate-400">Combine parameters according to your needs, and the page will generate the FFmpeg command in real time.</p>
             </div>
-            <button id="fill-sample-btn" class="rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-700">填入示例</button>
+            <button id="fill-sample-btn" class="rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold hover:bg-slate-700">Fill Sample</button>
           </div>
 
           <div class="space-y-6">
             <div>
-              <label for="input-url" class="mb-2 block text-sm font-medium text-slate-300">输入地址 URL</label>
+              <label for="input-url" class="mb-2 block text-sm font-medium text-slate-300">Input URL</label>
               <textarea id="input-url" rows="3" placeholder="https://example.com/video/index.m3u8" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/20"></textarea>
-              <p class="mt-2 text-xs text-slate-500">支持 M3U8、MP4、TS、MP3 等媒体地址，也可从分析器页面自动带入。</p>
+              <p class="mt-2 text-xs text-slate-500">Supports M3U8, MP4, TS, MP3, and other media URLs. Can also be automatically imported from the analyzer page.</p>
             </div>
 
             <div class="grid gap-5 md:grid-cols-2">
               <div>
-                <label for="command-type" class="mb-2 block text-sm font-medium text-slate-300">命令用途</label>
+                <label for="command-type" class="mb-2 block text-sm font-medium text-slate-300">Command Purpose</label>
                 <select id="command-type" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-500/20">
-                  <option value="m3u8-copy-mp4">M3U8 无损下载为 MP4</option>
-                  <option value="m3u8-copy-ts">M3U8 无损下载为 TS</option>
-                  <option value="m3u8-transcode-mp4">M3U8 转码为 MP4（H.264 + AAC）</option>
-                  <option value="extract-mp3">提取音频为 MP3</option>
-                  <option value="extract-aac">提取音频为 AAC</option>
-                  <option value="remux-mp4">MP4/TS 重新封装为 MP4</option>
-                  <option value="custom">自定义基础命令模板</option>
+                  <option value="m3u8-copy-mp4">M3U8 Lossless Download to MP4</option>
+                  <option value="m3u8-copy-ts">M3U8 Lossless Download to TS</option>
+                  <option value="m3u8-transcode-mp4">M3U8 Transcode to MP4 (H.264 + AAC)</option>
+                  <option value="extract-mp3">Extract Audio to MP3</option>
+                  <option value="extract-aac">Extract Audio to AAC</option>
+                  <option value="remux-mp4">Remux MP4/TS into MP4</option>
+                  <option value="custom">Custom Base Command Template</option>
                 </select>
               </div>
               <div>
-                <label for="output-name" class="mb-2 block text-sm font-medium text-slate-300">输出文件名</label>
+                <label for="output-name" class="mb-2 block text-sm font-medium text-slate-300">Output File Name</label>
                 <input id="output-name" type="text" value="output.mp4" placeholder="output.mp4" class="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/20" />
               </div>
             </div>
@@ -165,11 +165,11 @@
 
             <div class="grid gap-5 md:grid-cols-2">
               <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                <span class="mb-2 block text-sm font-medium text-slate-300">HTTP 代理</span>
+                <span class="mb-2 block text-sm font-medium text-slate-300">HTTP Proxy</span>
                 <input id="proxy" type="text" placeholder="http://127.0.0.1:7890" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
               </label>
               <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                <span class="mb-2 block text-sm font-medium text-slate-300">额外 Headers</span>
+                <span class="mb-2 block text-sm font-medium text-slate-300">Extra Headers</span>
                 <input id="headers" type="text" placeholder="X-Token: abc123 | X-App: demo" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
               </label>
             </div>
@@ -177,37 +177,37 @@
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
                 <input id="overwrite" type="checkbox" checked class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
-                覆盖输出文件（-y）
+                Overwrite Output File (-y)
               </label>
               <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
                 <input id="copy-timestamps" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
-                保留时间戳（-copyts）
+                Preserve Timestamps (-copyts)
               </label>
               <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
                 <input id="use-bsf" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
-                添加 AAC ADTS 过滤器
+                Add AAC ADTS Filter
               </label>
               <label class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-4 text-sm text-slate-200">
                 <input id="safe-zero" type="checkbox" checked class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500" />
-                允许绝对路径（-safe 0）
+                Allow Absolute Paths (-safe 0)
               </label>
             </div>
 
             <div class="grid gap-5 md:grid-cols-2">
               <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                <span class="mb-2 block text-sm font-medium text-slate-300">视频编码参数</span>
+                <span class="mb-2 block text-sm font-medium text-slate-300">Video Encoding Parameters</span>
                 <input id="video-args" type="text" placeholder="-c:v libx264 -preset medium -crf 23" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
               </label>
               <label class="rounded-2xl border border-slate-800 bg-slate-950 p-4">
-                <span class="mb-2 block text-sm font-medium text-slate-300">音频编码参数</span>
+                <span class="mb-2 block text-sm font-medium text-slate-300">Audio Encoding Parameters</span>
                 <input id="audio-args" type="text" placeholder="-c:a aac -b:a 192k" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none placeholder:text-slate-600 focus:border-blue-400" />
               </label>
             </div>
 
             <div class="flex flex-wrap gap-3">
-              <button id="generate-btn" class="rounded-xl bg-blue-500 px-6 py-3 font-semibold hover:bg-blue-600">生成命令</button>
-              <button id="copy-btn" class="rounded-xl bg-emerald-500 px-6 py-3 font-semibold hover:bg-emerald-600">复制命令</button>
-              <button id="reset-btn" class="rounded-xl bg-slate-800 px-6 py-3 font-semibold hover:bg-slate-700">重置</button>
+              <button id="generate-btn" class="rounded-xl bg-blue-500 px-6 py-3 font-semibold hover:bg-blue-600">Generate Command</button>
+              <button id="copy-btn" class="rounded-xl bg-emerald-500 px-6 py-3 font-semibold hover:bg-emerald-600">Copy Command</button>
+              <button id="reset-btn" class="rounded-xl bg-slate-800 px-6 py-3 font-semibold hover:bg-slate-700">Reset</button>
             </div>
           </div>
         </div>
@@ -216,25 +216,25 @@
           <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
             <div class="flex items-center justify-between gap-3">
               <div>
-                <h2 class="text-2xl font-bold">生成结果</h2>
-                <p class="mt-1 text-sm text-slate-400">你可以直接复制到终端里执行。</p>
+                <h2 class="text-2xl font-bold">Generation Result</h2>
+                <p class="mt-1 text-sm text-slate-400">You can copy this directly into your terminal to execute.</p>
               </div>
             </div>
             <pre id="command-output" class="mt-5 min-h-[280px] overflow-x-auto whitespace-pre-wrap break-words rounded-2xl bg-slate-950 p-4 text-sm leading-7 text-slate-200"></pre>
           </div>
 
           <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
-            <h3 class="text-xl font-bold">命令说明</h3>
+            <h3 class="text-xl font-bold">Command Explanation</h3>
             <div id="command-summary" class="mt-4 space-y-3 text-sm leading-7 text-slate-300"></div>
           </div>
 
           <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6">
-            <h3 class="text-xl font-bold">常见模板</h3>
+            <h3 class="text-xl font-bold">Common Templates</h3>
             <div class="mt-4 space-y-3 text-sm text-slate-300">
-              <button data-template="m3u8-copy-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">M3U8 无损下载为 MP4</button>
-              <button data-template="m3u8-transcode-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">M3U8 转码为兼容 MP4</button>
-              <button data-template="extract-mp3" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">提取音频为 MP3</button>
-              <button data-template="remux-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">MP4 / TS 重新封装</button>
+              <button data-template="m3u8-copy-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">M3U8 Lossless Download to MP4</button>
+              <button data-template="m3u8-transcode-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">M3U8 Transcode to Compatible MP4</button>
+              <button data-template="extract-mp3" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">Extract Audio to MP3</button>
+              <button data-template="remux-mp4" class="template-btn block w-full rounded-2xl bg-slate-950 px-4 py-3 text-left hover:bg-slate-800">MP4 / TS Remuxing</button>
             </div>
           </div>
         </div>
@@ -244,22 +244,22 @@
     <section class="mx-auto max-w-7xl px-6 pb-16">
       <div class="grid gap-6 md:grid-cols-3">
         <div class="rounded-2xl bg-slate-900 p-6">
-          <h3 class="mb-2 font-bold">为什么 FFmpeg 无法下载？</h3>
-          <p class="text-sm leading-6 text-slate-400">最常见原因是源站限制了 Referer、Cookie、User-Agent，或必须通过代理访问。把这些请求头带上，一般就能恢复。</p>
+          <h3 class="mb-2 font-bold">Why is FFmpeg failing to download?</h3>
+          <p class="text-sm leading-6 text-slate-400">The most common reason is that the source site restricts access via Referer, Cookie, or User-Agent, or requires a proxy. Including these headers usually resolves the issue.</p>
         </div>
         <div class="rounded-2xl bg-slate-900 p-6">
-          <h3 class="mb-2 font-bold">什么时候用 copy？</h3>
-          <p class="text-sm leading-6 text-slate-400">如果原始流本身就是 H.264/AAC，推荐使用 <code>-c copy</code> 无损封装，速度更快，也不会重复压缩导致画质下降。</p>
+          <h3 class="mb-2 font-bold">When should I use &quot;copy&quot;?</h3>
+          <p class="text-sm leading-6 text-slate-400">If the original stream is already H.264/AAC, using <code>-c copy</code> for lossless remuxing is recommended. It&#39;s faster and avoids quality degradation from re-compression.</p>
         </div>
         <div class="rounded-2xl bg-slate-900 p-6">
-          <h3 class="mb-2 font-bold">什么时候用转码？</h3>
-          <p class="text-sm leading-6 text-slate-400">当播放器兼容性差、音视频编码异常、想压缩体积或改码率时，使用 H.264 + AAC 转码命令更稳妥。</p>
+          <h3 class="mb-2 font-bold">When should I transcode?</h3>
+          <p class="text-sm leading-6 text-slate-400">Transcoding with H.264 + AAC commands is safer when player compatibility is poor, audio/video encoding is non-standard, or you want to compress the file size/change the bitrate.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-slate-800 py-6 text-center text-sm text-slate-500">© 2019 - 2026 m3u8在线播放器 | 仅生成命令，请自行确认资源授权与使用合规性</footer>
+  <footer class="border-t border-slate-800 py-6 text-center text-sm text-slate-500">© 2019 - 2026 M3U8 Online Player | Commands generated only. Please verify resource authorization and compliance yourself.</footer>
 
   <script>
     const $ = (id) => document.getElementById(id);
@@ -277,38 +277,38 @@
 
     const summaries = {
       'm3u8-copy-mp4': [
-        '适用于大多数 HLS 视频直接下载为 MP4。',
-        '使用 -c copy 无损封装，不重新编码，速度快。',
-        '如果输出 MP4 播放异常，可切换到“转码为 MP4”。'
+        'Suitable for downloading most HLS videos directly to MP4.',
+        'Uses -c copy for lossless remuxing without re-encoding, ensuring fast speeds.',
+        'If the output MP4 playback is abnormal, switch to "Transcode to MP4".'
       ],
       'm3u8-copy-ts': [
-        '适合先把直播流或点播流原样保存为 TS。',
-        'TS 封装兼容性好，部分特殊流比 MP4 更稳。',
-        '后续还可以再重新封装或二次处理。'
+        'Suitable for saving live streams or VOD streams exactly as TS files.',
+        'TS container has good compatibility; it can be more stable than MP4 for certain non-standard streams.',
+        'Can be remuxed or secondary-processed later.'
       ],
       'm3u8-transcode-mp4': [
-        '将输入视频转码为兼容性更高的 H.264 + AAC。',
-        '适合编码不规范、目标设备兼容性差、或需要压缩体积时使用。',
-        '视频和音频编码参数可自定义。'
+        'Transcodes the input video into highly compatible H.264 + AAC.',
+        'Ideal when the source encoding is non-standard, target devices lack compatibility, or size compression is needed.',
+        'Video and audio encoding parameters can be customized.'
       ],
       'extract-mp3': [
-        '从视频或直播录制文件中提取音频并输出 MP3。',
-        '适合做播客、语音留档或背景音提取。',
-        '可自定义码率，比如 128k / 192k / 320k。'
+        'Extracts the audio track from video or live stream recordings and outputs it as MP3.',
+        'Great for podcasts, voice archives, or background audio extraction.',
+        'Bitrate can be customized, e.g., 128k / 192k / 320k.'
       ],
       'extract-aac': [
-        '将音轨提取或转为 AAC 文件。',
-        '适合保留 AAC 生态兼容性。',
-        '遇到 ADTS 场景可结合 AAC 过滤器。'
+        'Extracts or converts the audio track into an AAC file.',
+        'Best for preserving native AAC ecosystem compatibility.',
+        'Can be combined with AAC filters if ADTS issues are encountered.'
       ],
       'remux-mp4': [
-        '不重新编码，直接把输入重新封装到 MP4。',
-        '适合 TS 转 MP4、修正容器、快速整理素材。',
-        '如果流中编码本身不兼容 MP4，可能仍需转码。'
+        'Directly remuxes the input into MP4 without re-encoding.',
+        'Great for TS to MP4 conversion, correcting containers, and quickly organizing materials.',
+        'If the stream\'s native codec is incompatible with MP4, transcoding may still be required.'
       ],
       'custom': [
-        '提供一个基础模板，便于你自行追加高级参数。',
-        '适合熟悉 FFmpeg 命令的用户继续二次编辑。'
+        'Provides a basic template to let you append advanced parameters manually.',
+        'Suitable for users familiar with FFmpeg commands who want further customization.'
       ]
     };
 
@@ -316,7 +316,7 @@
       bindEvents();
       hydrateFromQuery();
       updateDefaultsByType();
-      clearGeneratedResult('请配置参数后点击“生成命令”，生成结果会显示在这里。');
+      clearGeneratedResult('Please configure the parameters and click "Generate Command". The results will be displayed here.');
     });
 
     function bindEvents() {
@@ -326,22 +326,22 @@
       $('fill-sample-btn').addEventListener('click', fillSample);
       $('command-type').addEventListener('change', () => {
         updateDefaultsByType();
-        clearGeneratedResult('模板已切换，请点击“生成命令”查看结果。');
+        clearGeneratedResult('Template switched. Please click "Generate Command" to view the result.');
       });
 
       ['input-url', 'output-name', 'user-agent', 'referer', 'cookie', 'proxy', 'headers', 'video-args', 'audio-args'].forEach((id) => {
-        $(id).addEventListener('input', () => clearGeneratedResult('参数已修改，请点击“生成命令”重新生成结果。'));
+        $(id).addEventListener('input', () => clearGeneratedResult('Parameters modified. Please click "Generate Command" to regenerate.'));
       });
       ['overwrite', 'copy-timestamps', 'use-bsf', 'safe-zero'].forEach((id) => {
-        $(id).addEventListener('change', () => clearGeneratedResult('参数已修改，请点击“生成命令”重新生成结果。'));
+        $(id).addEventListener('change', () => clearGeneratedResult('Parameters modified. Please click "Generate Command" to regenerate.'));
       });
 
       document.querySelectorAll('.template-btn').forEach((button) => {
         button.addEventListener('click', () => {
           $('command-type').value = button.dataset.template;
           updateDefaultsByType();
-          clearGeneratedResult('已切换模板，请点击“生成命令”查看结果。');
-          showStatus('已切换模板', 'success');
+          clearGeneratedResult('Template switched. Please click "Generate Command" to view the result.');
+          showStatus('Template switched', 'success');
         });
       });
     }
@@ -371,8 +371,8 @@
       $('headers').value = sample.headers;
       $('command-type').value = 'm3u8-copy-mp4';
       updateDefaultsByType();
-      clearGeneratedResult('示例已填充，请点击“生成命令”查看结果。');
-      showStatus('示例已填充', 'success');
+      clearGeneratedResult('Sample filled. Please click "Generate Command" to view the result.');
+      showStatus('Sample filled', 'success');
     }
 
     function resetForm() {
@@ -389,8 +389,8 @@
       $('safe-zero').checked = true;
       $('command-type').value = 'm3u8-copy-mp4';
       updateDefaultsByType();
-      clearGeneratedResult('已重置表单，请重新生成命令。');
-      showStatus('已重置表单', 'success');
+      clearGeneratedResult('Form reset. Please regenerate the command.');
+      showStatus('Form reset', 'success');
     }
 
     function updateDefaultsByType() {
@@ -436,9 +436,9 @@
       const outputName = $('output-name').value.trim();
 
       if (!url) {
-        clearGeneratedResult('请先输入媒体地址，再点击“生成命令”。');
+        clearGeneratedResult('Please enter a media URL first, then click "Generate Command".');
         renderSummary(type);
-        showStatus('请输入媒体地址', 'error');
+        showStatus('Please enter a media URL', 'error');
         return;
       }
 
@@ -462,7 +462,7 @@
       $('command-output').textContent = command;
       $('command-output').dataset.generated = 'true';
       renderSummary(type);
-      showStatus('命令生成成功', 'success');
+      showStatus('Command generated successfully', 'success');
     }
 
     function buildCommand(options) {
@@ -555,10 +555,10 @@
 
     function copyGeneratedCommand() {
       if ($('command-output').dataset.generated !== 'true') {
-        showStatus('请先点击“生成命令”，再复制命令', 'error');
+        showStatus('Please click "Generate Command" first before copying', 'error');
         return;
       }
-      copyText($('command-output').textContent, 'FFmpeg 命令已复制');
+      copyText($('command-output').textContent, 'FFmpeg command copied');
     }
 
     function showStatus(message, type) {
@@ -575,9 +575,9 @@
         info: 'i'
       };
       const titleMap = {
-        success: '操作成功',
-        error: '操作失败',
-        info: '提示'
+        success: 'Success',
+        error: 'Error',
+        info: 'Notice'
       };
       const iconClassMap = {
         success: 'bg-emerald-500 text-white',
@@ -616,7 +616,7 @@
         await navigator.clipboard.writeText(text);
         showStatus(message, 'success');
       } catch (error) {
-        showStatus('复制失败，请手动选择复制', 'error');
+        showStatus('Copy failed, please select and copy manually', 'error');
       }
     }
 
@@ -624,6 +624,7 @@
       return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
     }
   </script>
-   <script src="../resane/js/responsive-nav.js"></script>
+  <script src="/resane/js/responsive-nav.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

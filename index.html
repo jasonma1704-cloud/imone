@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>M3U8在线播放器 - 免费HLS流媒体在线播放、解析、转换工具</title>
-  <meta name="description" content="M3U8在线播放器支持HLS流媒体播放、M3U8转MP4、码率分析、FFmpeg命令生成。免费、安全、无需下载，打开浏览器即可使用。">
-  <meta name="keywords" content="m3u8播放器,m3u8在线播放,m3u8转mp4,hls播放器,在线解析m3u8">
+  <title>M3U8 Online Player - Free HLS Streaming Play, Parse, Convert Tool</title>
+  <meta name="description" content="M3U8 Online Player supports HLS streaming playback, M3U8 to MP4 conversion, bitrate analysis, FFmpeg command generation. Free, secure, no download required, usable directly in browser.">
+  <meta name="keywords" content="m3u8 player, m3u8 online player, m3u8 to mp4, hls player, online parse m3u8">
   <meta name="robots" content="index,follow">
   <meta name="googlebot" content="index,follow">
-  <meta property="og:title" content="M3U8在线播放器 - 免费HLS流媒体在线播放工具">
-  <meta property="og:description" content="免费在线M3U8播放器，支持播放、解析、转换、分析HLS流媒体视频，无需安装插件。">
+  <meta property="og:title" content="M3U8 Online Player - Free HLS Streaming Player Tool">
+  <meta property="og:description" content="Free online M3U8 player for playing, parsing, converting and analyzing HLS streaming videos without plugins.">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale" content="en_US">
   <link rel="stylesheet" href="./resane/css/tcplayer.min.css" />
   <script src="./resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="./resane/js/taiwindcss.js"></script>
@@ -29,16 +29,16 @@
   <!-- 导航栏 -->
   <header
     class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
-    <div class="text-xl font-bold">m3u8在线播放器</div>
+    <div class="text-xl font-bold">M3U8 Online Player</div>
 
     <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
-      <a href="/" class="text-blue-400 font-bold">首页</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/" class="text-blue-400 font-bold">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-      <a href="/about.html" class="hover:text-blue-400">关于</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
 
     <!-- 右侧操作区 -->
@@ -46,8 +46,8 @@
       <div class="relative">
         <select id="language-selector"
           class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="zh" selected>中文</option>
           <option value="en">English</option>
+          <option value="zh">中文</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
@@ -55,7 +55,7 @@
       </div>
       <a href="/preview.html">
         <button
-          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Start Playing</button>
       </a>
 
       <!-- 汉堡按钮（移动端） -->
@@ -69,12 +69,12 @@
 
   <!-- 移动端导航菜单 -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">首页</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+    <a href="/" class="text-blue-400 font-bold">Home</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
     <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-    <a href="/about.html" class="hover:text-blue-400">关于</a>
+    <a href="/post/" class="hover:text-blue-400">Help Center</a>
+    <a href="/about.html" class="hover:text-blue-400">About</a>
   </div>
 
   <!-- 遮罩层 -->
@@ -82,23 +82,23 @@
 
   <!-- 主体内容（保持不变） -->
   <section class="text-center py-20 px-4">
-    <h1 class="text-4xl font-bold mb-4 title-glow">m3u8在线播放器</h1>
-    <p class="text-gray-400 mb-8">M3U8在线播放器是一种基于 HLS（HTTP Live Streaming）协议的网页工具，专为播放流媒体视频设计。</p>
+    <h1 class="text-4xl font-bold mb-4 title-glow">M3U8 Online Player</h1>
+    <p class="text-gray-400 mb-8">M3U8 Online Player is a web tool based on the HLS (HTTP Live Streaming) protocol, designed for streaming video playback.</p>
     <div class="flex flex-col md:flex-row justify-center gap-3 max-w-2xl mx-auto">
-      <input type="text" id="hero-m3u8-url" placeholder="请输入m3u8播放地址"
+      <input type="text" id="hero-m3u8-url" placeholder="Enter M3U8 URL"
         value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
         class="flex-1 px-4 py-3 rounded-lg text-black shadow-md" />
       <button id="play-btn"
         class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶
-        播放</button>
+        Play</button>
       <button id="analyze-btn"
-        class="bg-gray-700 px-6 py-3 rounded-lg hover:bg-gray-600 transition shadow-lg hover:shadow-gray-500/20">分析</button>
+        class="bg-gray-700 px-6 py-3 rounded-lg hover:bg-gray-600 transition shadow-lg hover:shadow-gray-500/20">Analyze</button>
     </div>
     <div class="mt-10 mx-auto max-w-5xl">
       <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 shadow-2xl shadow-blue-950/30 md:p-6">
         <div class="mb-3 flex items-center justify-between gap-3">
-          <h2 class="text-lg font-bold title-glow">播放器预览</h2>
-          <span id="player-status" class="text-sm text-slate-400">尚未播放</span>
+          <h2 class="text-lg font-bold title-glow">Player Preview</h2>
+          <span id="player-status" class="text-sm text-slate-400">Not playing</span>
         </div>
         <div id="player-shell" class="overflow-hidden rounded-xl bg-black min-h-[220px]">
           <video id="player-container-id" preload="auto" playsinline webkit-playsinline
@@ -109,27 +109,27 @@
   </section>
 
   <section class="px-6 py-16 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mb-10 text-center title-glow">全能 M3U8 工具</h2>
+    <h2 class="text-2xl font-bold mb-10 text-center title-glow">All-in-One M3U8 Tools</h2>
     <div class="grid md:grid-cols-4 gap-6">
       <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
-        <h3 class="font-bold mb-2">M3U8 播放器</h3>
-        <p class="text-gray-400 text-sm">在线播放 M3U8 流</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">M3U8 Player</h3>
+        <p class="text-gray-400 text-sm">Play M3U8 streams online</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/analyzer/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
-        <h3 class="font-bold mb-2">M3U8 分析器</h3>
-        <p class="text-gray-400 text-sm">查看流媒体详情</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">M3U8 Analyzer</h3>
+        <p class="text-gray-400 text-sm">View streaming details</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/m3u8_to_mp4/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
-        <h3 class="font-bold mb-2">转换为 MP4</h3>
-        <p class="text-gray-400 text-sm">将 M3U8 转成 MP4</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">Convert to MP4</h3>
+        <p class="text-gray-400 text-sm">Convert M3U8 to MP4</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/ffmpeg/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
-        <h3 class="font-bold mb-2">FFmpeg 生成器</h3>
-        <p class="text-gray-400 text-sm">自动生成 FFmpeg 命令</p>
-        <div class="mt-4 text-blue-400 text-sm">打开 →</div>
+        <h3 class="font-bold mb-2">FFmpeg Generator</h3>
+        <p class="text-gray-400 text-sm">Auto generate FFmpeg commands</p>
+        <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
     </div>
   </section>
@@ -137,102 +137,87 @@
   <section class="bg-slate-800 py-16">
     <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
       <div>
-        <h3 class="font-bold mb-2 text-lg">⚡ 极速播放</h3>
-        <p class="text-gray-400">即时开始流式播放</p>
+        <h3 class="font-bold mb-2 text-lg">⚡ Fast Playback</h3>
+        <p class="text-gray-400">Start streaming instantly</p>
       </div>
       <div>
-        <h3 class="font-bold mb-2 text-lg">🔒 安全可靠</h3>
-        <p class="text-gray-400">无数据存储，隐私更安心</p>
+        <h3 class="font-bold mb-2 text-lg">🔒 Safe & Secure</h3>
+        <p class="text-gray-400">No data stored, privacy protected</p>
       </div>
       <div>
-        <h3 class="font-bold mb-2 text-lg">🆓 免费使用</h3>
-        <p class="text-gray-400">无需付费即可使用所有工具</p>
+        <h3 class="font-bold mb-2 text-lg">🆓 Free to Use</h3>
+        <p class="text-gray-400">All tools available for free</p>
       </div>
     </div>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 pt-16">
-    <h2 class="text-2xl font-bold mb-4 title-glow">嵌入网站：</h2>
+    <h2 class="text-2xl font-bold mb-4 title-glow">Embed to Website:</h2>
     <div class="bg-slate-800 p-6 rounded-lg mb-4 text-left text-slate-200 shadow-lg">
       <pre
         class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=https://****index.m3u8"&gt;&lt;/iframe&gt;</pre>
     </div>
-    <p class="text-gray-400 leading-relaxed">M3U8Player 是一款实现 HTTP 实时流客户端的 Chrome 浏览器扩展工具。你可以播放 .m3u8 HTTP Live
-      Streaming (HLS)。它依靠 HTML5 视频和媒体源扩展进行播放。它的工作原理是将 MPEG-2 传输流和 AAC/MP3 流转换成 ISO BMFF (MP4) 片段。如果浏览器中有 Web
-      Worker，可使用它异步执行转码。它还支持 HLS + fmp4。</p>
+    <p class="text-gray-400 leading-relaxed">M3U8Player is a Chrome extension that implements an HTTP Live Streaming client. You can play .m3u8 HTTP Live Streaming (HLS). It relies on HTML5 video and MediaSource Extensions for playback. It works by converting MPEG-2 transport streams and AAC/MP3 streams into ISO BMFF (MP4) fragments. Web Workers are used for asynchronous transcoding if available in the browser. It also supports HLS + fmp4.</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-8">
-    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">什么是 M3U8?</h2>
-    <p class="text-gray-400 leading-relaxed">m3u8 后缀文件，是采用 UTF-8
-      编码的纯文本播放列表格式。本身不储存视频、音频内容，只记录各类媒体资源的访问地址，供播放器读取并加载对应影音内容。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">日常使用场景十分广泛：既能用于网络电台的线上音源挂载，也能本地手动创建，整理专属音乐、视频合集清单。借助 m3u8
-      列表，就能一键批量播放收藏的音视频资源，省去逐个打开文件的麻烦。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">文件内可通过绝对路径、相对路径或网络
-      URL，关联单个媒体文件、整个资源文件夹，同时还能添加文字注释，标注内容备注信息。最初这类格式仅用于音频播放，例如 MP3 曲目列表，如今已广泛应用于网络短视频、直播流媒体等视频场景，主流播放软件基本都能完美兼容 m3u8
-      格式。</p>
+    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">What is M3U8?</h2>
+    <p class="text-gray-400 leading-relaxed">M3U8 is a UTF-8 encoded plain text playlist format. It does not store video or audio content itself, but records URLs of media resources for players to load and play corresponding media.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">It is widely used: for online radio streaming, local music/video playlists. With M3U8 lists, you can play multiple media files with one click.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">It supports absolute paths, relative paths, and online URLs. Originally designed for audio playlists, it is now widely used for online videos and live streaming, compatible with most major players.</p>
 
-    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">如何打开 M3U8 文件?</h2>
-    <p class="text-gray-400 leading-relaxed">电脑自带的记事本等任意文本编辑器，都能直接打开并查看 m3u8
-      内部代码与资源链接。但文本工具仅支持查看编辑，无法直接解码播放影音内容，不能替代专业播放器使用。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">想要正常播放 m3u8 流媒体或本地列表文件，可以选用 VLC、iTunes 等专业影音软件；Linux 系统可使用 XMMS，Mac
-      设备则推荐 CocoModX，多款工具均可流畅适配该格式。</p>
-    <p class="text-gray-400 leading-relaxed mt-4">除此之外，也能直接使用在线 m3u8 播放器快速解析播放。需要注意的是，在线工具仅支持网络 URL 形式的 m3u8
-      地址，无法读取本地储存的 m3u8 本地文件，且要求对应的流媒体资源处于正常在线可访问状态。</p>
+    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">How to Open M3U8 Files?</h2>
+    <p class="text-gray-400 leading-relaxed">You can open and view M3U8 code with any text editor (Notepad, etc.), but text editors cannot play media.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">To play M3U8 streams, use professional players like VLC, iTunes, XMMS (Linux), CocoModX (Mac).</p>
+    <p class="text-gray-400 leading-relaxed mt-4">You can also use online M3U8 players. Note: online tools only support URL-based M3U8, not local files, and require the stream to be accessible online.</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h2 class="text-2xl font-bold mb-6 title-glow">常见问题</h2>
+    <h2 class="text-2xl font-bold mb-6 title-glow">FAQ</h2>
     <div class="space-y-4">
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          协议是什么？</a>
-        <p class="text-gray-400 text-sm mt-2">是 HLS 流媒体索引协议，多用于网络视频分发。</p>
+        <a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">What is M3U8 Protocol?</a>
+        <p class="text-gray-400 text-sm mt-2">HLS streaming index protocol, widely used for online video delivery.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/play-m3u8-video.html" class="text-blue-400 hover:text-blue-300 font-semibold">怎样播放 M3U8 视频文件？</a>
-        <p class="text-gray-400 text-sm mt-2">用支持流媒体的播放器、浏览器或专用解析工具直接打开链接播放。</p>
+        <a href="/post/play-m3u8-video.html" class="text-blue-400 hover:text-blue-300 font-semibold">How to Play M3U8 Videos?</a>
+        <p class="text-gray-400 text-sm mt-2">Open the link with streaming-supported players, browsers or parsers.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-advantages.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 格式有哪些优势？</a>
-        <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强、易防盗链。</p>
+        <a href="/post/m3u8-advantages.html" class="text-blue-400 hover:text-blue-300 font-semibold">Advantages of M3U8?</a>
+        <p class="text-gray-400 text-sm mt-2">Segment loading, low buffering, mobile-friendly, adaptive bitrate.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          和普通视频格式有什么不同？</a>
-        <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。</p>
+        <a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 vs Regular Video Formats</a>
+        <p class="text-gray-400 text-sm mt-2">M3U8 is a playlist, not a video file. MP4 etc. are complete video files.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/common-video-formats.html"
-          class="text-blue-400 hover:text-blue-300 font-semibold">常见的视频播放格式有哪些？</a>
-        <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。</p>
+        <a href="/post/common-video-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">Common Video Formats</a>
+        <p class="text-gray-400 text-sm mt-2">MP4, FLV, MOV, AVI, MKV, WMV, WebM, etc.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          在直播领域如何使用？</a>
-        <p class="text-gray-400 text-sm mt-2">直播实时切片生成索引，客户端持续拉取分片，实现低延迟在线直播。</p>
+        <a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 for Live Streaming</a>
+        <p class="text-gray-400 text-sm mt-2">Real-time slicing, client fetches segments for low-latency live broadcast.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          协议的运行原理？</a>
-        <p class="text-gray-400 text-sm mt-2">把视频切为短小 TS 分片，m3u8 文件记录分片顺序、地址，按需逐段加载。</p>
+        <a href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">How M3U8 Works</a>
+        <p class="text-gray-400 text-sm mt-2">Video split into small TS chunks; M3U8 records URLs and loads segments sequentially.</p>
       </div>
       <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">解析 M3U8
-          文件的方法？</a>
-        <p class="text-gray-400 text-sm mt-2">用代码、解析工具读取索引文本，提取分片链接，合并合成完整视频。</p>
+        <a href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">How to Parse M3U8</a>
+        <p class="text-gray-400 text-sm mt-2">Read playlist, extract segment URLs, merge into complete video.</p>
       </div>
     </div>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2026 m3u8在线播放器 | 资源来源于网络，如有侵权请联系客服删除
-    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">隐私政策</a>
+    © 2026 M3U8 Online Player | Resources from the internet, contact us to remove if infringed
+    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">Privacy Policy</a>
   </footer>
 
   <!-- 脚本（新增移动端导航逻辑） -->
   <script src="./resane/js/responsive-nav.js"></script>
-     <script src="./resane/js/lang-switcher.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
  
   <script>
     const heroM3u8UrlInput = document.getElementById('hero-m3u8-url');
