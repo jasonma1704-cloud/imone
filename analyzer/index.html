@@ -4,26 +4,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>M3U8 Analyzer - HLS Stream Inspector</title>
-
-  <meta name="description" content="Online M3U8 Analyzer for HLS master playlists, media segments, bitrate, encryption keys, MAP, FFmpeg commands, and TS segment analysis." />
-
+  <meta name="description"
+    content="Online M3U8 Analyzer for HLS master playlists, media segments, bitrate, encryption keys, MAP, FFmpeg commands, and TS segment analysis." />
   <meta name="keywords" content="m3u8 analyzer,hls analyzer,hls stream inspector,m3u8 parser,ffmpeg,m3u8 tool" />
-
-  <link rel="canonical" href="shturl.cc/uiw2MQnPyRYpXbYYqUB4Iag" />
-  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+    <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
   <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
   <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
   <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <style>
+    /* 修复移动端导航样式 */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 250px;
+      height: 100vh;
+      background: #0f172a;
+      padding: 20px;
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 12px 0;
+      color: white;
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 499;
+      display: none;
+    }
+
+    .mobile-nav-overlay.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    .nav-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 </head>
 
 <body class="bg-slate-950 text-white">
-
-  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
+  <header
+    class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
     <div class="text-xl font-bold">M3U8 Player</div>
-    
-    <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
       <a href="/" class="hover:text-blue-400">Home</a>
       <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
@@ -32,11 +90,10 @@
       <a href="/post/" class="hover:text-blue-400">Help</a>
       <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
-    
-    <!-- 右侧操作区 -->
     <div class="flex items-center gap-4">
       <div class="relative">
-        <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+        <select id="language-selector"
+          class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
           <option value="en" selected>English</option>
           <option value="zh">中文</option>
           <option value="pt">Português</option>
@@ -45,10 +102,9 @@
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
       <a href="/preview.html">
-        <button class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Play</button>
+        <button
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Play</button>
       </a>
-      
-      <!-- 汉堡按钮（移动端） -->
       <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -57,7 +113,6 @@
     </div>
   </header>
 
-  <!-- 移动端导航菜单 -->
   <div class="mobile-nav" id="mobileNav">
     <a href="/" class="text-blue-400 font-bold">Home</a>
     <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
@@ -66,75 +121,61 @@
     <a href="/post/" class="hover:text-blue-400">Help</a>
     <a href="/about.html" class="hover:text-blue-400">About</a>
   </div>
-  
-  <!-- 遮罩层 -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-
-
   <main>
-
     <section class="px-6 py-16">
       <div
         class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
       </div>
       <div class="max-w-5xl mx-auto text-center">
-        <p class="uppercase tracking-[0.3em] text-blue-300 text-sm mb-3">
-          HLS Stream Inspector
-        </p>
-        <h2 class="text-5xl font-bold mb-6">
-          M3U8 Analyzer
-        </h2>
-        <p class="text-slate-400 max-w-3xl mx-auto mb-10 leading-8">
-          Online HLS / M3U8 stream analyzer. Supports master playlists, media segments, AES-128 encryption, MAP, FFmpeg command generation, and TS segment statistics.
-        </p>
+        <p class="uppercase tracking-[0.3em] text-blue-300 text-sm mb-3">HLS Stream Inspector</p>
+        <h2 class="text-5xl font-bold mb-6">M3U8 Analyzer</h2>
+        <p class="text-slate-400 max-w-3xl mx-auto mb-10 leading-8">Online HLS / M3U8 stream analyzer. Supports master
+          playlists, media segments, AES-128 encryption, MAP, FFmpeg command generation, and TS segment statistics.</p>
+
+        <!-- 一键测试按钮区 -->
+        <div class="mb-8 flex flex-wrap justify-center gap-2">
+          <button class="test-link-btn bg-green-600 hover:bg-green-700 px-3 py-1 text-xs rounded-lg"
+            data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">✅ 支持CORS</button>
+          <button class="test-link-btn bg-amber-600 hover:bg-amber-700 px-3 py-1 text-xs rounded-lg"
+            data-url="http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8">⚠️ 不支持CORS</button>
+          <button class="test-link-btn bg-red-600 hover:bg-red-700 px-3 py-1 text-xs rounded-lg"
+            data-url="https://example.com/invalid.m3u8">❌ 无效链接</button>
+        </div>
 
         <div class="rounded-3xl border border-slate-800 bg-slate-900 p-6 text-left shadow-2xl">
-          <label class="block text-sm text-slate-400 mb-2">
-            M3U8 URL
-          </label>
+          <label class="block text-sm text-slate-400 mb-2">M3U8 URL</label>
           <div class="flex flex-col md:flex-row gap-3">
             <input id="m3u8-url" type="url" placeholder="https://example.com/index.m3u8"
               class="flex-1 rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 outline-none focus:border-blue-400" />
-            <button id="analyze-url-btn" class="bg-blue-500 hover:bg-blue-600 rounded-xl px-6 py-3 font-semibold">
-              Analyze URL
-            </button>
+            <button id="analyze-url-btn"
+              class="bg-blue-500 hover:bg-blue-600 rounded-xl px-6 py-3 font-semibold">Analyze URL</button>
           </div>
-
           <div class="my-5 flex items-center gap-3">
             <div class="h-px flex-1 bg-slate-800"></div>
             <span class="text-slate-500 text-xs">OR</span>
             <div class="h-px flex-1 bg-slate-800"></div>
           </div>
-
-          <label class="block text-sm text-slate-400 mb-2">
-            Paste M3U8 Content
-          </label>
+          <label class="block text-sm text-slate-400 mb-2">Paste M3U8 Content (拖拽文件到此处)</label>
           <textarea id="m3u8-content" rows="8"
             class="w-full rounded-xl bg-slate-950 border border-slate-700 px-4 py-3 font-mono text-sm outline-none focus:border-blue-400"></textarea>
-
           <div class="flex flex-wrap gap-3 mt-4">
             <button id="analyze-text-btn"
-              class="bg-emerald-500 hover:bg-emerald-600 rounded-xl px-6 py-3 font-semibold">
-              Analyze Text
-            </button>
-            <button id="sample-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">
-              Sample
-            </button>
-            <button id="clear-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">
-              Clear
-            </button>
+              class="bg-emerald-500 hover:bg-emerald-600 rounded-xl px-6 py-3 font-semibold">Analyze Text</button>
+            <button id="sample-btn"
+              class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">Sample</button>
+            <button id="clear-btn"
+              class="bg-slate-800 hover:bg-slate-700 rounded-xl px-6 py-3 font-semibold">Clear</button>
           </div>
-          <p class="mt-4 text-sm text-slate-500 leading-7">
-            For HLS streaming debugging, development testing, and player compatibility analysis.
-          </p>
+          <p class="mt-4 text-sm text-slate-500 leading-7">For HLS streaming debugging, development testing, and player
+            compatibility analysis.</p>
         </div>
       </div>
     </section>
 
     <section class="max-w-7xl mx-auto px-6 pb-16">
-      <div id="status" class="hidden mb-6 rounded-2xl border p-4 text-sm"></div>
-
+      <div id="status" class="mb-6 rounded-2xl border p-4 text-sm"></div>
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
         <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
           <p class="text-sm text-slate-400">Playlist Type</p>
@@ -157,9 +198,14 @@
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5 mb-8">
         <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
           <h3 class="text-xl font-bold">Basic Info</h3>
-          <button id="copy-ffmpeg-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">
-            Copy FFmpeg
-          </button>
+          <div class="flex gap-2">
+            <button id="copy-ffmpeg-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">Copy
+              FFmpeg</button>
+            <button id="copy-share-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">Copy Share
+              Link</button>
+            <button id="export-json-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">Export
+              JSON</button>
+          </div>
         </div>
         <dl id="basic-info" class="grid md:grid-cols-2 gap-3 text-sm"></dl>
         <pre id="ffmpeg-command" class="mt-5 rounded-xl bg-slate-950 p-4 overflow-x-auto text-xs text-slate-300"></pre>
@@ -213,48 +259,25 @@
       <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-xl font-bold">Raw Content</h3>
-          <button id="copy-raw-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">
-            Copy Raw
-          </button>
+          <button id="copy-raw-btn" class="bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm">Copy
+            Raw</button>
         </div>
         <pre id="raw-content"
           class="max-h-[500px] overflow-auto rounded-xl bg-slate-950 p-4 text-xs leading-6 text-slate-300"></pre>
       </div>
     </section>
-
-    <section class="max-w-5xl mx-auto px-6 pb-20">
-      <div class="rounded-3xl bg-slate-900 p-8">
-        <h3 class="text-3xl font-bold mb-6">What is M3U8?</h3>
-        <div class="space-y-5 text-slate-400 leading-8">
-          <p>
-            M3U8 is the playlist format for HLS (HTTP Live Streaming), widely used for online video, live streaming, OTT, and CDN video delivery.
-          </p>
-          <p>HLS playlists usually include:</p>
-          <ul class="list-disc pl-6 space-y-2">
-            <li>Media segments (TS / fMP4)</li>
-            <li>Multi-bitrate master playlists</li>
-            <li>AES-128 encryption</li>
-            <li>EXTINF duration tags</li>
-            <li>Live stream metadata</li>
-          </ul>
-          <p>This tool is built for development, player debugging, and HLS streaming analysis.</p>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
-    © 2026 M3U8 Analyzer · HLS Stream Toolkit
-  </footer>
-  <script src="../resane/js/responsive-nav.js"></script>
+  <footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">© 2026 M3U8 Analyzer · HLS Stream
+    Toolkit</footer>
+
   <script>
     const $ = (id) => document.getElementById(id);
-
     let currentRaw = '';
     let currentUrl = '';
     let currentSegments = [];
 
+    // 示例内容
     const sampleContent = `#EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-TARGETDURATION:10
@@ -281,136 +304,115 @@ fileSequence2.ts
       mobileOverlay.classList.remove('active');
     });
 
-    $('sample-btn').addEventListener('click', () => {
-      $('m3u8-content').value = sampleContent;
-    });
-
+    // 基础按钮事件
+    $('sample-btn').addEventListener('click', () => { $('m3u8-content').value = sampleContent; });
     $('clear-btn').addEventListener('click', clearResult);
     $('analyze-url-btn').addEventListener('click', analyzeFromUrl);
     $('analyze-text-btn').addEventListener('click', analyzeFromText);
-    $('copy-raw-btn').addEventListener('click', () => {
-      copyText(currentRaw);
-    });
+    $('copy-raw-btn').addEventListener('click', () => { copyText(currentRaw); });
+    $('copy-ffmpeg-btn').addEventListener('click', () => { copyText($('ffmpeg-command').textContent); });
 
-    $('copy-ffmpeg-btn').addEventListener('click', () => {
-      copyText($('ffmpeg-command').textContent);
-    });
-
+    // ✅ 核心：自动CORS代理 + 双代理容错
     async function analyzeFromUrl() {
       const url = $('m3u8-url').value.trim();
-      if (!url) {
-        return showStatus('Please enter a URL', 'error');
-      }
-      if (!/^https?:\/\//i.test(url)) {
-        return showStatus('Invalid URL', 'error');
-      }
-      const controller = new AbortController();
-      const timeout = setTimeout(() => {
-        controller.abort();
-      }, 10000);
+      if (!url) return showStatus('Please enter a URL', 'error');
+      if (!/^https?:\/\//i.test(url)) return showStatus('Invalid URL', 'error');
+
       setLoading(true);
-      try {
-        const response = await fetch(url, {
-          cache: 'no-store',
-          signal: controller.signal,
-        });
-        clearTimeout(timeout);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      // 代理列表，按优先级排序
+      const proxies = [
+        '', // 先尝试直接请求
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+        `https://corsproxy.io/?${encodeURIComponent(url)}`
+      ];
+
+      let text = '';
+      let usedProxy = false;
+
+      for (let i = 0; i < proxies.length; i++) {
+        const targetUrl = proxies[i] || url;
+        try {
+          showStatus(`Trying ${i === 0 ? 'direct request' : `proxy ${i}`}...`, 'info');
+          const response = await fetch(targetUrl, {
+            cache: 'no-store',
+            signal: controller.signal,
+            headers: { 'User-Agent': 'Mozilla/5.0' }
+          });
+
+          if (response.ok) {
+            text = await response.text();
+            usedProxy = i > 0;
+            break;
+          }
+        } catch (err) {
+          console.warn(`Request failed: ${targetUrl}`, err);
+          continue;
         }
-        const text = await response.text();
-        if (text.length > 5 * 1024 * 1024) {
-          throw new Error('File too large');
-        }
-        currentUrl = url;
-        analyze(text, url);
-      } catch (err) {
-        if (err.name === 'AbortError') {
-          showStatus('Request timeout', 'error');
-        } else {
-          showStatus(err.message, 'error');
-        }
-      } finally {
-        clearTimeout(timeout);
-        setLoading(false);
       }
+
+      clearTimeout(timeoutId);
+
+      if (!text) {
+        showStatus('All requests failed. Please use "Analyze Text" mode.', 'error');
+        setLoading(false);
+        return;
+      }
+
+      if (!text.includes('#EXTM3U')) {
+        showStatus('Not a valid M3U8 file', 'error');
+        setLoading(false);
+        return;
+      }
+
+      // 解析成功
+      currentUrl = url;
+      analyze(text, url);
+      showStatus(`Analysis completed ${usedProxy ? '(via CORS proxy)' : ''} ✅`, 'success');
+      setLoading(false);
     }
 
     function analyzeFromText() {
       const text = $('m3u8-content').value.trim();
-      if (!text) {
-        return showStatus('Please enter M3U8 content', 'error');
-      }
+      if (!text) return showStatus('Please enter M3U8 content', 'error');
       analyze(text, currentUrl);
     }
 
     function analyze(content, baseUrl) {
-      if (!content.includes('#EXTM3U')) {
-        return showStatus('Not a valid M3U8', 'error');
-      }
+      if (!content.includes('#EXTM3U')) return showStatus('Not a valid M3U8', 'error');
       currentRaw = content;
       const data = parseM3U8(content, baseUrl);
       render(data, content, baseUrl);
-      showStatus('Analysis completed', 'success');
     }
 
+    // 解析M3U8
     function parseM3U8(content, baseUrl) {
-      const lines = content
-        .replace(/\r/g, '')
-        .split('\n')
-        .map(line => line.trim())
-        .filter(Boolean);
-
-      const data = {
-        type: 'Media Playlist',
-        variants: [],
-        segments: [],
-        keys: [],
-        maps: [],
-        totalSeconds: 0,
-      };
-
+      const lines = content.replace(/\r/g, '').split('\n').map(line => line.trim()).filter(Boolean);
+      const data = { type: 'Media Playlist', variants: [], segments: [], keys: [], maps: [], totalSeconds: 0 };
       let pendingStream = null;
       let pendingDuration = null;
       let elapsed = 0;
 
       for (const line of lines) {
-        if (data.segments.length > 50000) {
-          throw new Error('Too many segments');
-        }
+        if (data.segments.length > 50000) throw new Error('Too many segments');
         if (line.startsWith('#EXT-X-STREAM-INF:')) {
           data.type = 'Master Playlist';
           pendingStream = parseAttributes(valueAfterColon(line));
-        }
-        else if (line.startsWith('#EXT-X-KEY:')) {
-          const key = parseAttributes(valueAfterColon(line));
-          data.keys.push(key);
-        }
-        else if (line.startsWith('#EXT-X-MAP:')) {
-          const map = parseAttributes(valueAfterColon(line));
-          data.maps.push(map);
-        }
-        else if (line.startsWith('#EXTINF:')) {
-          pendingDuration = parseFloat(
-            valueAfterColon(line).split(',')[0]
-          );
-        }
-        else if (!line.startsWith('#')) {
+        } else if (line.startsWith('#EXT-X-KEY:')) {
+          data.keys.push(parseAttributes(valueAfterColon(line)));
+        } else if (line.startsWith('#EXT-X-MAP:')) {
+          data.maps.push(parseAttributes(valueAfterColon(line)));
+        } else if (line.startsWith('#EXTINF:')) {
+          pendingDuration = parseFloat(valueAfterColon(line).split(',')[0]);
+        } else if (!line.startsWith('#')) {
           const absoluteUrl = absolutize(line, baseUrl);
           if (pendingStream) {
-            data.variants.push({
-              ...pendingStream,
-              url: absoluteUrl,
-            });
+            data.variants.push({ ...pendingStream, url: absoluteUrl });
             pendingStream = null;
-          }
-          else if (pendingDuration !== null) {
-            data.segments.push({
-              index: data.segments.length + 1,
-              duration: pendingDuration,
-              start: elapsed,
-              url: absoluteUrl,
-            });
+          } else if (pendingDuration !== null) {
+            data.segments.push({ index: data.segments.length + 1, duration: pendingDuration, start: elapsed, url: absoluteUrl });
             elapsed += pendingDuration;
             pendingDuration = null;
           }
@@ -420,128 +422,55 @@ fileSequence2.ts
       return data;
     }
 
+    // 渲染结果
     function render(data, raw, baseUrl) {
       $('playlist-type').textContent = data.type;
       $('total-duration').textContent = formatTime(data.totalSeconds);
       $('segment-count').textContent = data.segments.length;
       $('variant-count').textContent = data.variants.length;
       $('raw-content').textContent = raw;
-      $('ffmpeg-command').textContent = baseUrl
-        ? `ffmpeg -i "${baseUrl}" -c copy output.mp4`
-        : 'Enter URL to generate';
+      $('ffmpeg-command').textContent = baseUrl ? `ffmpeg -i "${baseUrl}" -c copy output.mp4` : 'Enter URL to generate';
 
       $('basic-info').innerHTML = `
-    <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">Playlist Type</dt>
-      <dd class="mt-1 font-semibold">${escapeHtml(data.type)}</dd>
-    </div>
-    <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">Total Duration</dt>
-      <dd class="mt-1 font-semibold">${formatTime(data.totalSeconds)}</dd>
-    </div>
-    <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">KEY Count</dt>
-      <dd class="mt-1 font-semibold">${data.keys.length}</dd>
-    </div>
-    <div class="rounded-xl bg-slate-950 p-3">
-      <dt class="text-slate-500">MAP Count</dt>
-      <dd class="mt-1 font-semibold">${data.maps.length}</dd>
-    </div>
-  `;
+    <div class="rounded-xl bg-slate-950 p-3"><dt class="text-slate-500">Playlist Type</dt><dd class="mt-1 font-semibold">${escapeHtml(data.type)}</dd></div>
+    <div class="rounded-xl bg-slate-950 p-3"><dt class="text-slate-500">Total Duration</dt><dd class="mt-1 font-semibold">${formatTime(data.totalSeconds)}</dd></div>
+    <div class="rounded-xl bg-slate-950 p-3"><dt class="text-slate-500">KEY Count</dt><dd class="mt-1 font-semibold">${data.keys.length}</dd></div>
+    <div class="rounded-xl bg-slate-950 p-3"><dt class="text-slate-500">MAP Count</dt><dd class="mt-1 font-semibold">${data.maps.length}</dd></div>`;
 
       renderVariants(data.variants);
       renderSegments(data.segments);
       renderSecurity(data.keys, data.maps);
     }
 
+    // 子渲染函数
     function renderVariants(variants) {
-      $('variants-body').innerHTML = variants.map((v, i) => `
-    <tr class="border-t border-slate-800 hover:bg-slate-800/40">
+      $('variants-body').innerHTML = variants.map((v, i) => `<tr class="border-t border-slate-800 hover:bg-slate-800/40">
       <td class="px-4 py-3">${i + 1}</td>
-      <td class="px-4 py-3">
-        ${formatBandwidth(v.BANDWIDTH)}
-      </td>
-      <td class="px-4 py-3">
-        ${escapeHtml(v.RESOLUTION || '-')}
-      </td>
-      <td class="px-4 py-3">
-        ${escapeHtml(v.CODECS || '-')}
-      </td>
-      <td class="px-4 py-3 break-all">
-        <a
-          href="${escapeAttr(v.url)}"
-          target="_blank"
-          class="text-blue-400 hover:underline"
-        >
-          ${escapeHtml(v.url)}
-        </a>
-      </td>
-    </tr>
-  `).join('');
+      <td class="px-4 py-3">${formatBandwidth(v.BANDWIDTH)}</td>
+      <td class="px-4 py-3">${escapeHtml(v.RESOLUTION || '-')}</td>
+      <td class="px-4 py-3">${escapeHtml(v.CODECS || '-')}</td>
+      <td class="px-4 py-3 break-all"><a href="${escapeAttr(v.url)}" target="_blank" class="text-blue-400 hover:underline">${escapeHtml(v.url)}</a></td>
+    </tr>`).join('');
     }
 
     function renderSegments(segments) {
       currentSegments = segments;
-      $('segments-body').innerHTML = segments
-        .slice(0, 300)
-        .map(s => `
-      <tr class="border-t border-slate-800 hover:bg-slate-800/40">
-        <td class="px-4 py-3">${s.index}</td>
-        <td class="px-4 py-3">
-          ${s.duration.toFixed(3)}s
-        </td>
-        <td class="px-4 py-3">
-          ${formatTime(s.start)}
-        </td>
-        <td class="px-4 py-3 break-all">
-          <a
-            href="${escapeAttr(s.url)}"
-            target="_blank"
-            class="text-blue-400 hover:underline"
-          >
-            ${escapeHtml(s.url)}
-          </a>
-        </td>
-      </tr>
-    `).join('');
-
-      $('segments-note').textContent = `
-    Total: ${segments.length} segments, showing up to 300
-  `;
+      $('segments-body').innerHTML = segments.slice(0, 300).map(s => `<tr class="border-t border-slate-800 hover:bg-slate-800/40">
+      <td class="px-4 py-3">${s.index}</td>
+      <td class="px-4 py-3">${s.duration.toFixed(3)}s</td>
+      <td class="px-4 py-3">${formatTime(s.start)}</td>
+      <td class="px-4 py-3 break-all"><a href="${escapeAttr(v.url)}" target="_blank" class="text-blue-400 hover:underline">${escapeHtml(s.url)}</a></td>
+    </tr>`).join('');
+      $('segments-note').textContent = `Total: ${segments.length} segments, showing up to 300`;
     }
 
     function renderSecurity(keys, maps) {
-      const keyHtml = keys.map((key, i) => `
-    <div class="rounded-xl bg-slate-950 p-4">
-      <p class="text-amber-300 font-semibold mb-3">
-        KEY #${i + 1}
-      </p>
-      ${Object.entries(key).map(([k, v]) => `
-        <p class="break-all">
-          <span class="text-slate-500">${escapeHtml(k)}: </span>
-          ${escapeHtml(v)}
-        </p>
-      `).join('')}
-    </div>
-  `).join('');
-
-      const mapHtml = maps.map((map, i) => `
-    <div class="rounded-xl bg-slate-950 p-4">
-      <p class="text-cyan-300 font-semibold mb-3">
-        MAP #${i + 1}
-      </p>
-      ${Object.entries(map).map(([k, v]) => `
-        <p class="break-all">
-          <span class="text-slate-500">${escapeHtml(k)}: </span>
-          ${escapeHtml(v)}
-        </p>
-      `).join('')}
-    </div>
-  `).join('');
-
+      const keyHtml = keys.map((k, i) => `<div class="rounded-xl bg-slate-950 p-4"><p class="text-amber-300 font-semibold mb-3">KEY #${i + 1}</p>${Object.entries(k).map(([key, val]) => `<p class="break-all"><span class="text-slate-500">${escapeHtml(key)}: </span>${escapeHtml(val)}</p>`).join('')}</div>`).join('');
+      const mapHtml = maps.map((m, i) => `<div class="rounded-xl bg-slate-950 p-4"><p class="text-cyan-300 font-semibold mb-3">MAP #${i + 1}</p>${Object.entries(m).map(([key, val]) => `<p class="break-all"><span class="text-slate-500">${escapeHtml(key)}: </span>${escapeHtml(val)}</p>`).join('')}</div>`).join('');
       $('security-list').innerHTML = keyHtml + mapHtml;
     }
 
+    // 清空结果
     function clearResult() {
       $('playlist-type').textContent = '-';
       $('total-duration').textContent = '-';
@@ -553,239 +482,120 @@ fileSequence2.ts
       $('security-list').innerHTML = '';
       $('raw-content').textContent = '';
       $('ffmpeg-command').textContent = '';
+      $('m3u8-url').value = '';
+      $('m3u8-content').value = '';
       showStatus('Results cleared', 'success');
     }
 
+    // 工具函数
     function parseAttributes(input) {
       const attrs = {};
       const regex = /([A-Z0-9-]+)=((?:"[^"]*")|[^,]*)/g;
       let match;
-      while ((match = regex.exec(input)) !== null) {
-        attrs[match[1]] = match[2];
-      }
+      while ((match = regex.exec(input)) !== null) attrs[match[1]] = match[2];
       return attrs;
     }
+    function valueAfterColon(line) { return line.slice(line.indexOf(':') + 1).trim(); }
+    function absolutize(uri, baseUrl) { try { return baseUrl ? new URL(uri, baseUrl).href : uri; } catch { return uri; } }
+    function formatBandwidth(value) { const n = Number(value); return n ? `${(n / 1000000).toFixed(2)} Mbps` : '-'; }
+    function formatTime(seconds) { const h = Math.floor(seconds / 3600), m = Math.floor((seconds % 3600) / 60), s = Math.floor(seconds % 60); return h ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${m}:${String(s).padStart(2, '0')}`; }
+    function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+    function escapeAttr(value) { return escapeHtml(value); }
 
-    function valueAfterColon(line) {
-      return line.slice(line.indexOf(':') + 1).trim();
-    }
-
-    function absolutize(uri, baseUrl) {
-      try {
-        return baseUrl
-          ? new URL(uri, baseUrl).href
-          : uri;
-      }
-      catch {
-        return uri;
-      }
-    }
-
-    function formatBandwidth(value) {
-      const n = Number(value);
-      return n
-        ? `${(n / 1000000).toFixed(2)} Mbps`
-        : '-';
-    }
-
-    function formatTime(seconds) {
-      const h = Math.floor(seconds / 3600);
-      const m = Math.floor((seconds % 3600) / 60);
-      const s = Math.floor(seconds % 60);
-      return h
-        ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-        : `${m}:${String(s).padStart(2, '0')}`;
-    }
-
-    function escapeHtml(value) {
-      return String(value).replace(/[&<>"']/g, c => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;',
-      }[c]));
-    }
-
-    function escapeAttr(value) {
-      return escapeHtml(value);
-    }
-
+    // 加载状态
     function setLoading(loading) {
       $('analyze-url-btn').disabled = loading;
-      $('analyze-url-btn').textContent = loading
-        ? 'Analyzing...'
-        : 'Analyze URL';
+      $('analyze-url-btn').textContent = loading ? 'Analyzing...' : 'Analyze URL';
     }
 
+    // 状态提示
     function showStatus(message, type) {
       const el = $('status');
-      el.classList.remove('hidden');
-      let className = 'border-blue-500/50 bg-blue-950/50 text-blue-200';
-      if (type === 'error') {
-        className = 'border-red-500/50 bg-red-950/50 text-red-200';
-      }
-      if (type === 'success') {
-        className = 'border-emerald-500/50 bg-emerald-950/50 text-emerald-200';
-      }
-      el.className = `mb-6 rounded-2xl border p-4 text-sm ${className}`;
+      let className = 'mb-6 rounded-2xl border p-4 text-sm border-blue-500/50 bg-blue-950/50 text-blue-200';
+      if (type === 'error') className = 'mb-6 rounded-2xl border p-4 text-sm border-red-500/50 bg-red-950/50 text-red-200';
+      if (type === 'success') className = 'mb-6 rounded-2xl border p-4 text-sm border-emerald-500/50 bg-emerald-950/50 text-emerald-200';
+      if (type === 'info') className = 'mb-6 rounded-2xl border p-4 text-sm border-amber-500/50 bg-amber-950/50 text-amber-200';
+      el.className = className;
       el.textContent = message;
     }
 
+    // 复制文本
     async function copyText(text) {
-      try {
-        await navigator.clipboard.writeText(text);
-        showStatus('Copied', 'success');
-      }
-      catch {
-        showStatus('Copy failed', 'error');
-      }
+      try { await navigator.clipboard.writeText(text); showStatus('Copied', 'success'); }
+      catch { showStatus('Copy failed', 'error'); }
     }
 
     // 分片搜索
     $('segment-filter').addEventListener('input', () => {
-      const keyword = $('segment-filter')
-        .value
-        .trim()
-        .toLowerCase();
-      const filtered = currentSegments.filter(segment => {
-        return segment.url.toLowerCase().includes(keyword);
-      });
-      $('segments-body').innerHTML = filtered
-        .slice(0, 300)
-        .map(s => `
-      <tr class="border-t border-slate-800 hover:bg-slate-800/40">
-        <td class="px-4 py-3">${s.index}</td>
-        <td class="px-4 py-3">
-          ${s.duration.toFixed(3)}s
-        </td>
-        <td class="px-4 py-3">
-          ${formatTime(s.start)}
-        </td>
-        <td class="px-4 py-3 break-all">
-          <a
-            href="${escapeAttr(s.url)}"
-            target="_blank"
-            class="text-blue-400 hover:underline"
-          >
-            ${escapeHtml(s.url)}
-          </a>
-        </td>
-      </tr>
-    `).join('');
-
-      $('segments-note').textContent = `
-    Search results: ${filtered.length} segments
-  `;
+      const keyword = $('segment-filter').value.trim().toLowerCase();
+      const filtered = currentSegments.filter(s => s.url.toLowerCase().includes(keyword));
+      $('segments-body').innerHTML = filtered.slice(0, 300).map(s => `<tr class="border-t border-slate-800 hover:bg-slate-800/40">
+      <td class="px-4 py-3">${s.index}</td>
+      <td class="px-4 py-3">${s.duration.toFixed(3)}s</td>
+      <td class="px-4 py-3">${formatTime(s.start)}</td>
+      <td class="px-4 py-3 break-all"><a href="${escapeAttr(s.url)}" target="_blank" class="text-blue-400 hover:underline">${escapeHtml(s.url)}</a></td>
+    </tr>`).join('');
+      $('segments-note').textContent = `Search results: ${filtered.length} segments`;
     });
 
-    // 回车自动分析
-    $('m3u8-url').addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        analyzeFromUrl();
-      }
-    });
+    // 回车分析
+    $('m3u8-url').addEventListener('keydown', e => { if (e.key === 'Enter') analyzeFromUrl(); });
 
-    // 页面 URL 自动分析
+    // URL参数自动解析
     window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const url = params.get('url');
-      if (url) {
-        $('m3u8-url').value = url;
+      const url = new URLSearchParams(window.location.search).get('url');
+      if (url) { $('m3u8-url').value = url; analyzeFromUrl(); }
+    });
+
+    // ✅ 新增：一键测试链接
+    document.querySelectorAll('.test-link-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        $('m3u8-url').value = btn.dataset.url;
         analyzeFromUrl();
-      }
+      });
     });
 
-    // HLS 校验
-    function validateHLS(data) {
-      const warnings = [];
-      if (!data.segments.length && !data.variants.length) {
-        warnings.push('Empty playlist');
-      }
-      if (data.segments.length > 0) {
-        const maxDuration = Math.max(
-          ...data.segments.map(s => s.duration)
-        );
-        if (maxDuration > 20) {
-          warnings.push('Long segments detected');
-        }
-      }
-      if (data.keys.length > 0) {
-        warnings.push('HLS encryption detected');
-      }
-      return warnings;
-    }
-
-    // 统计信息
-    function calculateStats(data) {
-      const durations = data.segments.map(s => s.duration);
-      if (!durations.length) {
-        return null;
-      }
-      const min = Math.min(...durations);
-      const max = Math.max(...durations);
-      const avg = durations.reduce((a, b) => a + b, 0) / durations.length;
-      return { min, max, avg };
-    }
-
-    // 复制分享链接
-    const shareBtn = document.createElement('button');
-    shareBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
-    shareBtn.textContent = 'Copy Share Link';
-    shareBtn.addEventListener('click', async () => {
-      if (!currentUrl) {
-        return showStatus('Analyze a URL first', 'error');
-      }
+    // ✅ 新增：复制分享链接
+    $('copy-share-btn').addEventListener('click', async () => {
+      if (!currentUrl) return showStatus('Analyze a URL first', 'error');
       const shareUrl = `${location.origin}${location.pathname}?url=${encodeURIComponent(currentUrl)}`;
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        showStatus('Share link copied', 'success');
-      } catch {
-        showStatus('Copy failed', 'error');
-      }
+      try { await navigator.clipboard.writeText(shareUrl); showStatus('Share link copied', 'success'); }
+      catch { showStatus('Copy failed', 'error'); }
     });
-    document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(shareBtn);
 
-    // 导出JSON报告
-    const exportBtn = document.createElement('button');
-    exportBtn.className = 'bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-2 text-sm';
-    exportBtn.textContent = 'Export JSON';
-    exportBtn.addEventListener('click', () => {
+    // ✅ 新增：导出JSON报告
+    $('export-json-btn').addEventListener('click', () => {
       const report = {
         url: currentUrl,
         generatedAt: new Date().toISOString(),
         raw: currentRaw,
-        segments: currentSegments,
+        segments: currentSegments
       };
-      const blob = new Blob(
-        [JSON.stringify(report, null, 2)],
-        { type: 'application/json' }
-      );
+      const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = 'm3u8-report.json';
       a.click();
+      showStatus('JSON exported', 'success');
     });
-    document.querySelector('#copy-ffmpeg-btn').parentNode.appendChild(exportBtn);
 
-    // 拖拽上传m3u8文件
+    // ✅ 新增：拖拽上传M3U8文件
     const textarea = $('m3u8-content');
-    textarea.addEventListener('dragover', e => {
-      e.preventDefault();
-    });
+    textarea.addEventListener('dragover', e => { e.preventDefault(); });
     textarea.addEventListener('drop', async e => {
       e.preventDefault();
       const file = e.dataTransfer.files[0];
       if (!file) return;
-      if (!file.name.endsWith('.m3u8')) {
-        return showStatus('Upload a .m3u8 file', 'error');
-      }
+      if (!file.name.endsWith('.m3u8')) return showStatus('Upload a .m3u8 file', 'error');
       const text = await file.text();
       textarea.value = text;
       showStatus('File loaded', 'success');
     });
   </script>
-  <script src="/resane/js/lang-switcher.js"></script>
+
+    <!-- 脚本（新增移动端导航逻辑） -->
+  <script src="../resane/js/responsive-nav.js"></script>
+     <script src="../resane/js/lang-switcher.js"></script>
 </body>
 
 </html>

@@ -13,13 +13,133 @@
   <meta property="og:description" content="免费在线M3U8播放器，支持播放、解析、转换、分析HLS流媒体视频，无需安装插件。">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_CN">
-  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
-  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
-  <script src="../resane/js/taiwindcss.js"></script>
-  <script src="../resane/js/jquery.min.js"></script>
-  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
-</head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+  <style>
+    /* 自定义样式 */
+    .title-glow {
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .card-glow {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .card-glow:hover {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+    }
+
+    .nav-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 移动端导航样式 */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: #0f172a;
+      z-index: 1000;
+      transition: right 0.3s ease;
+      padding: 80px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* 汉堡菜单样式 */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    /* 折叠面板样式 */
+    .faq-item {
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-item .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* 加载动画 */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-slate-950 text-white">
@@ -47,8 +167,8 @@
       <div class="relative">
         <select id="language-selector"
           class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="en">English</option>
           <option value="zh">中文</option>
+          <option value="en">English</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
@@ -70,24 +190,23 @@
 
   <!-- 移动端导航菜单 -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">首页</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
-    <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">帮助中心</a>
-    <a href="/about.html" class="hover:text-blue-400">关于</a>
+    <a href="/" class="text-blue-400 font-bold text-lg">首页</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400 text-lg">M3U8转MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400 text-lg">分析器</a>
+    <a href="/ffmpeg/" class="hover:text-blue-400 text-lg">FFmpeg</a>
+    <a href="/post/" class="hover:text-blue-400 text-lg">帮助中心</a>
+    <a href="/about.html" class="hover:text-blue-400 text-lg">关于</a>
   </div>
 
   <!-- 遮罩层 -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-  <!-- 主体内容（保持不变） -->
+  <!-- 主体内容 -->
   <section class="text-center py-20 px-4">
     <h1 class="text-4xl font-bold mb-4 title-glow">m3u8在线播放器</h1>
     <p class="text-gray-400 mb-8">M3U8在线播放器是一种基于 HLS（HTTP Live Streaming）协议的网页工具，专为播放流媒体视频设计。</p>
     <div class="flex flex-col md:flex-row justify-center gap-3 max-w-2xl mx-auto">
-      <input type="text" id="hero-m3u8-url" placeholder="请输入m3u8播放地址"
-        value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+      <input type="text" id="hero-m3u8-url" placeholder="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
         class="flex-1 px-4 py-3 rounded-lg text-black shadow-md" />
       <button id="play-btn"
         class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶
@@ -102,9 +221,10 @@
           <span id="player-status" class="text-sm text-slate-400">尚未播放</span>
         </div>
         <div id="player-shell" class="overflow-hidden rounded-xl bg-black min-h-[220px]">
-          <video id="player-container-id" preload="auto" playsinline webkit-playsinline
+          <video id="player-container-id" preload="auto" playsinline webkit-playsinline controls
             class="w-full min-h-[220px] bg-black"></video>
         </div>
+        <div id="error-message" class="mt-3 text-red-400 text-sm hidden"></div>
       </div>
     </div>
   </section>
@@ -156,15 +276,13 @@
     <h2 class="text-2xl font-bold mb-4 title-glow">嵌入网站：</h2>
     <div class="bg-slate-800 p-6 rounded-lg mb-4 text-left text-slate-200 shadow-lg">
       <pre
-        class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=https://****index.m3u8"&gt;&lt;/iframe&gt;</pre>
+        class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=你的M3U8地址" width="640" height="360" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</pre>
     </div>
-    <p class="text-gray-400 leading-relaxed">M3U8Player 是一款实现 HTTP 实时流客户端的 Chrome 浏览器扩展工具。你可以播放 .m3u8 HTTP Live
-      Streaming (HLS)。它依靠 HTML5 视频和媒体源扩展进行播放。它的工作原理是将 MPEG-2 传输流和 AAC/MP3 流转换成 ISO BMFF (MP4) 片段。如果浏览器中有 Web
-      Worker，可使用它异步执行转码。它还支持 HLS + fmp4。</p>
+    <p class="text-gray-400 leading-relaxed">将上述代码中的"你的M3U8地址"替换为实际的M3U8流地址，即可将播放器嵌入到你的网站中。支持自动播放、全屏等功能。</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-8">
-    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">什么是 M3U8?</h2>
+    <h2 class="text-2xl font-bold mb-4 title-glow">什么是 M3U8?</h2>
     <p class="text-gray-400 leading-relaxed">m3u8 后缀文件，是采用 UTF-8
       编码的纯文本播放列表格式。本身不储存视频、音频内容，只记录各类媒体资源的访问地址，供播放器读取并加载对应影音内容。</p>
     <p class="text-gray-400 leading-relaxed mt-4">日常使用场景十分广泛：既能用于网络电台的线上音源挂载，也能本地手动创建，整理专属音乐、视频合集清单。借助 m3u8
@@ -185,60 +303,84 @@
   <section class="max-w-4xl mx-auto px-6 py-16">
     <h2 class="text-2xl font-bold mb-6 title-glow">常见问题</h2>
     <div class="space-y-4">
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          协议是什么？</a>
-        <p class="text-gray-400 text-sm mt-2">是 HLS 流媒体索引协议，多用于网络视频分发。</p>
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">M3U8 协议是什么？</h3>
+          <span class="faq-icon text-gray-400">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-400 text-sm mt-2">是 HLS
+            流媒体索引协议，由苹果公司开发，多用于网络视频分发和直播场景。它将视频切分为多个小的TS分片，通过m3u8索引文件记录分片地址和顺序，客户端按需加载播放。</p>
+        </div>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/play-m3u8-video.html" class="text-blue-400 hover:text-blue-300 font-semibold">怎样播放 M3U8 视频文件？</a>
-        <p class="text-gray-400 text-sm mt-2">用支持流媒体的播放器、浏览器或专用解析工具直接打开链接播放。</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">怎样播放 M3U8 视频文件？</h3>
+          <span class="faq-icon text-gray-400">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-400 text-sm mt-2">用支持流媒体的播放器（如VLC）、浏览器插件或专用在线解析工具直接打开链接播放。本工具就是一个免费的在线M3U8播放器，只需输入地址即可播放。
+          </p>
+        </div>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-advantages.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 格式有哪些优势？</a>
-        <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强、易防盗链。</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">M3U8 格式有哪些优势？</h3>
+          <span class="faq-icon text-gray-400">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强（可自动切换不同码率）、易防盗链、支持直播和点播。</p>
+        </div>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          和普通视频格式有什么不同？</a>
-        <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">M3U8 和普通视频格式有什么不同？</h3>
+          <span class="faq-icon text-gray-400">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。M3U8适合网络传输，普通视频适合本地存储。</p>
+        </div>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/common-video-formats.html"
-          class="text-blue-400 hover:text-blue-300 font-semibold">常见的视频播放格式有哪些？</a>
-        <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">常见的视频播放格式有哪些？</h3>
+          <span class="faq-icon text-gray-400">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。其中MP4是目前最通用的格式，WebM是开源免费的格式。</p>
+        </div>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          在直播领域如何使用？</a>
-        <p class="text-gray-400 text-sm mt-2">直播实时切片生成索引，客户端持续拉取分片，实现低延迟在线直播。</p>
-      </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8
-          协议的运行原理？</a>
-        <p class="text-gray-400 text-sm mt-2">把视频切为短小 TS 分片，m3u8 文件记录分片顺序、地址，按需逐段加载。</p>
-      </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">解析 M3U8
-          文件的方法？</a>
-        <p class="text-gray-400 text-sm mt-2">用代码、解析工具读取索引文本，提取分片链接，合并合成完整视频。</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">M3U8 在直播领域如何使用？</h3>
+          <span class="faq-icon text-gray-400">▼</span>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-400 text-sm mt-2">直播时服务器会实时将视频切片生成TS分片，并不断更新m3u8索引文件。客户端持续拉取最新的分片，实现低延迟在线直播。</p>
+        </div>
       </div>
     </div>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
     © 2026 m3u8在线播放器 | 资源来源于网络，如有侵权请联系客服删除
-    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">隐私政策</a>
+    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm ml-2">隐私政策</a>
   </footer>
 
-  <!-- 脚本（新增移动端导航逻辑） -->
-  <script src="../resane/js/responsive-nav.js"></script>
-     <script src="../resane/js/lang-switcher.js"></script>
- 
   <script>
+    // 全局变量
     const heroM3u8UrlInput = document.getElementById('hero-m3u8-url');
-    let player;
+    const playerStatus = document.getElementById('player-status');
+    const errorMessage = document.getElementById('error-message');
+    const video = document.getElementById('player-container-id');
+    let hls;
 
+    // 获取URL参数
     function getUrlParam(name) {
       var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
       var r = window.location.search.substr(1).match(reg);
@@ -246,44 +388,170 @@
       return null;
     }
 
-    function setPlayerStatus(text) {
-      const el = document.getElementById('player-status');
-      if (el) el.textContent = text;
+    // 设置播放器状态
+    function setPlayerStatus(text, isLoading = false) {
+      if (isLoading) {
+        playerStatus.innerHTML = `<span class="loading mr-2"></span>${text}`;
+      } else {
+        playerStatus.textContent = text;
+      }
     }
 
-    function initPlayer(e) {
-      window.TCPlayer && e && (
-        player || (
-          player = TCPlayer("player-container-id", {
-            licenseUrl: "这里粘贴你申请到的 licenseUrl",
-            sources: [{ src: e }]
-          })
-        ),
-        player.src(e),
-        setPlayerStatus("Playing")
-      )
+    // 显示错误信息
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.classList.remove('hidden');
+      setPlayerStatus('播放失败');
     }
 
+    // 隐藏错误信息
+    function hideError() {
+      errorMessage.classList.add('hidden');
+    }
+
+    // 验证URL格式
+    function isValidUrl(string) {
+      try {
+        new URL(string);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    // 初始化HLS播放器
+    function initPlayer(url) {
+      // 先销毁之前的播放器实例
+      if (hls) {
+        hls.destroy();
+        hls = null;
+      }
+
+      hideError();
+      setPlayerStatus('正在加载...', true);
+
+      // 检查浏览器是否支持HLS
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          debug: false,
+          enableWorker: true,
+          lowLatencyMode: true
+        });
+
+        hls.loadSource(url);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          video.play().catch(function (err) {
+            showError('自动播放失败，请点击视频播放按钮');
+          });
+          setPlayerStatus('正在播放');
+        });
+
+        hls.on(Hls.Events.ERROR, function (event, data) {
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                showError('网络错误：无法加载视频流，请检查地址是否正确');
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                showError('媒体错误：视频格式不支持或已损坏');
+                hls.recoverMediaError();
+                break;
+              default:
+                showError('播放失败：发生未知错误');
+                hls.destroy();
+                break;
+            }
+          }
+        });
+      }
+      // 浏览器原生支持HLS（如Safari）
+      else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = url;
+        video.addEventListener('loadedmetadata', function () {
+          video.play().catch(function (err) {
+            showError('自动播放失败，请点击视频播放按钮');
+          });
+          setPlayerStatus('正在播放');
+        });
+
+        video.addEventListener('error', function () {
+          showError('播放失败：无法加载视频流');
+        });
+      }
+      else {
+        showError('您的浏览器不支持HLS播放，请使用Chrome、Firefox或Safari浏览器');
+      }
+    }
+
+    // 播放按钮点击事件
     document.getElementById('play-btn').addEventListener('click', function () {
-      const e = heroM3u8UrlInput.value.trim();
-      initPlayer(e);
+      const url = heroM3u8UrlInput.value.trim();
+
+      if (!url) {
+        showError('请输入M3U8播放地址');
+        return;
+      }
+
+      if (!isValidUrl(url)) {
+        showError('请输入有效的URL地址');
+        return;
+      }
+
+      initPlayer(url);
     });
 
+    // 分析按钮点击事件
     document.getElementById('analyze-btn').addEventListener('click', function () {
-      const e = heroM3u8UrlInput.value.trim();
-      window.location.href = e ? '/analyzer/?url=' + encodeURIComponent(e) : '/analyzer/';
+      const url = heroM3u8UrlInput.value.trim();
+      window.location.href = url ? '/analyzer/?url=' + encodeURIComponent(url) : '/analyzer/';
     });
 
+    // 回车键播放
     heroM3u8UrlInput.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         document.getElementById('play-btn').click();
       }
     });
 
+    // 移动端导航
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+    hamburger.addEventListener('click', function () {
+      mobileNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+    });
+
+    mobileNavOverlay.addEventListener('click', function () {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+    });
+
+    // 常见问题折叠面板
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.addEventListener('click', function () {
+        this.classList.toggle('active');
+      });
+    });
+
+    // 语言切换（基础实现）
+    const languageSelector = document.getElementById('language-selector');
+    languageSelector.addEventListener('change', function () {
+      const lang = this.value;
+      // 这里可以添加完整的多语言切换逻辑
+      alert(`语言已切换为：${this.options[this.selectedIndex].text}，完整多语言功能正在开发中`);
+    });
+
+    // 页面加载完成后自动加载URL参数中的地址
     document.addEventListener('DOMContentLoaded', function () {
-      const e = getUrlParam('url') || heroM3u8UrlInput.value.trim();
-      heroM3u8UrlInput.value = e;
-      setPlayerStatus(e ? 'Click Play to load' : 'Not playing');
+      const url = getUrlParam('url') || heroM3u8UrlInput.value.trim();
+      heroM3u8UrlInput.value = url;
+      setPlayerStatus(url ? '点击播放按钮开始播放' : '尚未播放');
     });
   </script>
 </body>
