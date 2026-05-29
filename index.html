@@ -1,24 +1,150 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>M3U8 Online Player - Free HLS Streaming Play, Parse, Convert Tool</title>
-  <meta name="description" content="M3U8 Online Player supports HLS streaming playback, M3U8 to MP4 conversion, bitrate analysis, FFmpeg command generation. Free, secure, no download required, usable directly in browser.">
-  <meta name="keywords" content="m3u8 player, m3u8 online player, m3u8 to mp4, hls player, online parse m3u8">
+  <title>M3U8 Online Player - Free HLS Streaming Media Online Playback, Parsing, Conversion Tool</title>
+  <meta name="description" content="M3U8 Online Player supports HLS streaming media playback, M3U8 to MP4 conversion, bitrate analysis, and FFmpeg command generation. Free, secure, no download required, accessible directly in your browser.">
+  <meta name="keywords" content="m3u8 player, m3u8 online playback, m3u8 to mp4, hls player, online parse m3u8">
   <meta name="robots" content="index,follow">
   <meta name="googlebot" content="index,follow">
-  <meta property="og:title" content="M3U8 Online Player - Free HLS Streaming Player Tool">
-  <meta property="og:description" content="Free online M3U8 player for playing, parsing, converting and analyzing HLS streaming videos without plugins.">
+  <meta property="og:title" content="M3U8 Online Player - Free HLS Streaming Media Online Playback Tool">
+  <meta property="og:description" content="Free online M3U8 player supporting playback, parsing, conversion, and analysis of HLS streaming media videos, no plugin installation required.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
-  <link rel="stylesheet" href="./resane/css/tcplayer.min.css" />
-  <script src="./resane/js/tcplayer.v5.1.0.min.js"></script>
-  <script src="./resane/js/taiwindcss.js"></script>
-  <script src="./resane/js/jquery.min.js"></script>
-  <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
+  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <script src="../resane/js/responsive-nav.min.js"></script>
+  <script src="../resane/js/hls.min.js"></script>
 
+
+  <style>
+    /* Custom styles */
+    .title-glow {
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .card-glow {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .card-glow:hover {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+    }
+
+    .nav-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Mobile navigation styles */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: #0f172a;
+      z-index: 1000;
+      transition: right 0.3s ease;
+      padding: 80px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Hamburger menu styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    /* Accordion styles */
+    .faq-item {
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-item .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Loading animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-slate-950 text-white">
@@ -26,12 +152,12 @@
     class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,#1d4ed866,transparent_35%),radial-gradient(circle_at_bottom_right,#0f766e55,transparent_30%)]">
   </div>
 
-  <!-- 导航栏 -->
+  <!-- Navigation bar -->
   <header
     class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-950/90 backdrop-blur nav-shadow">
     <div class="text-xl font-bold">M3U8 Online Player</div>
 
-    <!-- 桌面端导航 -->
+    <!-- Desktop navigation -->
     <nav class="space-x-6 text-sm">
       <a href="/" class="text-blue-400 font-bold">Home</a>
       <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
@@ -41,13 +167,14 @@
       <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
 
-    <!-- 右侧操作区 -->
+    <!-- Right action area -->
     <div class="flex items-center gap-4">
       <div class="relative">
         <select id="language-selector"
           class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="en">English</option>
-          <option value="zh">中文</option>
+         
+          <option value="en" selected>English</option>
+           <option value="zh">中文</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
@@ -55,10 +182,11 @@
       </div>
       <a href="/preview.html">
         <button
-          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">Start Playing</button>
+          class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶
+          Start Playback</button>
       </a>
 
-      <!-- 汉堡按钮（移动端） -->
+      <!-- Hamburger button (mobile) -->
       <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -67,26 +195,25 @@
     </div>
   </header>
 
-  <!-- 移动端导航菜单 -->
+  <!-- Mobile navigation menu -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold">Home</a>
-    <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
-    <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
-    <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-    <a href="/post/" class="hover:text-blue-400">Help Center</a>
-    <a href="/about.html" class="hover:text-blue-400">About</a>
+    <a href="/" class="text-blue-400 font-bold text-lg">Home</a>
+    <a href="/m3u8_to_mp4/" class="hover:text-blue-400 text-lg">M3U8 to MP4</a>
+    <a href="/analyzer/" class="hover:text-blue-400 text-lg">Analyzer</a>
+    <a href="/ffmpeg/" class="hover:text-blue-400 text-lg">FFmpeg</a>
+    <a href="/post/" class="hover:text-blue-400 text-lg">Help Center</a>
+    <a href="/about.html" class="hover:text-blue-400 text-lg">About</a>
   </div>
 
-  <!-- 遮罩层 -->
+  <!-- Overlay -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
-  <!-- 主体内容（保持不变） -->
+  <!-- Main content -->
   <section class="text-center py-20 px-4">
     <h1 class="text-4xl font-bold mb-4 title-glow">M3U8 Online Player</h1>
-    <p class="text-gray-400 mb-8">M3U8 Online Player is a web tool based on the HLS (HTTP Live Streaming) protocol, designed for streaming video playback.</p>
+    <p class="text-gray-400 mb-8">M3U8 Online Player is a web-based tool built on the HLS (HTTP Live Streaming) protocol, designed specifically for playing streaming media videos.</p>
     <div class="flex flex-col md:flex-row justify-center gap-3 max-w-2xl mx-auto">
-      <input type="text" id="hero-m3u8-url" placeholder="Enter M3U8 URL"
-        value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+      <input type="text" id="hero-m3u8-url" placeholder="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
         class="flex-1 px-4 py-3 rounded-lg text-black shadow-md" />
       <button id="play-btn"
         class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶
@@ -98,18 +225,19 @@
       <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 shadow-2xl shadow-blue-950/30 md:p-6">
         <div class="mb-3 flex items-center justify-between gap-3">
           <h2 class="text-lg font-bold title-glow">Player Preview</h2>
-          <span id="player-status" class="text-sm text-slate-400">Not playing</span>
+          <span id="player-status" class="text-sm text-slate-400">Not playing yet</span>
         </div>
         <div id="player-shell" class="overflow-hidden rounded-xl bg-black min-h-[220px]">
-          <video id="player-container-id" preload="auto" playsinline webkit-playsinline
+          <video id="player-container-id" preload="auto" playsinline webkit-playsinline controls
             class="w-full min-h-[220px] bg-black"></video>
         </div>
+        <div id="error-message" class="mt-3 text-red-400 text-sm hidden"></div>
       </div>
     </div>
   </section>
 
   <section class="px-6 py-16 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mb-10 text-center title-glow">All-in-One M3U8 Tools</h2>
+    <h2 class="text-2xl font-bold mb-10 text-center title-glow">All-in-One M3U8 Toolkit</h2>
     <div class="grid md:grid-cols-4 gap-6">
       <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
         <h3 class="font-bold mb-2">M3U8 Player</h3>
@@ -118,17 +246,17 @@
       </a>
       <a href="/analyzer/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
         <h3 class="font-bold mb-2">M3U8 Analyzer</h3>
-        <p class="text-gray-400 text-sm">View streaming details</p>
+        <p class="text-gray-400 text-sm">View streaming media details</p>
         <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/m3u8_to_mp4/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
         <h3 class="font-bold mb-2">Convert to MP4</h3>
-        <p class="text-gray-400 text-sm">Convert M3U8 to MP4</p>
+        <p class="text-gray-400 text-sm">Convert M3U8 to MP4 format</p>
         <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
       <a href="/ffmpeg/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
         <h3 class="font-bold mb-2">FFmpeg Generator</h3>
-        <p class="text-gray-400 text-sm">Auto generate FFmpeg commands</p>
+        <p class="text-gray-400 text-sm">Automatically generate FFmpeg commands</p>
         <div class="mt-4 text-blue-400 text-sm">Open →</div>
       </a>
     </div>
@@ -138,15 +266,15 @@
     <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
       <div>
         <h3 class="font-bold mb-2 text-lg">⚡ Fast Playback</h3>
-        <p class="text-gray-400">Start streaming instantly</p>
+        <p class="text-gray-400">Instant streaming playback</p>
       </div>
       <div>
-        <h3 class="font-bold mb-2 text-lg">🔒 Safe & Secure</h3>
-        <p class="text-gray-400">No data stored, privacy protected</p>
+        <h3 class="font-bold mb-2 text-lg">🔒 Secure & Reliable</h3>
+        <p class="text-gray-400">No data storage, enhanced privacy</p>
       </div>
       <div>
         <h3 class="font-bold mb-2 text-lg">🆓 Free to Use</h3>
-        <p class="text-gray-400">All tools available for free</p>
+        <p class="text-gray-400">All tools available at no cost</p>
       </div>
     </div>
   </section>
@@ -155,74 +283,85 @@
     <h2 class="text-2xl font-bold mb-4 title-glow">Embed to Website:</h2>
     <div class="bg-slate-800 p-6 rounded-lg mb-4 text-left text-slate-200 shadow-lg">
       <pre
-        class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=https://****index.m3u8"&gt;&lt;/iframe&gt;</pre>
+        class="whitespace-pre-wrap">&lt;iframe src="https://m3u8player.org/player.html?url=Your_M3U8_URL" width="640" height="360" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</pre>
     </div>
-    <p class="text-gray-400 leading-relaxed">M3U8Player is a Chrome extension that implements an HTTP Live Streaming client. You can play .m3u8 HTTP Live Streaming (HLS). It relies on HTML5 video and MediaSource Extensions for playback. It works by converting MPEG-2 transport streams and AAC/MP3 streams into ISO BMFF (MP4) fragments. Web Workers are used for asynchronous transcoding if available in the browser. It also supports HLS + fmp4.</p>
+    <p class="text-gray-400 leading-relaxed">Replace "Your_M3U8_URL" in the code above with your actual M3U8 stream URL to embed the player into your website. Supports autoplay, fullscreen, and other features.</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-8">
-    <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">What is M3U8?</h2>
-    <p class="text-gray-400 leading-relaxed">M3U8 is a UTF-8 encoded plain text playlist format. It does not store video or audio content itself, but records URLs of media resources for players to load and play corresponding media.</p>
-    <p class="text-gray-400 leading-relaxed mt-4">It is widely used: for online radio streaming, local music/video playlists. With M3U8 lists, you can play multiple media files with one click.</p>
-    <p class="text-gray-400 leading-relaxed mt-4">It supports absolute paths, relative paths, and online URLs. Originally designed for audio playlists, it is now widely used for online videos and live streaming, compatible with most major players.</p>
+    <h2 class="text-2xl font-bold mb-4 title-glow">What is M3U8?</h2>
+    <p class="text-gray-400 leading-relaxed">Files with the .m3u8 extension are plain text playlist formats encoded in UTF-8. They do not store video or audio content themselves, but only record access addresses of various media resources for players to read and load corresponding audio and video content.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">It has a wide range of daily use cases: it can be used for online audio source mounting of internet radio stations, or manually created locally to organize exclusive music and video collection lists. With the m3u8 list, you can play your favorite audio and video resources in batches with one click, eliminating the trouble of opening files one by one.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">The file can associate individual media files, entire resource folders through absolute paths, relative paths, or network URLs, and can also add text comments to label content notes. Initially, this format was only used for audio playback, such as MP3 track lists, but now it is widely used in video scenarios such as online short videos and live streaming media, and mainstream playback software is basically fully compatible with the m3u8 format.</p>
 
     <h2 class="text-2xl font-bold mb-4 mt-10 title-glow">How to Open M3U8 Files?</h2>
-    <p class="text-gray-400 leading-relaxed">You can open and view M3U8 code with any text editor (Notepad, etc.), but text editors cannot play media.</p>
-    <p class="text-gray-400 leading-relaxed mt-4">To play M3U8 streams, use professional players like VLC, iTunes, XMMS (Linux), CocoModX (Mac).</p>
-    <p class="text-gray-400 leading-relaxed mt-4">You can also use online M3U8 players. Note: online tools only support URL-based M3U8, not local files, and require the stream to be accessible online.</p>
+    <p class="text-gray-400 leading-relaxed">Any text editor such as Notepad that comes with your computer can directly open and view the internal code and resource links of m3u8. However, text tools only support viewing and editing, cannot directly decode and play audio and video content, and cannot replace professional players.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">To properly play m3u8 streaming media or local list files, you can use professional audio and video software such as VLC or iTunes; Linux systems can use XMMS, and Mac devices recommend CocoModX, multiple tools can smoothly adapt to this format.</p>
+    <p class="text-gray-400 leading-relaxed mt-4">In addition, you can also directly use an online m3u8 player for quick parsing and playback. It should be noted that online tools only support m3u8 addresses in the form of network URLs, cannot read locally stored m3u8 files, and require the corresponding streaming media resources to be normally online and accessible.</p>
   </section>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h2 class="text-2xl font-bold mb-6 title-glow">FAQ</h2>
+    <h2 class="text-2xl font-bold mb-6 title-glow">Frequently Asked Questions</h2>
     <div class="space-y-4">
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 font-semibold">What is M3U8 Protocol?</a>
-        <p class="text-gray-400 text-sm mt-2">HLS streaming index protocol, widely used for online video delivery.</p>
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">What is the M3U8 protocol?</h3>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">It is an HLS streaming media indexing protocol developed by Apple Inc., mostly used in network video distribution and live broadcast scenarios. It splits videos into multiple small TS segments, records the segment addresses and order through m3u8 index files, and clients load and play them on demand.</p>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/play-m3u8-video.html" class="text-blue-400 hover:text-blue-300 font-semibold">How to Play M3U8 Videos?</a>
-        <p class="text-gray-400 text-sm mt-2">Open the link with streaming-supported players, browsers or parsers.</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">How to play M3U8 video files?</h3>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">Use a player that supports streaming media (such as VLC), browser extensions, or dedicated online parsing tools to directly open the link for playback. This tool is a free online M3U8 player, just enter the address to play.
+        </p>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-advantages.html" class="text-blue-400 hover:text-blue-300 font-semibold">Advantages of M3U8?</a>
-        <p class="text-gray-400 text-sm mt-2">Segment loading, low buffering, mobile-friendly, adaptive bitrate.</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">What are the advantages of the M3U8 format?</h3>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">Segmented loading, less buffering, mobile compatibility, strong network speed adaptability (can automatically switch different bitrates), easy anti-leeching, supports live broadcast and on-demand playback.</p>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 vs Regular Video Formats</a>
-        <p class="text-gray-400 text-sm mt-2">M3U8 is a playlist, not a video file. MP4 etc. are complete video files.</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">What's the difference between M3U8 and regular video formats?</h3>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">It is not a complete video but a list of segment addresses; regular formats like MP4 are complete single video files. M3U8 is suitable for network transmission, while regular videos are suitable for local storage.</p>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/common-video-formats.html" class="text-blue-400 hover:text-blue-300 font-semibold">Common Video Formats</a>
-        <p class="text-gray-400 text-sm mt-2">MP4, FLV, MOV, AVI, MKV, WMV, WebM, etc.</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">What are the common video playback formats?</h3>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">MP4, FLV, MOV, AVI, MKV, WMV, WebM, etc. Among them, MP4 is currently the most universal format, and WebM is an open-source and free format.</p>
       </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 font-semibold">M3U8 for Live Streaming</a>
-        <p class="text-gray-400 text-sm mt-2">Real-time slicing, client fetches segments for low-latency live broadcast.</p>
-      </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/m3u8-protocol-principle.html" class="text-blue-400 hover:text-blue-300 font-semibold">How M3U8 Works</a>
-        <p class="text-gray-400 text-sm mt-2">Video split into small TS chunks; M3U8 records URLs and loads segments sequentially.</p>
-      </div>
-      <div class="bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
-        <a href="/post/how-to-parse-m3u8.html" class="text-blue-400 hover:text-blue-300 font-semibold">How to Parse M3U8</a>
-        <p class="text-gray-400 text-sm mt-2">Read playlist, extract segment URLs, merge into complete video.</p>
+
+      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+        <div class="flex justify-between items-center">
+          <h3 class="text-blue-400 font-semibold">How is M3U8 used in the live broadcast field?</h3>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">During live broadcasts, the server will real-time slice the video into TS segments and continuously update the m3u8 index file. The client continuously pulls the latest segments to achieve low-latency online live broadcasting.</p>
       </div>
     </div>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2026 M3U8 Online Player | Resources from the internet, contact us to remove if infringed
-    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm">Privacy Policy</a>
+    © 2026 M3U8 Online Player | Resources are from the internet, please contact customer service to delete if there is any infringement
+    <a href="/privacy.html" class="text-slate-400 hover:text-blue-400 text-sm ml-2">Privacy Policy</a>
   </footer>
 
-  <!-- 脚本（新增移动端导航逻辑） -->
-  <script src="./resane/js/responsive-nav.js"></script>
-  <script src="./resane/js/lang-switcher.js"></script>
- 
   <script>
+    // Global variables
     const heroM3u8UrlInput = document.getElementById('hero-m3u8-url');
-    let player;
+    const playerStatus = document.getElementById('player-status');
+    const errorMessage = document.getElementById('error-message');
+    const video = document.getElementById('player-container-id');
+    let hls;
 
+    // Get URL parameters
     function getUrlParam(name) {
       var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
       var r = window.location.search.substr(1).match(reg);
@@ -230,46 +369,168 @@
       return null;
     }
 
-    function setPlayerStatus(text) {
-      const el = document.getElementById('player-status');
-      if (el) el.textContent = text;
+    // Set player status
+    function setPlayerStatus(text, isLoading = false) {
+      if (isLoading) {
+        playerStatus.innerHTML = `<span class="loading mr-2"></span>${text}`;
+      } else {
+        playerStatus.textContent = text;
+      }
     }
 
-    function initPlayer(e) {
-      window.TCPlayer && e && (
-        player || (
-          player = TCPlayer("player-container-id", {
-            licenseUrl: "这里粘贴你申请到的 licenseUrl",
-            sources: [{ src: e }]
-          })
-        ),
-        player.src(e),
-        setPlayerStatus("Playing")
-      )
+    // Show error message
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.classList.remove('hidden');
+      setPlayerStatus('Playback failed');
     }
 
+    // Hide error message
+    function hideError() {
+      errorMessage.classList.add('hidden');
+    }
+
+    // Validate URL format
+    function isValidUrl(string) {
+      try {
+        new URL(string);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    // Initialize HLS player
+    function initPlayer(url) {
+      // Destroy previous player instance first
+      if (hls) {
+        hls.destroy();
+        hls = null;
+      }
+
+      hideError();
+      setPlayerStatus('Loading...', true);
+
+      // Check if browser supports HLS
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          debug: false,
+          enableWorker: true,
+          lowLatencyMode: true
+        });
+
+        hls.loadSource(url);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          video.play().catch(function (err) {
+            showError('Autoplay failed, please click the video play button');
+          });
+          setPlayerStatus('Playing');
+        });
+
+        hls.on(Hls.Events.ERROR, function (event, data) {
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                showError('Network error: Unable to load video stream, please check if the address is correct');
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                showError('Media error: Unsupported video format or corrupted file');
+                hls.recoverMediaError();
+                break;
+              default:
+                showError('Playback failed: Unknown error occurred');
+                hls.destroy();
+                break;
+            }
+          }
+        });
+      }
+      // Browser natively supports HLS (e.g., Safari)
+      else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = url;
+        video.addEventListener('loadedmetadata', function () {
+          video.play().catch(function (err) {
+            showError('Autoplay failed, please click the video play button');
+          });
+          setPlayerStatus('Playing');
+        });
+
+        video.addEventListener('error', function () {
+          showError('Playback failed: Unable to load video stream');
+        });
+      }
+      else {
+        showError('Your browser does not support HLS playback, please use Chrome, Firefox, or Safari');
+      }
+    }
+
+    // Play button click event
     document.getElementById('play-btn').addEventListener('click', function () {
-      const e = heroM3u8UrlInput.value.trim();
-      initPlayer(e);
+      const url = heroM3u8UrlInput.value.trim();
+
+      if (!url) {
+        showError('Please enter an M3U8 playback address');
+        return;
+      }
+
+      if (!isValidUrl(url)) {
+        showError('Please enter a valid URL address');
+        return;
+      }
+
+      initPlayer(url);
     });
 
+    // Analyze button click event
     document.getElementById('analyze-btn').addEventListener('click', function () {
-      const e = heroM3u8UrlInput.value.trim();
-      window.location.href = e ? '/analyzer/?url=' + encodeURIComponent(e) : '/analyzer/';
+      const url = heroM3u8UrlInput.value.trim();
+      window.location.href = url ? '/analyzer/?url=' + encodeURIComponent(url) : '/analyzer/';
     });
 
+    // Enter key playback
     heroM3u8UrlInput.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         document.getElementById('play-btn').click();
       }
     });
 
+    // Mobile navigation
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+    hamburger.addEventListener('click', function () {
+      mobileNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+    });
+
+    mobileNavOverlay.addEventListener('click', function () {
+      mobileNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+    });
+
+    // FAQ accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.addEventListener('click', function () {
+        this.classList.toggle('active');
+      });
+    });
+
+
+    // Auto-load address from URL parameters after page load
     document.addEventListener('DOMContentLoaded', function () {
-      const e = getUrlParam('url') || heroM3u8UrlInput.value.trim();
-      heroM3u8UrlInput.value = e;
-      setPlayerStatus(e ? 'Click Play to load' : 'Not playing');
+      const url = getUrlParam('url') || heroM3u8UrlInput.value.trim();
+      heroM3u8UrlInput.value = url;
+      setPlayerStatus(url ? 'Click the play button to start playback' : 'Not playing yet');
     });
   </script>
+   <!-- Scripts (added mobile navigation logic) -->
+  <script src="./resane/js/responsive-nav.js"></script>
+  <script src="./resane/js/lang-switcher.js"></script>
 </body>
 
 </html>

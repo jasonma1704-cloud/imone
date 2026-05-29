@@ -13,9 +13,14 @@
   <meta property="og:description" content="免费在线M3U8播放器，支持播放、解析、转换、分析HLS流媒体视频，无需安装插件。">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_CN">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <script src="../resane/js/responsive-nav.min.js"></script>
+  <script src="../resane/js/hls.min.js"></script>
+
 
   <style>
     /* 自定义样式 */
@@ -167,8 +172,9 @@
       <div class="relative">
         <select id="language-selector"
           class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
-          <option value="zh">中文</option>
+         
           <option value="en">English</option>
+           <option value="zh">中文</option>
           <option value="pt">Português</option>
           <option value="ja">日本語</option>
         </select>
@@ -306,63 +312,45 @@
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
           <h3 class="text-blue-400 font-semibold">M3U8 协议是什么？</h3>
-          <span class="faq-icon text-gray-400">▼</span>
         </div>
-        <div class="faq-answer">
-          <p class="text-gray-400 text-sm mt-2">是 HLS
-            流媒体索引协议，由苹果公司开发，多用于网络视频分发和直播场景。它将视频切分为多个小的TS分片，通过m3u8索引文件记录分片地址和顺序，客户端按需加载播放。</p>
-        </div>
+        <p class="text-gray-400 text-sm mt-2">是 HLS
+          流媒体索引协议，由苹果公司开发，多用于网络视频分发和直播场景。它将视频切分为多个小的TS分片，通过m3u8索引文件记录分片地址和顺序，客户端按需加载播放。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
           <h3 class="text-blue-400 font-semibold">怎样播放 M3U8 视频文件？</h3>
-          <span class="faq-icon text-gray-400">▼</span>
         </div>
-        <div class="faq-answer">
-          <p class="text-gray-400 text-sm mt-2">用支持流媒体的播放器（如VLC）、浏览器插件或专用在线解析工具直接打开链接播放。本工具就是一个免费的在线M3U8播放器，只需输入地址即可播放。
-          </p>
-        </div>
+        <p class="text-gray-400 text-sm mt-2">用支持流媒体的播放器（如VLC）、浏览器插件或专用在线解析工具直接打开链接播放。本工具就是一个免费的在线M3U8播放器，只需输入地址即可播放。
+        </p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
           <h3 class="text-blue-400 font-semibold">M3U8 格式有哪些优势？</h3>
-          <span class="faq-icon text-gray-400">▼</span>
         </div>
-        <div class="faq-answer">
-          <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强（可自动切换不同码率）、易防盗链、支持直播和点播。</p>
-        </div>
+        <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强（可自动切换不同码率）、易防盗链、支持直播和点播。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
           <h3 class="text-blue-400 font-semibold">M3U8 和普通视频格式有什么不同？</h3>
-          <span class="faq-icon text-gray-400">▼</span>
         </div>
-        <div class="faq-answer">
-          <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。M3U8适合网络传输，普通视频适合本地存储。</p>
-        </div>
+        <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。M3U8适合网络传输，普通视频适合本地存储。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
           <h3 class="text-blue-400 font-semibold">常见的视频播放格式有哪些？</h3>
-          <span class="faq-icon text-gray-400">▼</span>
         </div>
-        <div class="faq-answer">
-          <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。其中MP4是目前最通用的格式，WebM是开源免费的格式。</p>
-        </div>
+        <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。其中MP4是目前最通用的格式，WebM是开源免费的格式。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
           <h3 class="text-blue-400 font-semibold">M3U8 在直播领域如何使用？</h3>
-          <span class="faq-icon text-gray-400">▼</span>
         </div>
-        <div class="faq-answer">
-          <p class="text-gray-400 text-sm mt-2">直播时服务器会实时将视频切片生成TS分片，并不断更新m3u8索引文件。客户端持续拉取最新的分片，实现低延迟在线直播。</p>
-        </div>
+        <p class="text-gray-400 text-sm mt-2">直播时服务器会实时将视频切片生成TS分片，并不断更新m3u8索引文件。客户端持续拉取最新的分片，实现低延迟在线直播。</p>
       </div>
     </div>
   </section>
@@ -539,13 +527,6 @@
       });
     });
 
-    // 语言切换（基础实现）
-    const languageSelector = document.getElementById('language-selector');
-    languageSelector.addEventListener('change', function () {
-      const lang = this.value;
-      // 这里可以添加完整的多语言切换逻辑
-      alert(`语言已切换为：${this.options[this.selectedIndex].text}，完整多语言功能正在开发中`);
-    });
 
     // 页面加载完成后自动加载URL参数中的地址
     document.addEventListener('DOMContentLoaded', function () {
@@ -554,6 +535,9 @@
       setPlayerStatus(url ? '点击播放按钮开始播放' : '尚未播放');
     });
   </script>
+   <!-- 脚本（新增移动端导航逻辑） -->
+  <script src="./resane/js/responsive-nav.js"></script>
+  <script src="./resane/js/lang-switcher.js"></script>
 </body>
 
 </html>
