@@ -2,41 +2,53 @@
 <html dir="ltr" lang="zh">
 
 <head>
-    <title>帮助中心 - m3u8播放器 | 在线视频播放器使用指南</title>
+    <title>帮助中心 - M3U8播放器 | 在线视频播放指南</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="m3u8播放器帮助中心，提供详细的m3u8协议说明、视频播放教程、格式转换指南、HLS播放知识和FAQ解答。" />
-    <meta name="keywords" content="m3u8播放器,帮助中心,视频播放器,m3u8协议,HLS播放器,在线播放器,视频播放教程" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0,minimum-scale=1.0,user-scalable=yes" />
+    <meta name="description"
+        content="M3U8播放器帮助中心提供详细的M3U8协议说明、视频播放教程、格式转换指南、HLS流媒体知识和常见问题解答。" />
+    <meta name="keywords"
+        content="M3U8播放器, 帮助中心, 视频播放器, M3U8协议, HLS播放器, 在线播放器, 视频播放教程" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=5.0,minimum-scale=1.0,user-scalable=yes" />
     <meta name="robots" content="index,follow" />
     <meta name="author" content="m3u8player.org" />
-    <meta name="generator" content="m3u8播放器" />
+    <meta name="generator" content="M3U8 Player" />
 
     <link rel="icon" href="/images/logo.ico" type="image/x-icon" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://m3u8player.org/post/" />
-    <meta property="og:title" content="帮助中心 - m3u8播放器 | 在线视频播放器使用指南" />
-    <meta property="og:description" content="探索 M3U8/HLS 视频播放的完整知识库，从入门到精通。" />
+    <meta property="og:title" content="帮助中心 - M3U8播放器 | 在线视频播放指南" />
+    <meta property="og:description"
+        content="探索M3U8/HLS视频播放的综合知识库，从入门到精通。" />
     <meta property="og:image" content="https://m3u8player.org/images/logo.png" />
-    <meta property="og:site_name" content="m3u8播放器" />
+    <meta property="og:site_name" content="M3U8 Player" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://m3u8player.org/post/" />
-    <meta name="twitter:title" content="帮助中心 - m3u8播放器 | 在线视频播放器使用指南" />
-    <meta name="twitter:description" content="探索 M3U8/HLS 视频播放的完整知识库，从入门到精通。" />
+    <meta name="twitter:title" content="帮助中心 - M3U8播放器 | 在线视频播放指南" />
+    <meta name="twitter:description"
+        content="探索M3U8/HLS视频播放的综合知识库，从入门到精通。" />
     <meta name="twitter:image" content="https://m3u8player.org/images/logo.png" />
 
-    <meta itemprop="name" content="帮助中心 - m3u8播放器" />
-    <meta itemprop="description" content="探索 M3U8/HLS 视频播放的完整知识库，从入门到精通。" />
+    <meta itemprop="name" content="帮助中心 - M3U8播放器" />
+    <meta itemprop="description"
+        content="探索M3U8/HLS视频播放的综合知识库，从入门到精通。" />
     <meta itemprop="image" content="https://m3u8player.org/images/logo.png" />
 
-    <!-- 统一使用 Tailwind CSS，和 preview.html 保持一致 -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS Components -->
+    <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+    <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+    <script src="../resane/js/taiwindcss.js"></script>
+    <script src="../resane/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+    <script src="../resane/js/responsive-nav.min.js"></script>
+    <script src="../resane/js/hls.min.js"></script>
     <style>
-        /* 仅保留必要的自定义样式，和 preview 风格统一 */
         .link-arrow {
             transition: transform 0.2s ease;
         }
+
         .link:hover .link-arrow {
             transform: translateX(2px);
         }
@@ -44,20 +56,22 @@
 </head>
 
 <body class="bg-slate-900 text-white">
-    <!-- 导航栏 - 完全沿用 preview.html 的样式结构 -->
-    <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-900">
-        <div class="text-xl font-bold">M3U8 在线播放器</div>
+    <!-- Navigation Bar -->
+    <header
+        class="flex justify-between items-center px-6 py-4 border-b border-slate-700 sticky top-0 z-50 bg-slate-900">
+        <div class="text-xl font-bold">在线M3U8播放器</div>
         <nav class="space-x-6 text-sm">
             <a href="/" class="hover:text-blue-400">首页</a>
-            <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 转 MP4</a>
-            <a href="/analyzer/" class="hover:text-blue-400">解析器</a>
-            <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg 工具</a>
+            <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
+            <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+            <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
             <a href="/post/" class="text-blue-400 font-bold">帮助中心</a>
-            <a href="/about.html" class="hover:text-blue-400">关于我们</a>
+            <a href="/about.html" class="hover:text-blue-400">关于</a>
         </nav>
         <div class="flex items-center gap-4">
             <div class="relative">
-                <select id="language-selector" class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
+                <select id="language-selector"
+                    class="appearance-none pr-10 pl-4 py-2 text-sm font-medium bg-slate-700 text-slate-100 border border-slate-500 rounded-xl w-[120px] transition focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/25">
                     <option value="zh" selected>中文</option>
                     <option value="en">English</option>
                     <option value="pt">Português</option>
@@ -66,7 +80,8 @@
                 <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
             </div>
             <a href="/preview.html">
-                <button class="bg-blue-500 px-5 py-2 rounded-xl text-sm font-semibold hover:bg-blue-600 transition-colors">
+                <button
+                    class="bg-blue-500 px-5 py-2 rounded-xl text-sm font-semibold hover:bg-blue-600 transition-colors">
                     开始播放
                 </button>
             </a>
@@ -74,31 +89,30 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-6 py-8">
-        <!-- 面包屑 -->
+        <!-- Breadcrumb -->
         <div class="breadcrumb text-sm text-gray-400 mb-8">
             <a href="/" class="text-blue-400 hover:text-blue-300">首页</a>
             <span class="mx-2">/</span>
             <span class="text-white">帮助中心</span>
         </div>
 
-        <!-- Hero 区域 - 适配 preview.html 的视觉风格 -->
+        <!-- Hero Section -->
         <section class="text-center py-20 px-4 mb-10">
-            <h1 class="text-4xl font-bold mb-4">探索 M3U8/HLS 视频播放知识库</h1>
+            <h1 class="text-4xl font-bold mb-4">探索M3U8/HLS视频播放知识库</h1>
             <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
-                从基础协议、播放教程到进阶实践，快速了解 m3u8 文件、HLS 流媒体、播放器使用与常见视频格式。
+                从核心协议和播放教程到高级实践，快速了解M3U8文件、HLS流媒体、播放器使用以及常见视频格式。
             </p>
-            <!-- 保持和 preview 一致的按钮/输入框风格 -->
             <div class="flex justify-center gap-4">
                 <a href="/preview.html" class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 inline-block">
                     ▶ 立即播放
                 </a>
                 <a href="/analyzer/" class="bg-gray-700 px-6 py-3 rounded-lg hover:bg-gray-600 inline-block">
-                    M3U8 在线解析
+                    分析M3U8
                 </a>
             </div>
         </section>
 
-        <!-- 统计卡片 - 适配 preview.html 的卡片样式 -->
+        <!-- Stats Cards -->
         <section class="grid md:grid-cols-4 gap-6 mb-12">
             <div class="bg-slate-800 p-6 rounded-xl text-center hover:bg-slate-700 transition">
                 <strong class="block text-2xl text-blue-400 mb-1">10</strong>
@@ -106,11 +120,11 @@
             </div>
             <div class="bg-slate-800 p-6 rounded-xl text-center hover:bg-slate-700 transition">
                 <strong class="block text-2xl text-blue-400 mb-1">12</strong>
-                <span class="text-gray-400 text-sm">使用教程</span>
+                <span class="text-gray-400 text-sm">操作教程</span>
             </div>
             <div class="bg-slate-800 p-6 rounded-xl text-center hover:bg-slate-700 transition">
                 <strong class="block text-2xl text-blue-400 mb-1">6</strong>
-                <span class="text-gray-400 text-sm">英文指南</span>
+                <span class="text-gray-400 text-sm">英文文章</span>
             </div>
             <div class="bg-slate-800 p-6 rounded-xl text-center hover:bg-slate-700 transition">
                 <strong class="block text-2xl text-blue-400 mb-1">6</strong>
@@ -118,282 +132,321 @@
             </div>
         </section>
 
-        <!-- 分类卡片 - 完全沿用 preview.html 的卡片交互和样式 -->
+        <!-- Category Cards -->
         <section class="grid md:grid-cols-2 gap-6 mb-12">
-            <!-- 基础知识 -->
+            <!-- Essentials -->
             <article class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
                 <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-700">
                     <h2 class="text-xl font-bold flex items-center gap-3">
-                        <span class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">📖</span>
+                        <span
+                            class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">📖</span>
                         基础知识
                     </h2>
-                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">10 篇</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">10 篇文章</span>
                 </div>
                 <ul class="space-y-2">
-                    <li><a href="detail/what-is-m3u8.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📄 什么是m3u8协议</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/play-m3u8.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🎬 播放 M3U8 格式的视频</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-advantages.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">✨ m3u8格式的优点</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-vs-other-formats.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🔄 m3u8与其它格式区别</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/common-video-formats.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📁 常用视频播放格式</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/mp4-advantages.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🎥 mp4格式的优点</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-live-streaming.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📡 m3u8格式在直播场景应用</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-protocol-principle.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">⚙️ M3U8协议原理</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/how-to-parse-m3u8.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🔍 如何解析m3u8文件</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-file-structure.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📝 m3u8文件的组成格式</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
+                    <li><a href="detail/what-is-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📄 什么是M3U8协议</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/play-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🎬 如何播放M3U8格式视频</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-advantages.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">✨ M3U8格式的优势</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-vs-other-formats.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🔄 M3U8与其他视频格式对比</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/common-video-formats.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📁 常见视频播放格式</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/mp4-advantages.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🎥 MP4格式的优势</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-live-streaming.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📡 M3U8在直播中的应用</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-protocol-principle.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">⚙️ M3U8协议的工作原理</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/how-to-parse-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🔍 如何解析M3U8文件</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-file-structure.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📝 M3U8文件结构与格式</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
                 </ul>
             </article>
 
-            <!-- 使用教程 -->
+            <!-- Tutorials -->
             <article class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
                 <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-700">
                     <h2 class="text-xl font-bold flex items-center gap-3">
-                        <span class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">🛠️</span>
-                        使用教程
+                        <span
+                            class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">🛠️</span>
+                        操作教程
                     </h2>
-                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">12 篇</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">12 篇文章</span>
                 </div>
                 <ul class="space-y-2">
-                    <li><a href="detail/player-features.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🎵 m3u8播放器特点</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/find-m3u8-source.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🔎 找到M3U8直播源的方法</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/download-m3u8.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">⬇️ 下载M3U8文件的方法</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/player-desktop.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">💻 m3u8播放器电脑版</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/player-windows.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🪟 m3u8播放器 windows</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/mobile-watch-m3u8.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📱 m3u8视频 手机怎么看</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/save-m3u8-phone.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">💾 m3u8视频怎么保存到手机</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-application.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🔗 M3U8协议及其应用</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/multimedia-player.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🎯 全能的多媒体播放器</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/what-is-hls.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📡 什么是HLS协议</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/m3u8-live-app.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📺 m3u8协议在直播的应用</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/vlc-principle.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🔴 VLC播放器的原理</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
+                    <li><a href="detail/player-features.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🎵 M3U8播放器的主要功能</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/find-m3u8-source.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🔎 查找M3U8直播源的方法</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/download-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">⬇️ 如何下载M3U8视频</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/player-desktop.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">💻 M3U8播放器的桌面版</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/player-windows.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🪟 Windows上的M3U8播放器</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/mobile-watch-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📱 如何在手机上观看M3U8视频</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/save-m3u8-phone.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">💾 将M3U8视频保存到手机存储</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-application.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🔗 M3U8协议及实际应用</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/multimedia-player.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🎯 多功能多媒体播放器</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/what-is-hls.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📡 HLS协议简介</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/m3u8-live-app.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📺 M3U8的直播实现方式</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/vlc-principle.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🔴 VLC播放器的核心架构</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
                 </ul>
             </article>
 
-            <!-- 英文指南 -->
+            <!-- English Articles -->
             <article class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
                 <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-700">
                     <h2 class="text-xl font-bold flex items-center gap-3">
-                        <span class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">🌍</span>
-                        英文指南
+                        <span
+                            class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">🌍</span>
+                        英文文章
                     </h2>
-                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">6 篇</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">6 篇文章</span>
                 </div>
                 <ul class="space-y-2">
-                    <li><a href="detail/windows-media-player-m3u8.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">❓ Windows Media Player 可以播放 m3u8 吗</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/play-hls.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">▶️ 如何播放 HLS 协议视频</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/open-m3u8-file.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📂 如何打开 m3u8 文件 (How to open m3u8 file)</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/windows-vs-vlc.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">⚖️ Windows Media Player 对比 VLC Media Player</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/tencent-sdk-player.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">☁️ 基于腾讯云点播 SDK 开发的 HLS 在线视频播放器</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="detail/tencent-sdk-hls-player.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🌐 基于腾讯 SDK 的 HLS 在线视频播放器 (英文版)</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
+                    <li><a href="detail/windows-media-player-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">❓ Windows Media Player能否播放M3U8文件？</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/play-hls.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">▶️ 如何播放HLS协议内容</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/open-m3u8-file.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📂 如何打开M3U8文件</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/windows-vs-vlc.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">⚖️ Windows Media Player与VLC Media Player对比</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/tencent-sdk-player.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">☁️ 基于腾讯云VOD SDK构建的在线HLS视频播放器</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/tencent-sdk-hls-player.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🌐 基于腾讯SDK的HLS在线视频播放器</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
                 </ul>
             </article>
 
-            <!-- 进阶指南 -->
+            <!-- Advanced Guides -->
             <article class="bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
                 <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-700">
                     <h2 class="text-xl font-bold flex items-center gap-3">
-                        <span class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">💡</span>
+                        <span
+                            class="w-11 h-11 flex items-center justify-center rounded-lg bg-blue-500/20 text-xl">💡</span>
                         进阶指南
                     </h2>
-                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">6 篇</span>
+                    <span class="px-3 py-1 rounded-full bg-slate-700 text-blue-400 text-sm font-bold">6 篇文章</span>
                 </div>
                 <ul class="space-y-2">
-                    <li><a href="1029.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🪟 适用于 Windows 10/11 的常用 M3U8 播放器推荐</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="1030.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🎯 如何播放 HLS 文件文件</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="1101.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">💻 开源的 m3u8 播放器（附 GitHub 源码）</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="1102.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">📚 如何高效播放 m3u8 文件（完整指南）</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="1103.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🏆 【终极指南】关于 M3U8 文件你需要知道的一切</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
-                    <li><a href="1104.html" class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2">🧩 3 款最佳 M3U8 Chrome 浏览器扩展推荐</span>
-                            <span class="link-arrow text-blue-400">→</span>
-                        </div>
-                    </a></li>
+                    <li><a href="detail/popular-m3u8-players-windows.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🪟 Windows 10/11上流行的M3U8媒体播放器</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/how-to-play-hls-files.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🎯 如何播放HLS文件</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/open-source-m3u8-players.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">💻 开源M3U8播放器（附GitHub仓库链接）</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/efficient-methods-play-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">📚 播放M3U8文件的高效方法（完全指南）</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/ultimate-guide-m3u8.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🏆 【终极指南】关于M3U8文件你需要知道的一切</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
+                    <li><a href="detail/top-3-m3u8-chrome-extensions.html"
+                            class="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:bg-blue-500 hover:border-blue-500 transition link">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2">🧩 推荐的3款最佳M3U8 Chrome扩展</span>
+                                <span class="link-arrow text-blue-400">→</span>
+                            </div>
+                        </a></li>
                 </ul>
             </article>
         </section>
 
         <section class="mt-6 text-center">
-            <a href="detail/what-is-m3u8.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition font-semibold">
+            <a href="detail/what-is-m3u8.html"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition font-semibold">
                 查看示例文章详情
                 <span>→</span>
             </a>
         </section>
 
-        <!-- 引用区域 - 适配 preview.html 风格 -->
-        <section class="bg-slate-800 p-8 rounded-xl text-center text-gray-300 max-w-4xl mx-auto mt-12">
-            <p class="mb-2">"If something is important enough, even if the odds are against you, you should still do it."</p>
-            <p>如果一件事情对你很重要，即使成功的概率很小，你也应该去做 —— <strong class="text-blue-400">埃隆·马斯克</strong></p>
+        <!-- Quote Section -->
+        <section class="bg-slate-800 p-8 rounded-xl text-center text-gray-300 max-w-4xl mx-auto">
+            <p class="mb-2">"如果一件事足够重要，即使成功的概率不高，你也应该去做。"</p>
+            <p>—— <strong class="text-blue-400">埃隆·马斯克</strong></p>
         </section>
     </main>
 
-    <!-- 页脚 - 完全沿用 preview.html 的样式 -->
+    <!-- Footer -->
     <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400 mt-16">
-        © 2019 - 2026 M3U8 在线播放器 | 资源来自网络。如有侵权，请联系我们删除。
+        © 2019 - 2026 在线M3U8播放器 | 所有资源均来自网络，如需移除版权内容请联系客服支持。
     </footer>
 
     <script src="/resane/js/lang-sync.js"></script>

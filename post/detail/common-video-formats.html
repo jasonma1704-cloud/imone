@@ -1,31 +1,70 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN">
-<head>`r`n  <meta charset="UTF-8" />`r`n  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>`r`n  <title>常用视频播放格式有哪些？</title>`r`n  <link rel="stylesheet" href="/css/preview.css" />`r`n</head>`r`n<body>`r`n  <header class="hd">`r`n    <div class="link-list">`r`n        <button class="menu-toggle" aria-label="菜单" type="button">`r`n            <span class="menu-bar"></span>`r`n            <span class="menu-bar"></span>`r`n            <span class="menu-bar"></span>`r`n        </button>`r`n        <div class="link-list-menu">`r`n            <a href="/">首页</a>`r`n            <a href="/m3u8_to_mp4/">M3U8转MP4</a>`r`n            <a href="/post/">帮助中心</a>`r`n            <a href="/about.html">关于</a>`r`n            <div style="margin-left: auto; position: relative;">`r`n                <select id="language-selector" style="padding: 8px 12px; border: 1px solid #0e90d2; background: #0e90d2; color: #fff; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 13px;">`r`n                    <option value="zh" selected style="color:#000;">中文</option>`r`n                    <option value="en" style="color:#000;">English</option>`r`n                    <option value="pt" style="color:#000;">Português</option>`r`n                    <option value="ja" style="color:#000;">日本語</option>`r`n                </select>`r`n            </div>`r`n        </div>`r`n    </div>`r`n  </header>
-  <main class="max-w-4xl mx-auto px-6 py-14">
-    <div class="text-sm text-gray-400 mb-6">
-      <a href="/post/" class="text-blue-400 hover:text-blue-300">帮助中心</a>
-      <span class="mx-2">/</span>
-      <span>常用视频播放格式有哪些？</span>
-    </div>
-    <article class="bg-slate-800 border border-slate-700 rounded-2xl p-8">
-      <div class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4">基础知识</div>
-      <h1 class="text-3xl font-bold mb-4">常用视频播放格式有哪些？</h1>
-      <p class="text-gray-300 leading-8 mb-6">了解 MP4、MOV、AVI、FLV、M3U8 的区别。</p>
-      <h2 class="text-2xl font-bold mt-8 mb-3">详细内容</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6"><li>不同格式对应不同的媒体容器和使用场景。MP4 通用性最强，MOV 多见于苹果生态，AVI 属于较老的格式。</li>
-<li>M3U8 则属于流媒体方案，更适合在线点播和直播。</li>
-<li>选择格式时要同时考虑编码、兼容性、是否需要在线播放。</li></ul>
-      <h2 class="text-2xl font-bold mt-8 mb-3">常见问题</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6"><li>播放器不识别某些格式。</li>
-<li>视频能打开但没有声音或黑屏。</li></ul>
-      <h2 class="text-2xl font-bold mt-8 mb-3">解决建议</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6"><li>优先使用主流播放器兼容的格式。</li>
-<li>必要时进行转码或封装。</li></ul>
-    </article>
-  </main>
-  <script src="/resane/js/lang-sync.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Common Video Formats</title>
+   <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
+    <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
+    <script src="/resane/js/taiwindcss.js"></script>
+    <script src="/resane/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resane/css/responsive-nav.css" />
+    <script src="/resane/js/responsive-nav.min.js"></script>
+    <script src="/resane/js/hls.min.js"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8 Online Player</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
+    </nav>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+    </a>
+  </header>
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">Common Video Formats</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      There are many video encapsulation formats on the market, each designed for different usage scenarios.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">MP4</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      The most universal format, for local storage, sharing and general network on-demand.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">MKV</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      Open multimedia container, supports multi-audio tracks and multi-subtitles, favored by movie enthusiasts.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">AVI</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      Classic old format, large file size, gradually replaced by newer formats.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">MOV</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      Apple QuickTime format, widely used in video creation and post-production.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">M3U8</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      Streaming playlist format, dedicated to web live broadcast and video on-demand services.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">WebM</h2>
+    <p class="text-gray-400 leading-relaxed">
+      Open source web format, optimized for HTML5 page playback.
+    </p>
+  </section>
+
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
+  </footer>
+
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>
-
-
-

@@ -1,32 +1,58 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>`r`n  <meta charset="UTF-8" />`r`n  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>`r`n  <title>M3U8 协议及其应用场景</title>`r`n  <link rel="stylesheet" href="/css/preview.css" />`r`n</head>`r`n<body>`r`n  <header class="hd">`r`n    <div class="link-list">`r`n        <button class="menu-toggle" aria-label="菜单" type="button">`r`n            <span class="menu-bar"></span>`r`n            <span class="menu-bar"></span>`r`n            <span class="menu-bar"></span>`r`n        </button>`r`n        <div class="link-list-menu">`r`n            <a href="/">Home</a>`r`n            <a href="/m3u8_to_mp4/">M3U8 to MP4</a>`r`n            <a href="/post/">Help Center</a>`r`n            <a href="/about.html">About</a>`r`n            <div style="margin-left: auto; position: relative;">`r`n                <select id="language-selector" style="padding: 8px 12px; border: 1px solid #0e90d2; background: #0e90d2; color: #fff; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 13px;">`r`n                    <option value="zh" style="color:#000;">中文</option>`r`n                    <option value="en" selected style="color:#000;">English</option>`r`n                    <option value="pt" style="color:#000;">Português</option>`r`n                    <option value="ja" style="color:#000;">日本語</option>`r`n                </select>`r`n            </div>`r`n        </div>`r`n    </div>`r`n  </header>
-  <main class="max-w-4xl mx-auto px-6 py-14">
-    <div class="text-sm text-gray-400 mb-6">
-      <a href="/post/" class="text-blue-400 hover:text-blue-300">Help Center</a>
-      <span class="mx-2">/</span>
-      <span>M3U8 协议及其应用场景</span>
-    </div>
-    <article class="bg-slate-800 border border-slate-700 rounded-2xl p-8">
-      <div class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4">应用</div>
-      <h1 class="text-3xl font-bold mb-4">M3U8 协议及其应用场景</h1>
-      <p class="text-gray-300 leading-8 mb-6">了解 M3U8 在点播、直播和多终端中的用途。</p>
-      <h2 class="text-2xl font-bold mt-8 mb-3">Details</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6"><li>M3U8 是 HLS 协议中的Play列表文件，本身不保存视频内容，而是告诉Play器去哪里加载分片。</li>
-<li>它通常包含版本号、目标时长、媒体分片地址、加密信息等字段。Play器读取后会按顺序请求分片并完成Play。</li>
-<li>因为它是纯文本且基于 HTTP 分发，所以部署方便、兼容性高，适合网页、移动端和桌面Play器。</li></ul>
-      <h2 class="text-2xl font-bold mt-8 mb-3">FAQ</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6"><li>文件打不开，通常是编码或路径问题。</li>
-<li>Play失败，常见原因是分片地址失效。</li></ul>
-      <h2 class="text-2xl font-bold mt-8 mb-3">Suggestions</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6"><li>先确认 m3u8 文件可以正常访问。</li>
-<li>检查所有分片资源是否完整。</li></ul>
-    </article>
-  </main>
-  <script src="/resane/js/lang-sync.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>M3U8 General Applications</title>
+   <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
+    <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
+    <script src="/resane/js/taiwindcss.js"></script>
+    <script src="/resane/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resane/css/responsive-nav.css" />
+    <script src="/resane/js/responsive-nav.min.js"></script>
+    <script src="/resane/js/hls.min.js"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8 Online Player</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">Home</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">Help Center</a>
+      <a href="/about.html" class="hover:text-blue-400">About</a>
+    </nav>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+    </a>
+  </header>
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">General Application Scenarios of M3U8</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      M3U8 runs through all kinds of online video businesses and has become the mainstream streaming solution on the internet.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Video On Demand Platform</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      Most video websites use M3U8 for on-demand playback. It improves loading speed and viewing experience for long videos.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Live Streaming Platform</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      Entertainment live, sports live, news live all widely use HLS/M3U8 to ensure stable viewing for massive users.
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Education & Enterprise</h2>
+    <p class="text-gray-400 leading-relaxed">
+      Online courses, enterprise internal live conferences and remote training also adopt M3U8 streams for convenient cross-terminal access.
+    </p>
+  </section>
+
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
+  </footer>
+
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>
-
-
-
-

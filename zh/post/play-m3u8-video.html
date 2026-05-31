@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>怎样Play M3U8 视频文件？</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>How to Play M3U8 Video Files?</title>
+   <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+    <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+    <script src="../resane/js/taiwindcss.js"></script>
+    <script src="../resane/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+    <script src="../resane/js/responsive-nav.min.js"></script>
+    <script src="../resane/js/hls.min.js"></script>
 </head>
 
 <body class="bg-slate-900 text-white">
 
-  <!-- Header -->
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
     <div class="text-xl font-bold">M3U8 Online Player</div>
     <nav class="space-x-6 text-sm">
@@ -20,48 +25,46 @@
       <a href="/post/" class="hover:text-blue-400">Help Center</a>
       <a href="/about.html" class="hover:text-blue-400">About</a>
     </nav>
-    <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">
-      Start Playing
-    </button>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+    </a>
   </header>
 
-  <!-- Content -->
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">怎样Play M3U8 视频文件？</h1>
+    <h1 class="text-3xl font-bold mb-6">How to Play M3U8 Video Files?</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      Play M3U8 视频文件有多种方法，取决于您的设备和需求。以下是几种常见的方式：
+      There are several ways to play M3U8 files, depending on your device and needs:
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">1. 使用在线Play器</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">1. Online Player</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      在线 M3U8 Player是最简单的方法。只需将 M3U8 文件的 URL 粘贴到Play器中，即可Start Playing。这种方法不需要安装任何软件，适合快速查看内容。
+      An online M3U8 player is the simplest option: paste the M3U8 URL and start playback. No software install required—ideal for a quick preview.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">2. 使用 VLC 媒体Play器</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">2. VLC Media Player</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      VLC 是支持 M3U8 的优秀Play器。步骤如下：
+      VLC supports M3U8 well. Steps:
     </p>
     <ul class="list-disc list-inside text-gray-400 mb-4">
-      <li>下载并安装 VLC Play器</li>
-      <li>打开 VLC，选择 "媒体" > "打开网络串流"</li>
-      <li>粘贴 M3U8 URL，点击Play</li>
+      <li>Download and install VLC</li>
+      <li>Open VLC and choose Media &gt; Open Network Stream</li>
+      <li>Paste the M3U8 URL and click Play</li>
     </ul>
-    <h2 class="text-2xl font-bold mb-4 mt-8">3. 使用浏览器</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">3. Web Browser</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      现代浏览器支持 HLS Play。您可以使用 HTML5 视频Play器或扩展插件来Play M3U8 流。
+      Modern browsers can play HLS with an HTML5 player or extensions.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">4. 使用专用应用</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">4. Dedicated Apps</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      对于移动设备，可以使用支持 HLS 的应用，如 iOS 的 Safari 或 Android 的某些视频Play器。
+      On mobile, use HLS-capable apps—Safari on iOS, or various Android video players.
     </p>
     <p class="text-gray-400 leading-relaxed">
-      选择Play方法时，请确保 M3U8 文件的 URL 是可访问的，并且您的网络连接稳定。
+      Make sure the M3U8 URL is reachable and your network connection is stable.
     </p>
   </section>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8 Online Player | Resources are from the internet. Contact us for removal if there is infringement.
+    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
   </footer>
 
-  <script src="/resane/js/lang-sync.js"></script>
+  <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>

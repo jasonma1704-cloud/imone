@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>如何播放HLS文件</title>
+  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <script src="../resane/js/responsive-nav.min.js"></script>
+  <script src="../resane/js/hls.min.js"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8在线播放器</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">首页</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
+      <a href="/about.html" class="hover:text-blue-400">关于</a>
+    </nav>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">开始播放</button>
+    </a>
+  </header>
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">如何播放HLS文件</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      HLS（HTTP实时流）文件通常为M3U8格式。您可以通过不同设备上的多种方法进行播放。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">在浏览器中播放HLS</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      现代浏览器支持HLS播放。使用我们的在线播放器：粘贴HLS链接并点击播放即可。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">使用桌面播放器播放HLS</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      打开VLC，选择 媒体 > 打开网络串流，然后粘贴HLS链接即可开始播放。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">在移动端播放HLS</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      在iOS上，Safari原生支持HLS。在Android上，请使用浏览器或专用的媒体应用来播放HLS流。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">故障排除</h2>
+    <p class="text-gray-400 leading-relaxed">
+      如果播放失败，请检查链接是否有效、网络连接是否正常，以及流是否已加密或过期。
+    </p>
+  </section>
+
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8在线播放器 | 内容来源于互联网。如有侵权，请联系我们删除。
+  </footer>
+
+  <script src="/resane/js/lang-switcher.js"></script>
+</body>
+</html>

@@ -12,8 +12,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="M3U8 Online Player" />
   <meta name="twitter:description" content="Professional Multi-Language M3U8 Online Player" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
+   <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <script src="../resane/js/responsive-nav.min.js"></script>
+  <script src="../resane/js/hls.min.js"></script>
 </head>
 
 <body class="bg-slate-900 text-white">
@@ -145,12 +150,12 @@
     <h2 class="text-2xl font-bold mb-4 text-center">Multi-Language Support</h2>
     <p class="text-gray-400 text-center mb-10">We provide localized experiences for global users. Currently supported languages:</p>
     <div class="grid md:grid-cols-4 gap-6">
-      <a href="/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition text-center">
+      <a href="/zh/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition text-center">
         <div class="text-4xl mb-4">🇨🇳</div>
         <h3 class="font-bold mb-2">Chinese</h3>
         <p class="text-gray-400 text-sm">Full Chinese interface</p>
       </a>
-      <a href="/en/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition text-center">
+      <a href="/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition text-center">
         <div class="text-4xl mb-4">🇺🇸</div>
         <h3 class="font-bold mb-2">English</h3>
         <p class="text-gray-400 text-sm">Professional English interface</p>
@@ -205,7 +210,7 @@
   <section class="px-6 py-16 max-w-6xl mx-auto">
     <h2 class="text-2xl font-bold mb-10 text-center">All-in-One M3U8 Tools</h2>
     <div class="grid md:grid-cols-4 gap-6">
-      <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
+      <a href="/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition">
         <h3 class="font-bold mb-2">M3U8 Player</h3>
         <p class="text-gray-400 text-sm">Play M3U8 streams online</p>
         <div class="mt-4 text-blue-400 text-sm">Open →</div>
@@ -288,6 +293,7 @@
     }
   </script>
   <script src="./resane/js/responsive-nav.js"></script>
+  <script src="./resane/js/lang-switcher.js"></script>
 </body>
 
 </html>
