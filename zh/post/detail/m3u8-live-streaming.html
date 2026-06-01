@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 Live Streaming Principle</title>
+  <title>M3U8 直播流原理</title>
    <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
     <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
     <script src="/resane/js/taiwindcss.js"></script>
@@ -16,43 +16,44 @@
 <body class="bg-slate-900 text-white">
 
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">M3U8 Online Player</div>
+    <div class="text-xl font-bold">M3U8 在线播放器</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">Home</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/" class="hover:text-blue-400">首页</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 转 MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">Help Center</a>
-      <a href="/about.html" class="hover:text-blue-400">About</a>
+      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
+      <a href="/about.html" class="hover:text-blue-400">关于</a>
     </nav>
     <a href="/preview.html">
-      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">开始播放</button>
     </a>
   </header>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 Live Streaming Working Principle</h1>
+    <h1 class="text-3xl font-bold mb-6">M3U8 直播流工作原理</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      Live streaming M3U8 is dynamically updated. Old segments are deleted and new segments are added continuously.
+      M3U8 直播流是动态更新的。旧的分片会被不断删除，新的分片会被持续添加。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Stream Generation</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">流生成</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      Live video is captured and encoded on the server, then split into small TS files, and the M3U8 index list is refreshed in real time.
+      直播视频在服务器端进行采集和编码，然后被分割成小的 TS 文件，M3U8 索引列表会实时刷新。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Client Pull Stream</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">客户端拉流</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      The client regularly re-requests the M3U8 file, loads new segments sequentially, and realizes uninterrupted live playback.
+      客户端定期重新请求 M3U8 文件，按顺序加载新的分片，从而实现不间断的直播播放。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Delay Feature</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">延迟特性</h2>
     <p class="text-gray-400 leading-relaxed">
-      HLS live stream has a certain delay due to segmentation and buffering. It is suitable for general live broadcast rather than ultra-low delay interactive scenarios.
+      由于分片和缓冲机制，HLS 直播流存在一定的延迟。它适用于一般的直播场景，而不适合超低延迟的互动场景。
     </p>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
+    © 2019 - 2025 M3U8 在线播放器 | 内容来源于网络。如有侵权，请联系我们删除。
   </footer>
 
   <script src="/resane/js/lang-switcher.js"></script>
 </body>
 </html>
+

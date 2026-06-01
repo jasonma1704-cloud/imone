@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 File Structure</title>
+  <title>M3U8 文件结构</title>
    <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
     <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
     <script src="/resane/js/taiwindcss.js"></script>
@@ -16,45 +16,45 @@
 <body class="bg-slate-900 text-white">
 
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">M3U8 Online Player</div>
+    <div class="text-xl font-bold">M3U8 在线播放器</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">Home</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/" class="hover:text-blue-400">首页</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 转 MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">Help Center</a>
-      <a href="/about.html" class="hover:text-blue-400">About</a>
+      <a href="/post/" class="hover:text-blue-400">帮助中心</a>
+      <a href="/about.html" class="hover:text-blue-400">关于</a>
     </nav>
     <a href="/preview.html">
-      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">开始播放</button>
     </a>
   </header>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 File Structure</h1>
+    <h1 class="text-3xl font-bold mb-6">M3U8 文件结构</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 is a plain text file composed of tags and resource links. Different tags define playback rules, segment information and stream attributes.
+      M3U8 是一种由标签和资源链接组成的纯文本文件。不同的标签定义了播放规则、分片信息和流属性。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Basic Header Tag</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">基本头标签</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      #EXTM3U is the mandatory header tag, marking that this is a standard M3U8 playlist file. All valid M3U8 files must start with this tag.
+      #EXTM3U 是必需的头标签，标记这是一个标准的 M3U8 播放列表文件。所有有效的 M3U8 文件都必须以此标签开头。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Segment Duration Tag</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">分片时长标签</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      #EXTINF is used to record the playing duration of a single TS segment, followed by the actual URL or relative path of the video segment file.
+      #EXTINF 用于记录单个 TS 分片的播放时长，其后跟随视频分片文件的实际 URL 或相对路径。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Extended Attribute Tags</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">扩展属性标签</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      There are also tags for defining resolution, bitrate, encryption information and live stream markers. These tags realize advanced functions such as multi-definition switching and encrypted playback.
+      还有用于定义分辨率、码率、加密信息和直播流标记的标签。这些标签实现了多清晰度切换和加密播放等高级功能。
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">File Classification</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">文件分类</h2>
     <p class="text-gray-400 leading-relaxed">
-      M3U8 files are divided into master playlist and media playlist. The master playlist is used for multi-bitrate selection, while the media playlist directly manages video segments.
+      M3U8 文件分为主播放列表（Master Playlist）和媒体播放列表（Media Playlist）。主播放列表用于多码率选择，而媒体播放列表直接管理视频分片。
     </p>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
+    © 2019 - 2025 M3U8 在线播放器 | 内容来源于网络。如有侵权，请联系我们删除。
   </footer>
 
   <script src="/resane/js/lang-switcher.js"></script>
