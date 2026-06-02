@@ -1,58 +1,58 @@
 ﻿<!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>スマホでM3U8動画を視聴するには？</title>
-  <link rel="stylesheet" href="/css/preview.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>モバイルでM3U8を視聴</title>
+   <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
+    <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
+    <script src="/resane/js/taiwindcss.js"></script>
+    <script src="/resane/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resane/css/responsive-nav.css" />
+    <script src="/resane/js/responsive-nav.min.js"></script>
+    <script src="/resane/js/hls.min.js"></script>
 </head>
 
-<body>
-  <header class="hd">
-    <div class="link-list"> <button class="menu-toggle" aria-label="メニュー" type="button"> <span class="menu-bar"></span>
-        <span class="menu-bar"></span> <span class="menu-bar"></span> </button>
-      <div class="link-list-menu"> <a href="/">ホーム</a> <a href="/m3u8_to_mp4/">M3U8をMP4へ</a> <a
-          href="/post/">ヘルプセンター</a> <a href="/about.html">概要</a>
-        <div style="margin-left: auto; position: relative;"> <select id="language-selector"
-            style="padding: 8px 12px; border: 1px solid #0e90d2; background: #0e90d2; color: #fff; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 13px;">
-            <option value="zh" style="color:#000;">中文</option>
-            <option value="en" style="color:#000;">English</option>
-            <option value="pt" style="color:#000;">Português</option>
-            <option value="ja" selected style="color:#000;">日本語</option>
-          </select> </div>
-      </div>
-    </div>
-  </header>
-  <main class="max-w-4xl mx-auto px-6 py-14">
-    <div class="text-sm text-gray-400 mb-6">
-      <a href="/post/" class="text-blue-400 hover:text-blue-300">ヘルプセンター</a>
-      <span class="mx-2">/</span>
-      <span>スマホでM3U8動画を視聴するには？</span>
-    </div>
-    <article class="bg-slate-800 border border-slate-700 rounded-2xl p-8">
-      <div class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4">モバイル</div>
-      <h1 class="text-3xl font-bold mb-4">スマホでM3U8動画を視聴するには？</h1>
-      <p class="text-gray-300 leading-8 mb-6">iPhoneとAndroidでM3U8を再生する方法をご紹介します。</p>
-      <h2 class="text-2xl font-bold mt-8 mb-3">詳細</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6">
-        <li>M3U8はHLSプロトコルのプレイリストファイルであり、動画コンテンツ自体は保存せず、プレーヤーにセグメントの読み込み先を指示します。</li>
-        <li>通常、バージョン番号、目標時間、メディアセグメントのアドレス、暗号化情報などのフィールドが含まれています。プレーヤーは読み込み後、順番にセグメントをリクエストして再生を完了します。</li>
-        <li>プレーンテキストであり、HTTPベースで配信されるため、導入が簡単で互換性が高く、Web、モバイル、デスクトッププレーヤーに適しています。</li>
-      </ul>
-      <h2 class="text-2xl font-bold mt-8 mb-3">よくある質問</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6">
-        <li>ファイルが開けない場合、通常はエンコードまたはパスの問題です。</li>
-        <li>再生失敗の一般的な原因は、セグメントアドレスの期限切れです。</li>
-      </ul>
-      <h2 class="text-2xl font-bold mt-8 mb-3">解決案</h2>
-      <ul class="space-y-3 text-gray-300 leading-8 list-disc pl-6">
-        <li>m3u8ファイルに正常にアクセスできることを先に確認してください。</li>
-        <li>すべてのセグメントリソースが完全であるか確認してください。</li>
-      </ul>
-    </article>
-  </main>
-  <script src="/resane/js/lang-sync.js"></script>
-</body>
+<body class="bg-slate-900 text-white">
 
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8オンラインプレーヤー</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">ホーム</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8からMP4へ</a>
+      <a href="/analyzer/" class="hover:text-blue-400">アナライザー</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">ヘルプセンター</a>
+      <a href="/about.html" class="hover:text-blue-400">概要</a>
+    </nav>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">再生開始</button>
+    </a>
+  </header>
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">モバイルデバイスでM3U8を視聴する</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      携帯電話はM3U8ストリームを視聴するための最も一般的なデバイスです。AndroidとiOSの両方が完全な互換性を持っています。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">モバイルブラウザでの再生</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      すべての主要なモバイルブラウザがHLSをサポートしています。スマートフォンで当サイトを開き、M3U8リンクを貼り付けて直接視聴を開始できます。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">モバイルメディアアプリ</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      多くのモバイルビデオプレーヤーがネットワークストリームをサポートしています。M3U8リンクをインポートして、より良い再生コントロールとフルスクリーン体験を得られます。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">ネットワークに関する提案</h2>
+    <p class="text-gray-400 leading-relaxed">
+      モバイルデータを節約するために、高画質再生にはWi-Fiを使用してください。携帯ネットワークが不安定な場合は標準画質に切り替えてください。
+    </p>
+  </section>
+
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8オンラインプレーヤー | コンテンツはインターネットから取得しています。権利侵害の場合はお問い合わせください。
+  </footer>
+
+  <script src="/resane/js/lang-switcher.js"></script>
+</body>
 </html>

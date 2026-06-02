@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 File Structure</title>
+  <title>Estrutura do Arquivo M3U8</title>
    <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
     <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
     <script src="/resane/js/taiwindcss.js"></script>
@@ -16,45 +16,45 @@
 <body class="bg-slate-900 text-white">
 
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">M3U8 Online Player</div>
+    <div class="text-xl font-bold">Player Online M3U8</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">Home</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/" class="hover:text-blue-400">Início</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 para MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analisador</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">Help Center</a>
-      <a href="/about.html" class="hover:text-blue-400">About</a>
+      <a href="/post/" class="hover:text-blue-400">Central de Ajuda</a>
+      <a href="/about.html" class="hover:text-blue-400">Sobre</a>
     </nav>
     <a href="/preview.html">
-      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Começar a Reproduzir</button>
     </a>
   </header>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 File Structure</h1>
+    <h1 class="text-3xl font-bold mb-6">Estrutura do Arquivo M3U8</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8 is a plain text file composed of tags and resource links. Different tags define playback rules, segment information and stream attributes.
+      M3U8 é um arquivo de texto simples composto por tags e links de recursos. Diferentes tags definem regras de reprodução, informações de segmentos e atributos de fluxo.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Basic Header Tag</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Tag de Cabeçalho Básica</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      #EXTM3U is the mandatory header tag, marking that this is a standard M3U8 playlist file. All valid M3U8 files must start with this tag.
+      #EXTM3U é a tag de cabeçalho obrigatória, marcando que este é um arquivo de playlist M3U8 padrão. Todos os arquivos M3U8 válidos devem começar com esta tag.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Segment Duration Tag</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Tag de Duração do Segmento</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      #EXTINF is used to record the playing duration of a single TS segment, followed by the actual URL or relative path of the video segment file.
+      #EXTINF é usado para registrar a duração de reprodução de um único segmento TS, seguido pelo URL real ou caminho relativo do arquivo de segmento de vídeo.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Extended Attribute Tags</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Tags de Atributos Estendidos</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      There are also tags for defining resolution, bitrate, encryption information and live stream markers. These tags realize advanced functions such as multi-definition switching and encrypted playback.
+      Existem também tags para definir resolução, taxa de bits, informações de criptografia e marcadores de transmissão ao vivo. Essas tags realizam funções avançadas, como troca de múltiplas definições e reprodução criptografada.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">File Classification</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Classificação de Arquivos</h2>
     <p class="text-gray-400 leading-relaxed">
-      M3U8 files are divided into master playlist and media playlist. The master playlist is used for multi-bitrate selection, while the media playlist directly manages video segments.
+      Os arquivos M3U8 são divididos em playlist mestre e playlist de mídia. A playlist mestre é usada para seleção de múltiplas taxas de bits, enquanto a playlist de mídia gerencia diretamente os segmentos de vídeo.
     </p>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
+    © 2019 - 2025 Player Online M3U8 | Conteúdo obtido da internet. Entre em contato conosco para solicitações de remoção em caso de infração.
   </footer>
 
   <script src="/resane/js/lang-switcher.js"></script>

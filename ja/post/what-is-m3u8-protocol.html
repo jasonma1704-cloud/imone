@@ -1,10 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>M3U8プロトコルとは何ですか？</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <script src="../resane/js/responsive-nav.min.js"></script>
+  <script src="../resane/js/hls.min.js"></script>
 </head>
 
 <body class="bg-slate-900 text-white">
@@ -29,10 +36,13 @@
   <section class="max-w-4xl mx-auto px-6 py-16">
     <h1 class="text-3xl font-bold mb-6">M3U8プロトコルとは何ですか？</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8プロトコルは、HLS（HTTP Live Streaming）プロトコルの中心を構成する重要な要素の一つです。これはストリーミング配信コンテンツをインデックス化し記述するための、テキストベースのプレイリストフォーマットです。M3U8ファイルの本質は、UTF-8でエンコードされた純粋なテキストファイルであり、従来のM3Uフォーマットを拡張したものです。
+      M3U8プロトコルは、HLS（HTTP Live
+      Streaming）プロトコルの中心を構成する重要な要素の一つです。これはストリーミング配信コンテンツをインデックス化し記述するための、テキストベースのプレイリストフォーマットです。M3U8ファイルの本質は、UTF-8でエンコードされた純粋なテキストファイルであり、従来のM3Uフォーマットを拡張したものです。
     </p>
     <p class="text-gray-400 leading-relaxed mb-4">
-      M3U8ファイル自体には実際のメディアデータは含まれておらず、一連のメディアセグメント（動画の断片）のURLアドレスが格納されています。これらのセグメントは通常、MPEG-2 TS（トランスポートストリーム）ファイルやfMP4（fragmented MP4）セグメントです。プレーヤーがM3U8ファイルを読み込み、記載された順序に従ってこれらのセグメントをダウンロードおよび再生することで、ストリーミング再生が実現します。
+      M3U8ファイル自体には実際のメディアデータは含まれておらず、一連のメディアセグメント（動画の断片）のURLアドレスが格納されています。これらのセグメントは通常、MPEG-2
+      TS（トランスポートストリーム）ファイルやfMP4（fragmented
+      MP4）セグメントです。プレーヤーがM3U8ファイルを読み込み、記載された順序に従ってこれらのセグメントをダウンロードおよび再生することで、ストリーミング再生が実現します。
     </p>
     <p class="text-gray-400 leading-relaxed mb-4">
       M3U8プロトコルは、オンラインのビデオオンデマンド（VOD）やライブストリーミング配信サービスで広く利用されています。アダプティブビットレート（ABR）ストリーミングに対応しているため、プレーヤーがユーザーのネットワーク環境に応じて動的に最適な画質を選択し、より快適な視聴体験を提供することができます。
@@ -61,4 +71,5 @@ segment2.ts
 
   <script src="/resane/js/lang-sync.js"></script>
 </body>
+
 </html>

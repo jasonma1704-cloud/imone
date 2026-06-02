@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HLSファイルの再生方法</title>
+  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
+  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="../resane/js/taiwindcss.js"></script>
+  <script src="../resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
+  <script src="../resane/js/responsive-nav.min.js"></script>
+  <script src="../resane/js/hls.min.js"></script>
+</head>
+
+<body class="bg-slate-900 text-white">
+  <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
+    <div class="text-xl font-bold">M3U8オンラインプレーヤー</div>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-blue-400">ホーム</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8からMP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">アナライザー</a>
+      <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
+      <a href="/post/" class="hover:text-blue-400">ヘルプセンター</a>
+      <a href="/about.html" class="hover:text-blue-400">概要</a>
+    </nav>
+    <a href="/preview.html">
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">再生開始</button>
+    </a>
+  </header>
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">HLSファイルの再生方法</h1>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      HLS（HTTP Live Streaming）ファイルは通常、M3U8形式です。異なるデバイスで複数の方法によって再生できます。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">ブラウザでHLSを再生</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      最新のブラウザはHLS再生をサポートしています。オンラインプレーヤーを使用して、HLSのURLを貼り付けて再生をクリックしてください。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">デスクトッププレーヤーでHLSを再生</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      VLCを開き、「メディア」>「ネットワークストリームを開く」を選択し、HLSのURLを貼り付けて再生を開始します。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">モバイルでHLSを再生</h2>
+    <p class="text-gray-400 leading-relaxed mb-4">
+      iOSでは、SafariがHLSをネイティブでサポートしています。Androidでは、ブラウザまたは専用のメディアアプリを使用してHLSストリームを再生します。
+    </p>
+    <h2 class="text-2xl font-bold mb-4 mt-8">トラブルシューティング</h2>
+    <p class="text-gray-400 leading-relaxed">
+      再生に失敗した場合は、リンクの有効性、ネットワーク接続、およびストリームが暗号化されているか期限切れかどうかを確認してください。
+    </p>
+  </section>
+
+  <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
+    © 2019 - 2025 M3U8オンラインプレーヤー | コンテンツはインターネットから収集されています。権利侵害の場合はお問い合わせください。
+  </footer>
+
+  <script src="/resane/js/lang-switcher.js"></script>
+</body>
+</html>

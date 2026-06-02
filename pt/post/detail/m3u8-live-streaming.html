@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M3U8 Live Streaming Principle</title>
+  <title>Princípio de Streaming Ao Vivo M3U8</title>
    <link rel="stylesheet" href="/resane/css/tcplayer.min.css" />
     <script src="/resane/js/tcplayer.v5.1.0.min.js"></script>
     <script src="/resane/js/taiwindcss.js"></script>
@@ -16,41 +16,41 @@
 <body class="bg-slate-900 text-white">
 
   <header class="flex justify-between items-center px-6 py-4 border-b border-slate-700">
-    <div class="text-xl font-bold">M3U8 Online Player</div>
+    <div class="text-xl font-bold">Player Online M3U8</div>
     <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-blue-400">Home</a>
-      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 to MP4</a>
-      <a href="/analyzer/" class="hover:text-blue-400">Analyzer</a>
+      <a href="/" class="hover:text-blue-400">Início</a>
+      <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8 para MP4</a>
+      <a href="/analyzer/" class="hover:text-blue-400">Analisador</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
-      <a href="/post/" class="hover:text-blue-400">Help Center</a>
-      <a href="/about.html" class="hover:text-blue-400">About</a>
+      <a href="/post/" class="hover:text-blue-400">Central de Ajuda</a>
+      <a href="/about.html" class="hover:text-blue-400">Sobre</a>
     </nav>
     <a href="/preview.html">
-      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Start Playing</button>
+      <button class="bg-blue-500 px-4 py-2 rounded-lg text-sm hover:bg-blue-600">Começar a Reproduzir</button>
     </a>
   </header>
 
   <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">M3U8 Live Streaming Working Principle</h1>
+    <h1 class="text-3xl font-bold mb-6">Princípio de Funcionamento do Streaming Ao Vivo M3U8</h1>
     <p class="text-gray-400 leading-relaxed mb-4">
-      Live streaming M3U8 is dynamically updated. Old segments are deleted and new segments are added continuously.
+      O streaming ao vivo M3U8 é atualizado dinamicamente. Segmentos antigos são excluídos e novos segmentos são adicionados continuamente.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Stream Generation</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Geração de Stream</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      Live video is captured and encoded on the server, then split into small TS files, and the M3U8 index list is refreshed in real time.
+      O vídeo ao vivo é capturado e codificado no servidor, depois dividido em pequenos arquivos TS, e a lista de índice M3U8 é atualizada em tempo real.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Client Pull Stream</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Pull de Stream pelo Cliente</h2>
     <p class="text-gray-400 leading-relaxed mb-4">
-      The client regularly re-requests the M3U8 file, loads new segments sequentially, and realizes uninterrupted live playback.
+      O cliente solicita novamente o arquivo M3U8 regularmente, carrega novos segmentos sequencialmente e realiza a reprodução ao vivo ininterrupta.
     </p>
-    <h2 class="text-2xl font-bold mb-4 mt-8">Delay Feature</h2>
+    <h2 class="text-2xl font-bold mb-4 mt-8">Característica de Atraso</h2>
     <p class="text-gray-400 leading-relaxed">
-      HLS live stream has a certain delay due to segmentation and buffering. It is suitable for general live broadcast rather than ultra-low delay interactive scenarios.
+      O stream ao vivo HLS tem um certo atraso devido à segmentação e ao armazenamento em buffer. É adequado para transmissões ao vivo gerais em vez de cenários interativos de ultra-baixo atraso.
     </p>
   </section>
 
   <footer class="border-t border-slate-700 text-center py-6 text-sm text-gray-400">
-    © 2019 - 2025 M3U8 Online Player | Content sourced from the internet. Contact us for takedown requests if infringed.
+    © 2019 - 2025 Player Online M3U8 | Conteúdo obtido da internet. Entre em contato conosco para solicitações de remoção em caso de infração.
   </footer>
 
   <script src="/resane/js/lang-switcher.js"></script>
