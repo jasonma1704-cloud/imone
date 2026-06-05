@@ -20,7 +20,7 @@
         <a href="/post/" class="hover:text-blue-400">Central de Ajuda</a>
         <a href="/about.html" class="hover:text-blue-400">Sobre</a>
       </nav>
-      <a href="/preview.html" class="rounded-xl bg-blue-500 px-5 py-2 text-sm font-semibold hover:bg-blue-600">Começar a reproduzir</a>
+      <a href="/" class="rounded-xl bg-blue-500 px-5 py-2 text-sm font-semibold hover:bg-blue-600">Começar a reproduzir</a>
     </div>
   </header>
 
@@ -76,7 +76,7 @@
           <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
             <h2 class="mb-4 text-xl font-bold">快捷操作</h2>
             <div class="space-y-3">
-              <a id="play-link" href="/preview.html" class="block rounded-xl bg-blue-500 px-4 py-3 text-center font-semibold hover:bg-blue-600">打开Reproduzir器</a>
+              <a id="play-link" href="/" class="block rounded-xl bg-blue-500 px-4 py-3 text-center font-semibold hover:bg-blue-600">打开Reproduzir器</a>
               <a id="ffmpeg-generator-link" href="/ffmpeg/" class="block rounded-xl bg-emerald-500 px-4 py-3 text-center font-semibold hover:bg-emerald-600">打开 Gerador FFmpeg</a>
               <button id="copy-url-btn" class="w-full rounded-xl bg-slate-800 px-4 py-3 font-semibold hover:bg-slate-700">复制 M3U8 地址</button>
               <button id="copy-ffmpeg-btn" class="w-full rounded-xl bg-slate-800 px-4 py-3 font-semibold hover:bg-slate-700">复制 FFmpeg 命令</button>
@@ -230,7 +230,7 @@
       $('segment-count').textContent = data.segments.length;
       $('variant-count').textContent = data.variants.length;
       $('raw-content').textContent = raw;
-      $('play-link').href = baseUrl ? `/preview.html?url=${encodeURIComponent(baseUrl)}` : '/preview.html';
+      $('play-link').href = baseUrl ? `/?url=${encodeURIComponent(baseUrl)}` : '/';
       $('ffmpeg-generator-link').href = baseUrl ? `/ffmpeg/?url=${encodeURIComponent(baseUrl)}&type=m3u8-copy-mp4&output=output.mp4` : '/ffmpeg/';
       $('ffmpeg-command').textContent = baseUrl ? `ffmpeg -y -i "${baseUrl}" -c copy output.mp4` : '请先输入 URL，才能生成 FFmpeg 命令';
 

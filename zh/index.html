@@ -159,7 +159,7 @@
 
     <!-- 桌面端导航 -->
     <nav class="space-x-6 text-sm">
-      <a href="/" class="text-blue-400 font-bold">首页</a>
+      <a href="/zh/index.html" class="text-blue-400 font-bold">首页</a>
       <a href="/m3u8_to_mp4/" class="hover:text-blue-400">M3U8转MP4</a>
       <a href="/analyzer/" class="hover:text-blue-400">分析器</a>
       <a href="/ffmpeg/" class="hover:text-blue-400">FFmpeg</a>
@@ -180,7 +180,7 @@
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
-      <a href="/preview.html">
+      <a href="/zh/index.html">
         <button
           class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">开始播放</button>
       </a>
@@ -196,7 +196,7 @@
 
   <!-- 移动端导航菜单 -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="/" class="text-blue-400 font-bold text-lg">首页</a>
+    <a href="/zh/index.html" class="text-blue-400 font-bold text-lg">首页</a>
     <a href="/m3u8_to_mp4/" class="hover:text-blue-400 text-lg">M3U8转MP4</a>
     <a href="/analyzer/" class="hover:text-blue-400 text-lg">分析器</a>
     <a href="/ffmpeg/" class="hover:text-blue-400 text-lg">FFmpeg</a>
@@ -238,7 +238,7 @@
   <section class="px-6 py-16 max-w-6xl mx-auto">
     <h2 class="text-2xl font-bold mb-10 text-center title-glow">全能 M3U8 工具</h2>
     <div class="grid md:grid-cols-4 gap-6">
-      <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
+      <a href="/zh/index.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
         <h3 class="font-bold mb-2">M3U8 播放器</h3>
         <p class="text-gray-400 text-sm">在线播放 M3U8 流</p>
         <div class="mt-4 text-blue-400 text-sm">打开 →</div>
@@ -311,7 +311,7 @@
     <div class="space-y-4">
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">M3U8 协议是什么？</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="./post/what-is-m3u8-protocol.html" id="faq-1" class="text-blue-400 hover:underline">M3U8 协议是什么？</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">是 HLS
           流媒体索引协议，由苹果公司开发，多用于网络视频分发和直播场景。它将视频切分为多个小的TS分片，通过m3u8索引文件记录分片地址和顺序，客户端按需加载播放。</p>
@@ -319,7 +319,7 @@
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">怎样播放 M3U8 视频文件？</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="./post/play-m3u8-video.html" id="faq-2" class="text-blue-400 hover:underline">怎样播放 M3U8 视频文件？</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">用支持流媒体的播放器（如VLC）、浏览器插件或专用在线解析工具直接打开链接播放。本工具就是一个免费的在线M3U8播放器，只需输入地址即可播放。
         </p>
@@ -327,28 +327,28 @@
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">M3U8 格式有哪些优势？</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="./post/m3u8-advantages.html" id="faq-3" class="text-blue-400 hover:underline">M3U8 格式有哪些优势？</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">分段加载、卡顿少、兼容移动端、网速适配性强（可自动切换不同码率）、易防盗链、支持直播和点播。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">M3U8 和普通视频格式有什么不同？</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="./post/m3u8-vs-other-formats.html" id="faq-4" class="text-blue-400 hover:underline">M3U8 和普通视频格式有什么不同？</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">它不是完整视频，是分片地址清单；普通 MP4 等是完整单一视频文件。M3U8适合网络传输，普通视频适合本地存储。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">常见的视频播放格式有哪些？</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="./post/common-video-formats.html" id="faq-5" class="text-blue-400 hover:underline">常见的视频播放格式有哪些？</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">MP4、FLV、MOV、AVI、MKV、WMV、WebM 等。其中MP4是目前最通用的格式，WebM是开源免费的格式。</p>
       </div>
 
       <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">M3U8 在直播领域如何使用？</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="./post/m3u8-live-streaming.html" id="faq-6" class="text-blue-400 hover:underline">M3U8 在直播领域如何使用？</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">直播时服务器会实时将视频切片生成TS分片，并不断更新m3u8索引文件。客户端持续拉取最新的分片，实现低延迟在线直播。</p>
       </div>

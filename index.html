@@ -13,13 +13,13 @@
   <meta property="og:description" content="Free online M3U8 player supporting playback, parsing, conversion, and analysis of HLS streaming media videos, no plugin installation required.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
-  <link rel="stylesheet" href="../resane/css/tcplayer.min.css" />
-  <script src="../resane/js/tcplayer.v5.1.0.min.js"></script>
-  <script src="../resane/js/taiwindcss.js"></script>
-  <script src="../resane/js/jquery.min.js"></script>
-  <link rel="stylesheet" href="../resane/css/responsive-nav.css" />
-  <script src="../resane/js/responsive-nav.min.js"></script>
-  <script src="../resane/js/hls.min.js"></script>
+  <link rel="stylesheet" href="./resane/css/tcplayer.min.css" />
+  <script src="./resane/js/tcplayer.v5.1.0.min.js"></script>
+  <script src="./resane/js/taiwindcss.js"></script>
+  <script src="./resane/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="./resane/css/responsive-nav.css" />
+  <script src="./resane/js/responsive-nav.min.js"></script>
+  <script src="./resane/js/hls.min.js"></script>
 
 
   <style>
@@ -180,7 +180,7 @@
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-300">▾</div>
       </div>
-      <a href="/preview.html">
+      <a href="/">
         <button
           class="bg-blue-500 px-4 py-2 text-sm rounded-lg hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30">▶
           Start Playback</button>
@@ -239,7 +239,7 @@
   <section class="px-6 py-16 max-w-6xl mx-auto">
     <h2 class="text-2xl font-bold mb-10 text-center title-glow">All-in-One M3U8 Toolkit</h2>
     <div class="grid md:grid-cols-4 gap-6">
-      <a href="/preview.html" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
+      <a href="/" class="block bg-slate-800 p-6 rounded-xl hover:bg-slate-700 transition card-glow">
         <h3 class="font-bold mb-2">M3U8 Player</h3>
         <p class="text-gray-400 text-sm">Play M3U8 streams online</p>
         <div class="mt-4 text-blue-400 text-sm">Open →</div>
@@ -303,45 +303,45 @@
   <section class="max-w-4xl mx-auto px-6 py-16">
     <h2 class="text-2xl font-bold mb-6 title-glow">Frequently Asked Questions</h2>
     <div class="space-y-4">
-      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+      <div id="faq1" class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">What is the M3U8 protocol?</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="/post/what-is-m3u8-protocol.html" class="text-blue-400 hover:text-blue-300 no-underline font-semibold">What is the M3U8 protocol?</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">It is an HLS streaming media indexing protocol developed by Apple Inc., mostly used in network video distribution and live broadcast scenarios. It splits videos into multiple small TS segments, records the segment addresses and order through m3u8 index files, and clients load and play them on demand.</p>
       </div>
 
-      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+      <div id="faq2" class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">How to play M3U8 video files?</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="/post/play-m3u8-video.html" class="text-blue-400 hover:text-blue-300 no-underline font-semibold">How to play M3U8 video files?</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">Use a player that supports streaming media (such as VLC), browser extensions, or dedicated online parsing tools to directly open the link for playback. This tool is a free online M3U8 player, just enter the address to play.
         </p>
       </div>
 
-      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+      <div id="faq3" class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">What are the advantages of the M3U8 format?</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="/post/m3u8-advantages.html" class="text-blue-400 hover:text-blue-300 no-underline font-semibold">What are the advantages of the M3U8 format?</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">Segmented loading, less buffering, mobile compatibility, strong network speed adaptability (can automatically switch different bitrates), easy anti-leeching, supports live broadcast and on-demand playback.</p>
       </div>
 
-      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+      <div id="faq4" class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">What's the difference between M3U8 and regular video formats?</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="/post/m3u8-vs-other-formats.html" class="text-blue-400 hover:text-blue-300 no-underline font-semibold">What's the difference between M3U8 and regular video formats?</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">It is not a complete video but a list of segment addresses; regular formats like MP4 are complete single video files. M3U8 is suitable for network transmission, while regular videos are suitable for local storage.</p>
       </div>
 
-      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+      <div id="faq5" class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">What are the common video playback formats?</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="/post/common-video-formats.html" class="text-blue-400 hover:text-blue-300 no-underline font-semibold">What are the common video playback formats?</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">MP4, FLV, MOV, AVI, MKV, WMV, WebM, etc. Among them, MP4 is currently the most universal format, and WebM is an open-source and free format.</p>
       </div>
 
-      <div class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
+      <div id="faq6" class="faq-item bg-slate-800 p-4 rounded-lg hover:bg-slate-700 transition card-glow">
         <div class="flex justify-between items-center">
-          <h3 class="text-blue-400 font-semibold">How is M3U8 used in the live broadcast field?</h3>
+          <h3 class="text-blue-400 font-semibold"><a href="/post/m3u8-live-streaming.html" class="text-blue-400 hover:text-blue-300 no-underline font-semibold">How is M3U8 used in the live broadcast field?</a></h3>
         </div>
         <p class="text-gray-400 text-sm mt-2">During live broadcasts, the server will real-time slice the video into TS segments and continuously update the m3u8 index file. The client continuously pulls the latest segments to achieve low-latency online live broadcasting.</p>
       </div>
